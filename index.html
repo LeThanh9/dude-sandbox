@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Dude Theft Wars: Dev Sandbox 3D</title>
+  <title>Dude Theft Wars 3D: Dev Edition</title>
   <!-- Tailwind CSS & FontAwesome -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -14,6 +14,7 @@
       user-select: none;
       -webkit-user-select: none;
       box-sizing: border-box;
+      outline: none;
     }
     body, html {
       margin: 0;
@@ -21,7 +22,7 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      background: #111;
+      background: #70c5ff;
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     }
     #game-canvas {
@@ -32,7 +33,7 @@
       height: 100%;
       z-index: 1;
     }
-    /* UI Overlay */
+    /* UI HUD Overlay */
     #ui-overlay {
       position: absolute;
       top: 0;
@@ -45,144 +46,137 @@
     .interactive {
       pointer-events: auto;
     }
-    /* Glassmorphism Panels */
-    .glass-panel {
-      background: rgba(18, 22, 34, 0.82);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 16px;
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
+    /* Cartoon Low-Poly Dude UI */
+    .dude-card {
+      background: rgba(15, 23, 42, 0.85);
+      border: 3px solid #f59e0b;
+      border-radius: 18px;
+      box-shadow: 0 8px 0 rgba(0, 0, 0, 0.45);
     }
-    .glass-btn {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.05) 100%);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(8px);
-      transition: all 0.18s ease;
+    .dude-btn {
+      background: #f59e0b;
+      border: 2px solid #fff;
+      color: #0f172a;
+      font-weight: 900;
+      border-radius: 14px;
+      box-shadow: 0 4px 0 #b45309;
+      transition: all 0.1s ease;
     }
-    .glass-btn:hover {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%);
-      transform: translateY(-1px);
-      border-color: rgba(255, 255, 255, 0.45);
+    .dude-btn:hover {
+      background: #fbbf24;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 0 #b45309;
     }
-    .glass-btn:active {
-      transform: scale(0.96);
+    .dude-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #b45309;
     }
-    /* Admin Glow */
-    .admin-glow {
-      box-shadow: 0 0 25px rgba(234, 179, 8, 0.5), inset 0 0 15px rgba(234, 179, 8, 0.2);
-      border: 1.5px solid rgba(250, 204, 21, 0.8) !important;
-    }
-    /* Mini-map */
-    #minimap {
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
-      border: 3px solid rgba(255, 255, 255, 0.35);
-      background: rgba(10, 15, 25, 0.85);
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    }
+    /* Crosshair */
     #crosshair {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 14px;
-      height: 14px;
+      width: 18px;
+      height: 18px;
       pointer-events: none;
       z-index: 12;
     }
     #crosshair::before, #crosshair::after {
       content: '';
       position: absolute;
-      background: rgba(255, 255, 255, 0.85);
+      background: #ffffff;
+      box-shadow: 0 0 4px rgba(0,0,0,0.8);
     }
     #crosshair::before {
-      top: 6px;
-      left: 0;
-      width: 14px;
-      height: 2px;
+      top: 8px; left: 0; width: 18px; height: 2.5px;
     }
     #crosshair::after {
-      top: 0;
-      left: 6px;
-      width: 2px;
-      height: 14px;
+      top: 0; left: 8px; width: 2.5px; height: 18px;
     }
-    /* Virtual Joystick */
-    #joystick-zone {
+    /* SMARTPHONE dPhone (Thương hiệu đặc trưng của Dude Theft Wars) */
+    #dphone {
       position: absolute;
-      bottom: 25px;
-      left: 25px;
+      bottom: 20px;
+      right: 20px;
+      width: 290px;
+      height: 520px;
+      background: #090d16;
+      border: 6px solid #1e293b;
+      border-radius: 40px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 0 15px rgba(255, 255, 255, 0.1);
+      transform: translateY(600px);
+      transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 50;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    #dphone.open {
+      transform: translateY(0);
+    }
+    .phone-speaker {
+      width: 60px;
+      height: 5px;
+      background: #334155;
+      border-radius: 99px;
+      margin: 10px auto 4px auto;
+    }
+    /* Mini-map */
+    #minimap {
       width: 120px;
       height: 120px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 2px dashed rgba(255, 255, 255, 0.25);
       border-radius: 50%;
-      touch-action: none;
+      border: 4px solid #f59e0b;
+      background: rgba(15, 23, 42, 0.9);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.6);
+      overflow: hidden;
     }
-    #joystick-knob {
-      position: absolute;
-      top: 35px;
-      left: 35px;
-      width: 50px;
-      height: 50px;
-      background: rgba(255, 255, 255, 0.6);
-      border-radius: 50%;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-      pointer-events: none;
-    }
-    /* Custom Scrollbar for Dev Menu */
-    .custom-scroll::-webkit-scrollbar { width: 5px; }
-    .custom-scroll::-webkit-scrollbar-thumb {
-      background: rgba(234, 179, 8, 0.4);
-      border-radius: 999px;
+    /* Star rating */
+    .star-active {
+      color: #eab308;
+      text-shadow: 0 0 8px rgba(234, 179, 8, 0.8);
     }
   </style>
 </head>
 <body>
 
-  <!-- 3D Canvas -->
-  <div id="game-container">
-    <canvas id="game-canvas"></canvas>
-  </div>
-
+  <!-- Game 3D Viewport -->
+  <canvas id="game-canvas"></canvas>
   <div id="crosshair"></div>
 
-  <!-- HUD & UI Overlay -->
+  <!-- HUD Overlay -->
   <div id="ui-overlay" class="p-3 sm:p-5 flex flex-col justify-between">
     
-    <!-- TOP BAR -->
+    <!-- TOP HEADER -->
     <div class="flex justify-between items-start w-full">
-      <!-- Player Info & Status -->
+      <!-- Player Status (Dude Avatar, Health, Name) -->
       <div class="flex items-center gap-3 interactive">
-        <div class="glass-panel px-3.5 py-2 flex items-center gap-2.5">
-          <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-amber-500 to-yellow-300 flex items-center justify-center text-slate-900 font-black shadow-md">
-            <i class="fa-solid fa-user-ninja text-base"></i>
+        <div class="dude-card px-3.5 py-2 flex items-center gap-2.5">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-yellow-300 flex items-center justify-center text-slate-950 font-black shadow-md border-2 border-white">
+            <i class="fa-solid fa-face-laugh-squint text-xl"></i>
           </div>
           <div>
             <div class="flex items-center gap-1.5">
-              <span id="player-name-display" class="font-extrabold text-white text-sm tracking-wide">Dude</span>
-              <button onclick="openNameModal()" class="text-xs text-amber-400 hover:text-amber-300 ml-1 p-0.5" title="Đổi tên nhân vật">
+              <span id="player-name-label" class="font-black text-white text-sm tracking-wide">Dude</span>
+              <button onclick="openNameModal()" class="text-xs text-amber-400 hover:text-amber-300 ml-1 p-0.5" title="Đổi tên để mở Admin">
                 <i class="fa-solid fa-pen-to-square"></i>
               </button>
             </div>
             <!-- Health Bar -->
-            <div class="w-28 h-2.5 bg-slate-800 rounded-full overflow-hidden mt-1 border border-slate-700">
-              <div id="health-bar" class="h-full bg-emerald-500 transition-all duration-300" style="width: 100%"></div>
+            <div class="w-32 h-3 bg-slate-900 rounded-full overflow-hidden mt-1 border-2 border-slate-700">
+              <div id="health-bar" class="h-full bg-emerald-500 transition-all duration-200" style="width: 100%"></div>
             </div>
           </div>
         </div>
 
-        <!-- Cash & Wanted Level -->
-        <div class="glass-panel px-3.5 py-2 text-left">
-          <div class="text-emerald-400 font-extrabold text-base flex items-center gap-1">
+        <!-- Cash & Wanted Stars -->
+        <div class="dude-card px-4 py-2 text-left">
+          <div class="text-emerald-400 font-black text-lg flex items-center gap-1.5">
             <i class="fa-solid fa-sack-dollar text-sm"></i>
-            <span id="cash-display">$1,500</span>
+            <span id="cash-label">$2,500</span>
           </div>
-          <div class="flex gap-1 text-slate-600 text-xs mt-1" id="wanted-stars">
+          <div class="flex gap-1 text-slate-600 text-sm mt-0.5" id="wanted-stars">
             <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star"></i>
@@ -192,332 +186,399 @@
         </div>
       </div>
 
-      <!-- Right Side: MiniMap & Dev Button -->
+      <!-- Right Header: MiniMap & Dev Badge -->
       <div class="flex flex-col items-end gap-2 interactive">
-        <!-- Dev Button (Hidden until name is 'dev') -->
-        <button id="admin-menu-btn" onclick="toggleAdminPanel()" class="hidden glass-panel admin-glow px-4 py-2 bg-yellow-500/20 text-yellow-300 font-black text-sm flex items-center gap-2 animate-bounce cursor-pointer">
-          <i class="fa-solid fa-shield-halved text-base text-yellow-400"></i>
-          <span>ADMIN PANEL (DEV)</span>
-        </button>
-
-        <div id="minimap" class="flex items-center justify-center">
-          <canvas id="minimap-canvas" width="130" height="130"></canvas>
+        <!-- Floating Dev Badge if dev active -->
+        <div id="dev-active-badge" class="hidden bg-gradient-to-r from-yellow-500 to-amber-600 border-2 border-white text-slate-950 font-black text-xs px-3 py-1.5 rounded-full shadow-lg animate-pulse flex items-center gap-1.5">
+          <i class="fa-solid fa-shield-halved"></i> DEV ADMIN ACTIVE
         </div>
 
-        <div class="glass-panel px-2.5 py-1 text-[11px] font-bold text-slate-300">
-          <span id="weapon-display"><i class="fa-solid fa-gun mr-1 text-amber-400"></i> Súng Lục (99/99)</span>
+        <!-- Radar -->
+        <div id="minimap" class="flex items-center justify-center">
+          <canvas id="minimap-canvas" width="120" height="120"></canvas>
+        </div>
+
+        <!-- Weapon Badge -->
+        <div class="dude-card px-3 py-1 text-xs font-black text-amber-400 flex items-center gap-1.5">
+          <span id="weapon-name"><i class="fa-solid fa-gun"></i> AK-47</span>
+          <span class="text-white text-[11px]">(∞ Đạn)</span>
         </div>
       </div>
     </div>
 
     <!-- NOTIFICATION POPUP -->
-    <div id="notice-toast" class="self-center glass-panel px-6 py-3 border-amber-400/60 text-amber-300 font-black text-center text-sm shadow-2xl transition-all duration-300 opacity-0 transform -translate-y-4 pointer-events-none">
-      Thông báo trò chơi
+    <div id="game-toast" class="self-center dude-card px-6 py-2.5 border-2 border-amber-400 text-amber-300 font-black text-center text-sm shadow-2xl transition-all duration-300 opacity-0 transform -translate-y-4 pointer-events-none">
+      Thông báo
     </div>
 
-    <!-- BOTTOM CONTROLS (Help / Mobile buttons) -->
+    <!-- BOTTOM CONTROLS & DPHONE BUTTON -->
     <div class="flex justify-between items-end w-full">
-      <!-- PC Controls Guide -->
-      <div class="hidden md:flex glass-panel px-4 py-2.5 text-xs text-slate-300 gap-4">
-        <div><kbd class="bg-slate-700/80 px-1.5 py-0.5 rounded text-white font-mono">WASD</kbd> Di chuyển</div>
-        <div><kbd class="bg-slate-700/80 px-1.5 py-0.5 rounded text-white font-mono">Chuột</kbd> Xoay / Bắn</div>
-        <div><kbd class="bg-slate-700/80 px-1.5 py-0.5 rounded text-white font-mono">SPACE</kbd> Nhảy</div>
-        <div><kbd class="bg-slate-700/80 px-1.5 py-0.5 rounded text-white font-mono">SHIFT</kbd> Chạy nhanh</div>
-        <div><kbd class="bg-slate-700/80 px-1.5 py-0.5 rounded text-white font-mono">F</kbd> Lên/Xuống Xe</div>
-        <div><kbd class="bg-slate-700/80 px-1.5 py-0.5 rounded text-white font-mono">C</kbd> Đổi Góc Nhìn</div>
+      <!-- PC Keyboard Controls Help -->
+      <div class="hidden md:flex dude-card px-4 py-2.5 text-xs text-slate-200 gap-3.5 border-2 border-slate-700">
+        <div><b class="text-amber-400">WASD</b>: Chạy</div>
+        <div><b class="text-amber-400">Chuột</b>: Nhắm/Bắn</div>
+        <div><b class="text-amber-400">Space</b>: Nhảy</div>
+        <div><b class="text-amber-400">Shift</b>: Chạy nhanh</div>
+        <div><b class="text-amber-400">F</b>: Lên/Xuống Xe</div>
+        <div><b class="text-amber-400">Tab / T</b>: Mở dPhone</div>
+        <div><b class="text-amber-400">1,2,3</b>: Đổi Súng</div>
       </div>
 
-      <!-- Action Buttons for Mobile / Quick Click -->
-      <div class="flex gap-2.5 interactive">
-        <button id="car-action-btn" onclick="toggleDriveCar()" class="glass-panel glass-btn w-12 h-12 rounded-full flex flex-col items-center justify-center text-white text-base">
-          <i class="fa-solid fa-car"></i>
-          <span class="text-[9px] font-bold">Xe [F]</span>
+      <!-- Action Buttons & dPhone Trigger -->
+      <div class="flex items-center gap-3 interactive">
+        <button id="car-btn" onclick="handleCarInteraction()" class="dude-btn w-12 h-12 flex flex-col items-center justify-center text-slate-950">
+          <i class="fa-solid fa-car text-base"></i>
+          <span class="text-[9px]">Xe [F]</span>
         </button>
-        <button onclick="playerShoot()" class="glass-panel glass-btn w-12 h-12 rounded-full flex flex-col items-center justify-center text-amber-400 text-base">
-          <i class="fa-solid fa-crosshairs"></i>
-          <span class="text-[9px] font-bold">Bắn</span>
+        <button onclick="switchWeapon()" class="dude-btn w-12 h-12 flex flex-col items-center justify-center text-slate-950">
+          <i class="fa-solid fa-rotate text-base"></i>
+          <span class="text-[9px]">Súng</span>
         </button>
-        <button onclick="playerJump()" class="glass-panel glass-btn w-12 h-12 rounded-full flex flex-col items-center justify-center text-emerald-400 text-base">
-          <i class="fa-solid fa-arrow-up"></i>
-          <span class="text-[9px] font-bold">Nhảy</span>
+        <!-- Button Mở Điện Thoại dPhone -->
+        <button onclick="toggleDPhone()" class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-amber-500 to-yellow-400 border-2 border-white shadow-xl flex flex-col items-center justify-center text-slate-950 font-black hover:scale-105 active:scale-95 transition-all">
+          <i class="fa-solid fa-mobile-screen-button text-2xl"></i>
+          <span class="text-[8px] font-black uppercase tracking-tighter">dPhone</span>
         </button>
       </div>
     </div>
   </div>
 
-  <!-- MODAL ĐỔI TÊN NHÂN VẬT -->
-  <div id="name-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
-    <div class="glass-panel w-full max-w-md p-6 text-center border-amber-500/40 relative">
-      <div class="w-14 h-14 mx-auto rounded-full bg-amber-500/20 border border-amber-400/50 flex items-center justify-center text-amber-400 text-2xl mb-3 shadow-lg shadow-amber-500/20">
-        <i class="fa-solid fa-user-gear"></i>
+  <!-- ============================================== -->
+  <!-- ĐIỆN THOẠI DPHONE (DUDE THEFT WARS SMARTPHONE) -->
+  <!-- ============================================== -->
+  <div id="dphone" class="interactive">
+    <div class="phone-speaker"></div>
+    <!-- Phone Status Bar -->
+    <div class="px-5 py-1.5 flex justify-between items-center text-[10px] font-bold text-slate-400 border-b border-slate-800">
+      <span>12:00 PM</span>
+      <span class="text-amber-400 font-black">dPhone 15 Pro</span>
+      <div class="flex gap-1.5 items-center">
+        <i class="fa-solid fa-wifi"></i>
+        <i class="fa-solid fa-battery-full text-emerald-400"></i>
       </div>
-      <h2 class="text-xl font-black text-white">ĐẶT TÊN NHÂN VẬT</h2>
-      <p class="text-xs text-slate-300 mt-1 mb-4 leading-relaxed">
-        Nhập tên để bắt đầu khám phá thành phố.<br>
-        <span class="text-yellow-400 font-bold bg-yellow-500/10 px-2 py-0.5 rounded border border-yellow-500/30">
-          💡 Gợi ý: Nếu đổi tên thành <span class="underline font-black text-white">dev</span> sẽ mở khóa Admin Dev Panel!
+    </div>
+
+    <!-- Phone Screen Views -->
+    <div class="flex-1 p-4 overflow-y-auto" id="phone-screen">
+      <!-- Screen 1: Home Screen with Apps -->
+      <div id="phone-home" class="space-y-4">
+        <div class="text-center py-2">
+          <div class="text-xl font-black text-white tracking-wide">DudeOS 2.0</div>
+          <p class="text-[11px] text-slate-400">Ứng dụng dPhone của bạn</p>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3 text-center">
+          <!-- App 1: Cheats App -->
+          <div onclick="openPhoneApp('cheats')" class="flex flex-col items-center cursor-pointer group">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-rose-500 to-red-600 flex items-center justify-center text-white text-2xl shadow-lg group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-terminal"></i>
+            </div>
+            <span class="text-[11px] font-bold text-slate-200 mt-1">Cheats</span>
+          </div>
+
+          <!-- App 2: dUber Car Spawner -->
+          <div onclick="openPhoneApp('duber')" class="flex flex-col items-center cursor-pointer group">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-amber-500 to-yellow-500 flex items-center justify-center text-slate-950 text-2xl shadow-lg group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-car-side"></i>
+            </div>
+            <span class="text-[11px] font-bold text-slate-200 mt-1">dUber</span>
+          </div>
+
+          <!-- App 3: Ammu-Gun Store -->
+          <div onclick="openPhoneApp('weapons')" class="flex flex-col items-center cursor-pointer group">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-600 flex items-center justify-center text-white text-2xl shadow-lg group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-gun"></i>
+            </div>
+            <span class="text-[11px] font-bold text-slate-200 mt-1">Vũ Khí</span>
+          </div>
+
+          <!-- App 4: DEV ADMIN PANEL (Mở khi tên là dev hoặc nhập mã) -->
+          <div id="app-dev-admin" onclick="openPhoneApp('devadmin')" class="flex flex-col items-center cursor-pointer group">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-yellow-400 to-amber-600 flex items-center justify-center text-slate-950 text-2xl shadow-lg border-2 border-white group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-crown"></i>
+            </div>
+            <span class="text-[11px] font-black text-yellow-300 mt-1">DEV ADMIN</span>
+          </div>
+
+          <!-- App 5: Bản Đồ / Dịch Chuyển -->
+          <div onclick="openPhoneApp('teleport')" class="flex flex-col items-center cursor-pointer group">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-blue-500 to-indigo-600 flex items-center justify-center text-white text-2xl shadow-lg group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-map-location-dot"></i>
+            </div>
+            <span class="text-[11px] font-bold text-slate-200 mt-1">Bản Đồ</span>
+          </div>
+
+          <!-- App 6: Đổi Tên Nhân Vật -->
+          <div onclick="openNameModal()" class="flex flex-col items-center cursor-pointer group">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-purple-500 to-fuchsia-600 flex items-center justify-center text-white text-2xl shadow-lg group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-id-card"></i>
+            </div>
+            <span class="text-[11px] font-bold text-slate-200 mt-1">Đổi Tên</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Screen 2: CHEATS APP -->
+      <div id="phone-cheats" class="hidden space-y-3">
+        <div class="flex items-center gap-2 pb-2 border-b border-slate-800 text-white font-bold text-sm">
+          <button onclick="backToPhoneHome()" class="text-amber-400 p-1"><i class="fa-solid fa-chevron-left"></i></button>
+          <span>Ứng Dụng Cheats</span>
+        </div>
+        <p class="text-[11px] text-slate-400">Nhập mã gian lận của Dude Theft Wars:</p>
+        <div class="flex gap-1.5">
+          <input id="cheat-input" type="text" placeholder="Ví dụ: dudebolt, moon, night..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white font-mono uppercase focus:border-amber-400">
+          <button onclick="submitCheatCode()" class="dude-btn px-3 py-1.5 text-xs text-slate-950 font-black">GỬI</button>
+        </div>
+        <div class="text-[11px] text-slate-300 space-y-1 bg-slate-900/60 p-2.5 rounded-xl border border-slate-800">
+          <b class="text-amber-400">Mã có sẵn:</b>
+          <div>• <code class="text-yellow-300">dudebolt</code>: Tốc độ tia chớp</div>
+          <div>• <code class="text-yellow-300">moon</code>: Trọng lực mặt trăng</div>
+          <div>• <code class="text-yellow-300">cash</code>: Nhận +$500,000</div>
+          <div>• <code class="text-yellow-300">night</code>: Chuyển sang ban đêm</div>
+          <div>• <code class="text-yellow-300">day</code>: Chuyển sang ban ngày</div>
+          <div>• <code class="text-yellow-300">dev</code>: Mở khóa DEV ADMIN</div>
+        </div>
+      </div>
+
+      <!-- Screen 3: DUBER (Car Spawner) -->
+      <div id="phone-duber" class="hidden space-y-3">
+        <div class="flex items-center gap-2 pb-2 border-b border-slate-800 text-white font-bold text-sm">
+          <button onclick="backToPhoneHome()" class="text-amber-400 p-1"><i class="fa-solid fa-chevron-left"></i></button>
+          <span>dUber Car Spawner</span>
+        </div>
+        <div class="grid grid-cols-1 gap-2 text-xs">
+          <button onclick="spawnCar('lambo')" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 p-2.5 rounded-xl text-left font-bold text-white flex items-center justify-between">
+            <span>🏎️ Siêu Xe Lambo Đỏ</span>
+            <span class="text-amber-400 font-mono">FREE</span>
+          </button>
+          <button onclick="spawnCar('police')" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 p-2.5 rounded-xl text-left font-bold text-white flex items-center justify-between">
+            <span>🚔 Xe Cảnh Sát Tuần Tra</span>
+            <span class="text-amber-400 font-mono">FREE</span>
+          </button>
+          <button onclick="spawnCar('truck')" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 p-2.5 rounded-xl text-left font-bold text-white flex items-center justify-between">
+            <span>🛻 Xe Bán Tải Xanh Lá</span>
+            <span class="text-amber-400 font-mono">FREE</span>
+          </button>
+          <button onclick="spawnCar('bugatti')" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 p-2.5 rounded-xl text-left font-bold text-white flex items-center justify-between">
+            <span>⚡ Siêu Xe Bugatti Vàng</span>
+            <span class="text-amber-400 font-mono">FREE</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Screen 4: DEV ADMIN APP (Bảng điều khiển tối thượng) -->
+      <div id="phone-devadmin" class="hidden space-y-3">
+        <div class="flex items-center gap-2 pb-2 border-b border-yellow-500/40 text-yellow-300 font-black text-sm">
+          <button onclick="backToPhoneHome()" class="text-amber-400 p-1"><i class="fa-solid fa-chevron-left"></i></button>
+          <i class="fa-solid fa-crown"></i>
+          <span>DEV ADMIN CONSOLE</span>
+        </div>
+        <div class="space-y-2 text-xs">
+          <button id="god-btn" onclick="toggleGodMode()" class="w-full bg-slate-900 p-2.5 rounded-xl border border-slate-700 text-left font-bold text-white flex justify-between items-center">
+            <span>🛡️ Bất Tử (God Mode)</span>
+            <span id="god-status" class="text-[10px] bg-red-950 text-red-400 px-2 py-0.5 rounded">TẮT</span>
+          </button>
+          <button onclick="addCash(1000000)" class="w-full bg-slate-900 p-2.5 rounded-xl border border-slate-700 text-left font-bold text-emerald-400 flex justify-between items-center">
+            <span>💰 Nhận +$1,000,000</span>
+            <i class="fa-solid fa-plus"></i>
+          </button>
+          <button id="speed-btn" onclick="toggleSpeed()" class="w-full bg-slate-900 p-2.5 rounded-xl border border-slate-700 text-left font-bold text-white flex justify-between items-center">
+            <span>⚡ Tốc Độ Tia Chớp x3</span>
+            <span id="speed-status" class="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded">TẮT</span>
+          </button>
+          <button id="jump-btn" onclick="toggleJump()" class="w-full bg-slate-900 p-2.5 rounded-xl border border-slate-700 text-left font-bold text-white flex justify-between items-center">
+            <span>🦘 Siêu Nhảy Cao</span>
+            <span id="jump-status" class="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded">TẮT</span>
+          </button>
+          <button onclick="setWanted(0)" class="w-full bg-slate-900 p-2.5 rounded-xl border border-slate-700 text-left font-bold text-emerald-400">
+            ⭐ Xóa Sạch Truy Nã (0 Sao)
+          </button>
+          <button onclick="setWanted(5)" class="w-full bg-slate-900 p-2.5 rounded-xl border border-slate-700 text-left font-bold text-rose-500">
+            🚨 Kích Hoạt 5 Sao Truy Nã
+          </button>
+        </div>
+      </div>
+
+      <!-- Screen 5: TELEPORT APP -->
+      <div id="phone-teleport" class="hidden space-y-2 text-xs">
+        <div class="flex items-center gap-2 pb-2 border-b border-slate-800 text-white font-bold text-sm">
+          <button onclick="backToPhoneHome()" class="text-amber-400 p-1"><i class="fa-solid fa-chevron-left"></i></button>
+          <span>Dịch Chuyển Đến Công Trình</span>
+        </div>
+        <button onclick="teleport(0, 2, 0)" class="w-full bg-slate-900 hover:bg-slate-800 p-2.5 rounded-xl text-left font-bold text-white">🏠 Biệt Thự Dude</button>
+        <button onclick="teleport(75, 2, 60)" class="w-full bg-slate-900 hover:bg-slate-800 p-2.5 rounded-xl text-left font-bold text-white">🚔 Đồn Cảnh Sát (Police HQ)</button>
+        <button onclick="teleport(-70, 2, -60)" class="w-full bg-slate-900 hover:bg-slate-800 p-2.5 rounded-xl text-left font-bold text-white">🔫 Cửa Hàng Súng Ammu-Nation</button>
+        <button onclick="teleport(-65, 2, 65)" class="w-full bg-slate-900 hover:bg-slate-800 p-2.5 rounded-xl text-left font-bold text-white">⛽ Trạm Xăng Trung Tâm</button>
+        <button onclick="teleport(0, 75, -80)" class="w-full bg-slate-900 hover:bg-slate-800 p-2.5 rounded-xl text-left font-bold text-white">🏢 Nóc Tháp Empire Skyscraper</button>
+      </div>
+
+      <!-- Screen 6: WEAPONS APP -->
+      <div id="phone-weapons" class="hidden space-y-2 text-xs">
+        <div class="flex items-center gap-2 pb-2 border-b border-slate-800 text-white font-bold text-sm">
+          <button onclick="backToPhoneHome()" class="text-amber-400 p-1"><i class="fa-solid fa-chevron-left"></i></button>
+          <span>Kho Trang Bị Vũ Khí</span>
+        </div>
+        <button onclick="selectWeapon('ak47')" class="w-full bg-slate-900 p-2.5 rounded-xl text-left font-bold text-white flex justify-between">
+          <span>🔫 Súng Trường AK-47</span>
+          <span class="text-amber-400">TRANG BỊ</span>
+        </button>
+        <button onclick="selectWeapon('shotgun')" class="w-full bg-slate-900 p-2.5 rounded-xl text-left font-bold text-white flex justify-between">
+          <span>💥 Shotgun Bắn Tỉa</span>
+          <span class="text-amber-400">TRANG BỊ</span>
+        </button>
+        <button onclick="selectWeapon('pistol')" class="w-full bg-slate-900 p-2.5 rounded-xl text-left font-bold text-white flex justify-between">
+          <span>🎯 Súng Lục Tác Chiến</span>
+          <span class="text-amber-400">TRANG BỊ</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Phone Bottom Home Bar -->
+    <div class="py-2.5 bg-slate-950 flex justify-center border-t border-slate-800">
+      <div onclick="backToPhoneHome()" class="w-24 h-1 bg-slate-500 rounded-full cursor-pointer hover:bg-white transition-colors"></div>
+    </div>
+  </div>
+
+  <!-- POPUP ĐỔI TÊN NHÂN VẬT -->
+  <div id="name-dialog" class="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-sm p-4 hidden">
+    <div class="dude-card w-full max-w-sm p-6 text-center border-4 border-amber-400 relative">
+      <div class="w-16 h-16 mx-auto rounded-2xl bg-amber-500 flex items-center justify-center text-slate-950 text-3xl mb-3 border-2 border-white shadow-xl">
+        <i class="fa-solid fa-crown"></i>
+      </div>
+      <h2 class="text-2xl font-black text-white">ĐẶT TÊN NHÂN VẬT</h2>
+      <p class="text-xs text-slate-300 mt-1 mb-4">
+        Nhập tên nhân vật để lưu vào hệ thống.<br>
+        <span class="text-yellow-400 font-black bg-yellow-500/20 px-2 py-0.5 rounded border border-yellow-400/40 mt-1 inline-block">
+          💡 Đổi tên thành "dev" sẽ mở khóa toàn quyền Admin!
         </span>
       </p>
 
-      <div class="flex gap-2 mb-4">
-        <input id="player-name-input" type="text" placeholder="Nhập tên của bạn..." value="dev" maxlength="15"
-          class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-2.5 text-white font-bold text-center focus:outline-none focus:border-amber-400 text-lg">
-      </div>
+      <input id="char-name-input" type="text" value="dev" maxlength="12" class="w-full bg-slate-900 border-2 border-slate-700 rounded-xl px-4 py-2.5 text-white font-black text-center text-lg focus:border-amber-400 mb-4">
 
-      <div class="flex gap-2.5">
-        <button onclick="confirmPlayerName()" class="w-full bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black py-2.5 rounded-xl transition-all shadow-lg shadow-amber-500/25">
-          Vào Thành Phố Ngay
+      <div class="flex gap-2">
+        <button onclick="savePlayerName()" class="w-full dude-btn py-3 text-sm text-slate-950 font-black">
+          LƯU VÀ VÀO GAME
         </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ADMIN / DEV PANEL (ẨN CHO ĐẾN KHI TÊN = 'DEV') -->
-  <div id="admin-panel" class="hidden fixed top-16 left-4 sm:left-6 z-40 w-80 max-h-[82vh] glass-panel admin-glow p-4 flex flex-col text-white interactive">
-    <div class="flex justify-between items-center pb-2.5 border-b border-yellow-500/30">
-      <div class="flex items-center gap-2">
-        <i class="fa-solid fa-crown text-yellow-400 text-lg"></i>
-        <div>
-          <div class="font-black text-sm text-yellow-300 tracking-wider">DEV ADMIN CONSOLE</div>
-          <div class="text-[10px] text-yellow-500 font-bold">DUDE THEFT WARS v0.9.1.1b</div>
-        </div>
-      </div>
-      <button onclick="toggleAdminPanel()" class="text-slate-400 hover:text-white p-1">
-        <i class="fa-solid fa-xmark text-lg"></i>
-      </button>
-    </div>
-
-    <div class="overflow-y-auto pr-1 mt-3 space-y-3 custom-scroll text-xs">
-      <!-- Nhóm 1: Cheats Nhân Vật -->
-      <div>
-        <div class="text-[11px] font-black text-yellow-400 uppercase tracking-wider mb-1.5 flex items-center gap-1">
-          <i class="fa-solid fa-bolt"></i> Cheats Nhân Vật
-        </div>
-        <div class="grid grid-cols-2 gap-2">
-          <button id="godmode-btn" onclick="toggleGodMode()" class="glass-btn p-2 rounded-lg text-left font-bold text-slate-200 flex items-center justify-between">
-            <span>Bất Tử (God)</span>
-            <span id="godmode-status" class="text-[10px] bg-red-900/60 text-red-300 px-1.5 py-0.5 rounded">TẮT</span>
-          </button>
-          <button onclick="addDevCash(1000000)" class="glass-btn p-2 rounded-lg text-left font-bold text-emerald-400 flex items-center justify-between">
-            <span>+$1,000,000</span>
-            <i class="fa-solid fa-plus text-xs"></i>
-          </button>
-          <button id="speed-btn" onclick="toggleSuperSpeed()" class="glass-btn p-2 rounded-lg text-left font-bold text-slate-200 flex items-center justify-between">
-            <span>Tốc Độ x3</span>
-            <span id="speed-status" class="text-[10px] bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded">TẮT</span>
-          </button>
-          <button id="jump-btn" onclick="toggleSuperJump()" class="glass-btn p-2 rounded-lg text-left font-bold text-slate-200 flex items-center justify-between">
-            <span>Siêu Nhảy</span>
-            <span id="jump-status" class="text-[10px] bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded">TẮT</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Nhóm 2: Spawn Xe & Phương Tiện -->
-      <div>
-        <div class="text-[11px] font-black text-yellow-400 uppercase tracking-wider mb-1.5 flex items-center gap-1">
-          <i class="fa-solid fa-car-side"></i> Thả Phương Tiện (Spawn)
-        </div>
-        <div class="grid grid-cols-2 gap-2">
-          <button onclick="spawnVehicle('sport')" class="glass-btn p-2 rounded-lg font-bold text-amber-300 flex items-center gap-1.5">
-            <i class="fa-solid fa-car-rear"></i> Siêu Xe Đỏ
-          </button>
-          <button onclick="spawnVehicle('police')" class="glass-btn p-2 rounded-lg font-bold text-blue-400 flex items-center gap-1.5">
-            <i class="fa-solid fa-car-side"></i> Xe Cảnh Sát
-          </button>
-          <button onclick="spawnVehicle('truck')" class="glass-btn p-2 rounded-lg font-bold text-emerald-300 flex items-center gap-1.5">
-            <i class="fa-solid fa-truck"></i> Xe Bán Tải
-          </button>
-          <button onclick="clearAllVehicles()" class="glass-btn p-2 rounded-lg font-bold text-rose-400 flex items-center gap-1.5">
-            <i class="fa-solid fa-trash-can"></i> Dọn Sạch Xe
-          </button>
-        </div>
-      </div>
-
-      <!-- Nhóm 3: Dịch Chuyển Tức Thời (Teleport) -->
-      <div>
-        <div class="text-[11px] font-black text-yellow-400 uppercase tracking-wider mb-1.5 flex items-center gap-1">
-          <i class="fa-solid fa-location-dot"></i> Dịch Chuyển Đến Công Trình
-        </div>
-        <div class="grid grid-cols-1 gap-1.5">
-          <button onclick="teleportTo(0, 2, 0)" class="glass-btn px-2.5 py-1.5 rounded-lg text-left font-bold text-slate-200 flex items-center justify-between hover:text-yellow-300">
-            <span>🏠 Khu Nhà Biệt Thự Dude</span>
-            <i class="fa-solid fa-arrow-right text-[10px]"></i>
-          </button>
-          <button onclick="teleportTo(75, 2, 60)" class="glass-btn px-2.5 py-1.5 rounded-lg text-left font-bold text-slate-200 flex items-center justify-between hover:text-yellow-300">
-            <span>🚔 Đồn Cảnh Sát (Police HQ)</span>
-            <i class="fa-solid fa-arrow-right text-[10px]"></i>
-          </button>
-          <button onclick="teleportTo(-70, 2, -60)" class="glass-btn px-2.5 py-1.5 rounded-lg text-left font-bold text-slate-200 flex items-center justify-between hover:text-yellow-300">
-            <span>🔫 Cửa Hàng Vũ Khí Ammu-Nation</span>
-            <i class="fa-solid fa-arrow-right text-[10px]"></i>
-          </button>
-          <button onclick="teleportTo(-65, 2, 65)" class="glass-btn px-2.5 py-1.5 rounded-lg text-left font-bold text-slate-200 flex items-center justify-between hover:text-yellow-300">
-            <span>⛽ Trạm Xăng Trung Tâm (Gas Station)</span>
-            <i class="fa-solid fa-arrow-right text-[10px]"></i>
-          </button>
-          <button onclick="teleportTo(0, 72, -80)" class="glass-btn px-2.5 py-1.5 rounded-lg text-left font-bold text-slate-200 flex items-center justify-between hover:text-yellow-300">
-            <span>🏢 Nóc Tòa Nhà Chọc Trời (Empire Tower)</span>
-            <i class="fa-solid fa-arrow-right text-[10px]"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- Nhóm 4: Môi Trường & Cảnh Sát -->
-      <div>
-        <div class="text-[11px] font-black text-yellow-400 uppercase tracking-wider mb-1.5 flex items-center gap-1">
-          <i class="fa-solid fa-sliders"></i> Môi Trường & Thế Giới
-        </div>
-        <div class="grid grid-cols-2 gap-2">
-          <button onclick="toggleDayNight()" class="glass-btn p-2 rounded-lg font-bold text-amber-200 flex items-center justify-between">
-            <span id="daynight-text">🌙 Sang Ban Đêm</span>
-          </button>
-          <button onclick="toggleMoonGravity()" class="glass-btn p-2 rounded-lg font-bold text-purple-300 flex items-center justify-between">
-            <span id="gravity-text">🌌 Trọng Lực Mặt Trăng</span>
-          </button>
-          <button onclick="setWantedLevel(0)" class="glass-btn p-2 rounded-lg font-bold text-emerald-400">
-            ⭐ Xóa Sao (0 Sao)
-          </button>
-          <button onclick="setWantedLevel(5)" class="glass-btn p-2 rounded-lg font-bold text-rose-500">
-            ⭐⭐⭐⭐⭐ Bật 5 Sao
-          </button>
-        </div>
       </div>
     </div>
   </div>
 
   <!-- Sound Synthesizer via Web Audio API -->
   <script>
-    const AudioEngine = {
+    const Sound = {
       ctx: null,
       init() {
         if (!this.ctx) {
-          const AudioContext = window.AudioContext || window.webkitAudioContext;
-          this.ctx = new AudioContext();
+          const AC = window.AudioContext || window.webkitAudioContext;
+          this.ctx = new AC();
         }
       },
-      playDevFanfare() {
+      playFanfare() {
         this.init();
         const now = this.ctx.currentTime;
-        const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
-        notes.forEach((freq, i) => {
-          const osc = this.ctx.createOscillator();
-          const gain = this.ctx.createGain();
-          osc.type = 'triangle';
-          osc.frequency.setValueAtTime(freq, now + i * 0.12);
-          gain.gain.setValueAtTime(0.3, now + i * 0.12);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.12 + 0.4);
-          osc.connect(gain);
-          gain.connect(this.ctx.destination);
-          osc.start(now + i * 0.12);
-          osc.stop(now + i * 0.12 + 0.4);
+        [523.25, 659.25, 783.99, 1046.5].forEach((f, i) => {
+          const o = this.ctx.createOscillator();
+          const g = this.ctx.createGain();
+          o.type = 'triangle';
+          o.frequency.setValueAtTime(f, now + i * 0.12);
+          g.gain.setValueAtTime(0.3, now + i * 0.12);
+          g.gain.exponentialRampToValueAtTime(0.001, now + i * 0.12 + 0.4);
+          o.connect(g); g.connect(this.ctx.destination);
+          o.start(now + i * 0.12); o.stop(now + i * 0.12 + 0.4);
         });
       },
-      playCashSound() {
+      playShot() {
         this.init();
         const now = this.ctx.currentTime;
-        const osc = this.ctx.createOscillator();
-        const gain = this.ctx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(987.77, now); // B5
-        osc.frequency.setValueAtTime(1318.51, now + 0.08); // E6
-        gain.gain.setValueAtTime(0.25, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
-        osc.connect(gain);
-        gain.connect(this.ctx.destination);
-        osc.start(now);
-        osc.stop(now + 0.35);
+        const b = this.ctx.createBuffer(1, this.ctx.sampleRate * 0.08, this.ctx.sampleRate);
+        const d = b.getChannelData(0);
+        for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+        const n = this.ctx.createBufferSource();
+        n.buffer = b;
+        const f = this.ctx.createBiquadFilter();
+        f.type = 'bandpass';
+        f.frequency.setValueAtTime(1000, now);
+        f.frequency.linearRampToValueAtTime(100, now + 0.08);
+        const g = this.ctx.createGain();
+        g.gain.setValueAtTime(0.4, now);
+        g.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
+        n.connect(f); f.connect(g); g.connect(this.ctx.destination);
+        n.start(now);
       },
-      playShootSound() {
+      playCash() {
         this.init();
         const now = this.ctx.currentTime;
-        // White noise burst for gunshot
-        const bufferSize = this.ctx.sampleRate * 0.1;
-        const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
-        const data = buffer.getChannelData(0);
-        for (let i = 0; i < bufferSize; i++) {
-          data[i] = Math.random() * 2 - 1;
-        }
-        const noise = this.ctx.createBufferSource();
-        noise.buffer = buffer;
-        const filter = this.ctx.createBiquadFilter();
-        filter.type = 'bandpass';
-        filter.frequency.setValueAtTime(1200, now);
-        filter.frequency.linearRampToValueAtTime(200, now + 0.1);
-        const gain = this.ctx.createGain();
-        gain.gain.setValueAtTime(0.4, now);
-        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
-        noise.connect(filter);
-        filter.connect(gain);
-        gain.connect(this.ctx.destination);
-        noise.start(now);
+        const o = this.ctx.createOscillator();
+        const g = this.ctx.createGain();
+        o.type = 'sine';
+        o.frequency.setValueAtTime(987, now);
+        o.frequency.setValueAtTime(1318, now + 0.08);
+        g.gain.setValueAtTime(0.25, now);
+        g.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+        o.connect(g); g.connect(this.ctx.destination);
+        o.start(now); o.stop(now + 0.3);
       },
-      playJumpSound() {
+      playJump() {
         this.init();
         const now = this.ctx.currentTime;
-        const osc = this.ctx.createOscillator();
-        const gain = this.ctx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(180, now);
-        osc.frequency.exponentialRampToValueAtTime(450, now + 0.15);
-        gain.gain.setValueAtTime(0.2, now);
-        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
-        osc.connect(gain);
-        gain.connect(this.ctx.destination);
-        osc.start(now);
-        osc.stop(now + 0.15);
+        const o = this.ctx.createOscillator();
+        const g = this.ctx.createGain();
+        o.type = 'sine';
+        o.frequency.setValueAtTime(180, now);
+        o.frequency.exponentialRampToValueAtTime(450, now + 0.15);
+        g.gain.setValueAtTime(0.2, now);
+        g.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
+        o.connect(g); g.connect(this.ctx.destination);
+        o.start(now); o.stop(now + 0.15);
       }
     };
   </script>
 
-  <!-- 3D Game Engine (Three.js Low-Poly Dude Theft Wars) -->
+  <!-- Main Game Engine -->
   <script>
-    // Game State
-    const GameState = {
-      playerName: 'Dude',
+    // State
+    const AppState = {
+      name: 'Dude',
       isDev: false,
-      cash: 1500,
       health: 100,
-      maxHealth: 100,
-      wantedLevel: 0,
-      isGodMode: false,
-      superSpeed: false,
-      superJump: false,
-      moonGravity: false,
-      isNight: false,
+      cash: 2500,
+      wanted: 0,
+      isGod: false,
+      speedMulti: 1,
+      jumpMulti: 1,
+      currentWeapon: 'ak47',
       inVehicle: null,
-      firstPerson: false
+      isNight: false,
+      dPhoneOpen: false
     };
 
-    // Scene & Three.js Globals
     let scene, camera, renderer, clock;
-    let player, playerBody, playerHead, leftArm, rightArm, leftLeg, rightLeg;
+    let player, playerBody, head, leftArm, rightArm, leftLeg, rightLeg;
     let buildings = [];
     let vehicles = [];
     let bullets = [];
     let npcs = [];
     let sunLight, ambientLight;
 
-    // Movement & Keys
     const keys = { w: false, a: false, s: false, d: false, space: false, shift: false };
-    let playerVelocity = new THREE.Vector3();
+    let playerVel = new THREE.Vector3();
     let isGrounded = true;
-    let cameraAngle = { yaw: 0, pitch: 0.3 };
-    let isPointerLocked = false;
+    let camYaw = 0, camPitch = 0.25;
+    let isLocked = false;
 
-    // Initialize Game
     window.addEventListener('DOMContentLoaded', () => {
-      initThree();
-      buildCityMap();
-      spawnDefaultVehicles();
-      setupEventListeners();
-      animate();
+      init();
+      buildCity();
+      spawnVehicles();
+      spawnNPCs();
+      bindEvents();
+      loop();
     });
 
-    function initThree() {
+    function init() {
       scene = new THREE.Scene();
-      scene.background = new THREE.Color(0x87CEEB); // Sky blue
-      scene.fog = new THREE.FogExp2(0x87CEEB, 0.007);
+      scene.background = new THREE.Color(0x70c5ff);
+      scene.fog = new THREE.FogExp2(0x70c5ff, 0.006);
 
       camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 1000);
       clock = new THREE.Clock();
@@ -529,17 +590,14 @@
       renderer.shadowMap.enabled = true;
       renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-      // Lights
-      ambientLight = new THREE.AmbientLight(0xffffff, 0.55);
+      ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
       scene.add(ambientLight);
 
-      sunLight = new THREE.DirectionalLight(0xfffaed, 0.95);
-      sunLight.position.set(80, 140, 60);
+      sunLight = new THREE.DirectionalLight(0xfff7e6, 0.95);
+      sunLight.position.set(90, 160, 70);
       sunLight.castShadow = true;
       sunLight.shadow.mapSize.width = 2048;
       sunLight.shadow.mapSize.height = 2048;
-      sunLight.shadow.camera.near = 0.5;
-      sunLight.shadow.camera.far = 400;
       const d = 160;
       sunLight.shadow.camera.left = -d;
       sunLight.shadow.camera.right = d;
@@ -547,473 +605,230 @@
       sunLight.shadow.camera.bottom = -d;
       scene.add(sunLight);
 
-      // Create Dude Player
-      createPlayer();
+      createDudePlayer();
     }
 
-    // CREATE BLOCKY DUDE CHARACTER (Phong cách Low-Poly Dude Theft Wars)
-    function createPlayer() {
+    // Dude Theft Wars Blocky Character
+    function createDudePlayer() {
       player = new THREE.Group();
+      const shirtMat = new THREE.MeshLambertMaterial({ color: 0xF59E0B }); // Orange/Yellow
+      const skinMat = new THREE.MeshLambertMaterial({ color: 0xFFDCB1 });
+      const pantsMat = new THREE.MeshLambertMaterial({ color: 0x1E3A8A }); // Blue
 
-      // Materials
-      const shirtMat = new THREE.MeshLambertMaterial({ color: 0xF59E0B }); // Yellow/Orange hoodie
-      const skinMat = new THREE.MeshLambertMaterial({ color: 0xFFDBAC }); // Skin
-      const pantsMat = new THREE.MeshLambertMaterial({ color: 0x1E3A8A }); // Blue jeans
-      const shoeMat = new THREE.MeshLambertMaterial({ color: 0x1F2937 }); // Dark shoes
-
-      // Torso
-      playerBody = new THREE.Mesh(new THREE.BoxGeometry(0.8, 1.1, 0.5), shirtMat);
+      playerBody = new THREE.Mesh(new THREE.BoxGeometry(0.85, 1.1, 0.5), shirtMat);
       playerBody.position.y = 1.25;
       playerBody.castShadow = true;
       player.add(playerBody);
 
-      // Head
-      playerHead = new THREE.Mesh(new THREE.BoxGeometry(0.55, 0.55, 0.55), skinMat);
-      playerHead.position.set(0, 0.85, 0);
-      playerHead.castShadow = true;
-      // Cap / Hat
+      head = new THREE.Mesh(new THREE.BoxGeometry(0.55, 0.55, 0.55), skinMat);
+      head.position.set(0, 0.85, 0);
+      head.castShadow = true;
+      // Cool Cap
       const cap = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.18, 0.7), new THREE.MeshLambertMaterial({ color: 0xDC2626 }));
       cap.position.set(0, 0.32, 0.05);
-      playerHead.add(cap);
-      playerBody.add(playerHead);
+      head.add(cap);
+      playerBody.add(head);
 
-      // Arms
       const armGeo = new THREE.BoxGeometry(0.28, 0.9, 0.28);
       leftArm = new THREE.Mesh(armGeo, shirtMat);
-      leftArm.position.set(-0.55, 0.1, 0);
+      leftArm.position.set(-0.58, 0.1, 0);
       leftArm.castShadow = true;
       playerBody.add(leftArm);
 
       rightArm = new THREE.Mesh(armGeo, shirtMat);
-      rightArm.position.set(0.55, 0.1, 0);
+      rightArm.position.set(0.58, 0.1, 0);
       rightArm.castShadow = true;
-      // Gun in hand
-      const gunGeo = new THREE.BoxGeometry(0.12, 0.18, 0.45);
-      const gunMesh = new THREE.Mesh(gunGeo, new THREE.MeshLambertMaterial({ color: 0x111827 }));
-      gunMesh.position.set(0, -0.4, 0.25);
+      // Gun
+      const gunMesh = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.2, 0.55), new THREE.MeshLambertMaterial({ color: 0x111827 }));
+      gunMesh.position.set(0, -0.4, 0.3);
       rightArm.add(gunMesh);
       playerBody.add(rightArm);
 
-      // Legs
       const legGeo = new THREE.BoxGeometry(0.35, 1.0, 0.35);
       leftLeg = new THREE.Mesh(legGeo, pantsMat);
-      leftLeg.position.set(-0.22, 0.5, 0);
+      leftLeg.position.set(-0.24, 0.5, 0);
       leftLeg.castShadow = true;
       player.add(leftLeg);
 
       rightLeg = new THREE.Mesh(legGeo, pantsMat);
-      rightLeg.position.set(0.22, 0.5, 0);
+      rightLeg.position.set(0.24, 0.5, 0);
       rightLeg.castShadow = true;
       player.add(rightLeg);
 
-      player.position.set(0, 0, 0);
       scene.add(player);
     }
 
-    // ==========================================
-    // BUILD VAST 3D CITY (THÊM NHIỀU CÔNG TRÌNH)
-    // ==========================================
-    function buildCityMap() {
-      // Ground / Roads & Grass
-      const groundGeo = new THREE.PlaneGeometry(450, 450);
-      const groundMat = new THREE.MeshLambertMaterial({ color: 0x22c55e }); // Grass green
-      const ground = new THREE.Mesh(groundGeo, groundMat);
+    // MAP: TOÀN BỘ CÁC CÔNG TRÌNH DUDE THEFT WARS
+    function buildCity() {
+      // Grass Ground
+      const ground = new THREE.Mesh(new THREE.PlaneGeometry(500, 500), new THREE.MeshLambertMaterial({ color: 0x22c55e }));
       ground.rotation.x = -Math.PI / 2;
       ground.receiveShadow = true;
       scene.add(ground);
 
-      // Main Road Crosses (Asphalt roads)
+      // Roads
       const roadMat = new THREE.MeshLambertMaterial({ color: 0x334155 });
-      const roadLineMat = new THREE.MeshBasicMaterial({ color: 0xFBBF24 });
+      const road1 = new THREE.Mesh(new THREE.PlaneGeometry(450, 16), roadMat);
+      road1.rotation.x = -Math.PI / 2;
+      road1.position.y = 0.02;
+      scene.add(road1);
 
-      // Horizontal Road
-      const roadH = new THREE.Mesh(new THREE.PlaneGeometry(400, 14), roadMat);
-      roadH.rotation.x = -Math.PI / 2;
-      roadH.position.y = 0.02;
-      roadH.receiveShadow = true;
-      scene.add(roadH);
+      const road2 = new THREE.Mesh(new THREE.PlaneGeometry(16, 450), roadMat);
+      road2.rotation.x = -Math.PI / 2;
+      road2.position.y = 0.02;
+      scene.add(road2);
 
-      // Vertical Road
-      const roadV = new THREE.Mesh(new THREE.PlaneGeometry(14, 400), roadMat);
-      roadV.rotation.x = -Math.PI / 2;
-      roadV.position.y = 0.02;
-      roadV.receiveShadow = true;
-      scene.add(roadV);
+      // 1. Tòa tháp Empire Skyscraper
+      createBuilding(0, -80, 26, 75, 26, 0x0284c7, "🏢 Tháp Empire");
+      // 2. Đồn Cảnh Sát
+      createBuilding(75, 60, 28, 14, 22, 0x1e293b, "🚔 Đồn Cảnh Sát");
+      // 3. Cửa Hàng Vũ Khí
+      createBuilding(-70, -60, 22, 10, 18, 0x78350f, "🔫 Shop Vũ Khí");
+      // 4. Trạm Xăng
+      createBuilding(-65, 65, 24, 8, 20, 0x10b981, "⛽ Trạm Xăng");
+      // 5. Biệt Thự Dude
+      createBuilding(0, 30, 20, 9, 16, 0xfef08a, "🏠 Biệt Thự Dude");
 
-      // Outer Ring Roads
-      const roadRing1 = new THREE.Mesh(new THREE.PlaneGeometry(300, 10), roadMat);
-      roadRing1.rotation.x = -Math.PI / 2;
-      roadRing1.position.set(0, 0.02, 100);
-      scene.add(roadRing1);
-
-      const roadRing2 = new THREE.Mesh(new THREE.PlaneGeometry(300, 10), roadMat);
-      roadRing2.rotation.x = -Math.PI / 2;
-      roadRing2.position.set(0, 0.02, -100);
-      scene.add(roadRing2);
-
-      // CÁC CÔNG TRÌNH KIẾN TRÚC ĐẶC BIỆT:
-      // 1. TÒA NHÀ CHỌC TRỜI TRUNG TÂM (Empire Skyscraper)
-      createSkyscraper(0, -80, 24, 75, 24, 0x38BDF8, "🏢 TÒA THÁP EMPIRE SKY");
-
-      // 2. ĐỒN CẢNH SÁT (Police Station HQ)
-      createPoliceStation(75, 60);
-
-      // 3. CỬA HÀNG VŨ KHÍ AMMU-NATION (Gun Shop)
-      createGunShop(-70, -60);
-
-      // 4. TRẠM XĂNG TRUNG TÂM (Octan Gas Station)
-      createGasStation(-65, 65);
-
-      // 5. BIỆT THỰ DUDE (Dude Villa with Swimming Pool)
-      createDudeVilla(0, 30);
-
-      // 6. KHU ĐÔ THỊ & KHU DÂN CƯ (Suburban Houses)
-      createResidentialDistrict();
-
-      // 7. CÔNG VIÊN & CÂY XANH, ĐÈN ĐƯỜNG
-      createCityProps();
-    }
-
-    // Helper: Tạo Tòa Nhà Chọc Trời
-    function createSkyscraper(x, z, w, h, d, color, label) {
-      const bGeo = new THREE.BoxGeometry(w, h, d);
-      const bMat = new THREE.MeshLambertMaterial({ color: color });
-      const building = new THREE.Mesh(bGeo, bMat);
-      building.position.set(x, h / 2, z);
-      building.castShadow = true;
-      building.receiveShadow = true;
-      scene.add(building);
-
-      // Roof Helipad
-      const heliGeo = new THREE.CylinderGeometry(6, 6, 0.4, 16);
-      const heliMat = new THREE.MeshLambertMaterial({ color: 0xF59E0B });
-      const helipad = new THREE.Mesh(heliGeo, heliMat);
-      helipad.position.set(x, h + 0.2, z);
-      scene.add(helipad);
-
-      // Windows Grid texture effect
-      for (let y = 6; y < h - 4; y += 7) {
-        const stripe = new THREE.Mesh(new THREE.BoxGeometry(w + 0.2, 2.5, d + 0.2), new THREE.MeshLambertMaterial({ color: 0x0f172a }));
-        stripe.position.set(x, y, z);
-        scene.add(stripe);
-      }
-
-      buildings.push({ x, z, radius: Math.max(w, d) / 2 + 1, name: label });
-    }
-
-    // 2. Đồn Cảnh Sát
-    function createPoliceStation(x, z) {
-      const group = new THREE.Group();
-      // Main block
-      const main = new THREE.Mesh(new THREE.BoxGeometry(28, 12, 20), new THREE.MeshLambertMaterial({ color: 0x1E293B }));
-      main.position.set(0, 6, 0);
-      main.castShadow = true;
-      group.add(main);
-
-      // Police Blue roof badge
-      const roof = new THREE.Mesh(new THREE.BoxGeometry(30, 1.5, 22), new THREE.MeshLambertMaterial({ color: 0x2563EB }));
-      roof.position.set(0, 12.5, 0);
-      group.add(roof);
-
-      // Flashing Police Light atop
-      const sirenRed = new THREE.Mesh(new THREE.CylinderGeometry(0.8, 0.8, 1.2, 12), new THREE.MeshBasicMaterial({ color: 0xEF4444 }));
-      sirenRed.position.set(-3, 14, 0);
-      group.add(sirenRed);
-
-      const sirenBlue = new THREE.Mesh(new THREE.CylinderGeometry(0.8, 0.8, 1.2, 12), new THREE.MeshBasicMaterial({ color: 0x3B82F6 }));
-      sirenBlue.position.set(3, 14, 0);
-      group.add(sirenBlue);
-
-      group.position.set(x, 0, z);
-      scene.add(group);
-      buildings.push({ x, z, radius: 16, name: "🚔 ĐỒN CẢNH SÁT" });
-    }
-
-    // 3. Cửa Hàng Vũ Khí Ammu-Nation
-    function createGunShop(x, z) {
-      const group = new THREE.Group();
-      const base = new THREE.Mesh(new THREE.BoxGeometry(22, 9, 18), new THREE.MeshLambertMaterial({ color: 0x78350F }));
-      base.position.set(0, 4.5, 0);
-      base.castShadow = true;
-      group.add(base);
-
-      // Neon Sign Board
-      const sign = new THREE.Mesh(new THREE.BoxGeometry(16, 3, 1), new THREE.MeshLambertMaterial({ color: 0xDC2626 }));
-      sign.position.set(0, 10.5, 9.5);
-      group.add(sign);
-
-      // Gun shape on roof
-      const gunRoof = new THREE.Mesh(new THREE.BoxGeometry(12, 1.2, 1.2), new THREE.MeshLambertMaterial({ color: 0x1F2937 }));
-      gunRoof.position.set(0, 12, 9.5);
-      group.add(gunRoof);
-
-      group.position.set(x, 0, z);
-      scene.add(group);
-      buildings.push({ x, z, radius: 13, name: "🔫 VŨ KHÍ AMMU-NATION" });
-    }
-
-    // 4. Trạm Xăng Gas Station
-    function createGasStation(x, z) {
-      const group = new THREE.Group();
-      // Canopy roof
-      const canopy = new THREE.Mesh(new THREE.BoxGeometry(26, 1.5, 20), new THREE.MeshLambertMaterial({ color: 0x10B981 }));
-      canopy.position.set(0, 8, 0);
-      canopy.castShadow = true;
-      group.add(canopy);
-
-      // Pillars
-      for (let px of [-9, 9]) {
-        for (let pz of [-7, 7]) {
-          const pillar = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.5, 8, 8), new THREE.MeshLambertMaterial({ color: 0xE5E7EB }));
-          pillar.position.set(px, 4, pz);
-          group.add(pillar);
-        }
-      }
-
-      // Fuel Pumps
-      for (let px of [-5, 5]) {
-        const pump = new THREE.Mesh(new THREE.BoxGeometry(1.6, 3.2, 1.2), new THREE.MeshLambertMaterial({ color: 0xEF4444 }));
-        pump.position.set(px, 1.6, 0);
-        group.add(pump);
-      }
-
-      // Convenience Shop Behind
-      const shop = new THREE.Mesh(new THREE.BoxGeometry(18, 6, 10), new THREE.MeshLambertMaterial({ color: 0xF3F4F6 }));
-      shop.position.set(0, 3, -15);
-      shop.castShadow = true;
-      group.add(shop);
-
-      group.position.set(x, 0, z);
-      scene.add(group);
-      buildings.push({ x, z, radius: 15, name: "⛽ TRẠM XĂNG" });
-    }
-
-    // 5. Biệt Thự Dude Villa & Hồ Bơi
-    function createDudeVilla(x, z) {
-      const group = new THREE.Group();
-      // Villa House
-      const house = new THREE.Mesh(new THREE.BoxGeometry(20, 8, 14), new THREE.MeshLambertMaterial({ color: 0xFDF4E3 }));
-      house.position.set(0, 4, 0);
-      house.castShadow = true;
-      group.add(house);
-
-      // Red Roof
-      const roof = new THREE.Mesh(new THREE.ConeGeometry(15, 4, 4), new THREE.MeshLambertMaterial({ color: 0xB91C1C }));
-      roof.rotation.y = Math.PI / 4;
-      roof.position.set(0, 10, 0);
-      group.add(roof);
-
-      // Swimming Pool
-      const poolWater = new THREE.Mesh(new THREE.PlaneGeometry(12, 8), new THREE.MeshBasicMaterial({ color: 0x06B6D4 }));
-      poolWater.rotation.x = -Math.PI / 2;
-      poolWater.position.set(16, 0.05, 0);
-      group.add(poolWater);
-
-      // Pool border
-      const poolBorder = new THREE.Mesh(new THREE.BoxGeometry(13, 0.2, 9), new THREE.MeshLambertMaterial({ color: 0xE5E7EB }));
-      poolBorder.position.set(16, 0.03, 0);
-      group.add(poolBorder);
-
-      group.position.set(x, 0, z);
-      scene.add(group);
-      buildings.push({ x, z, radius: 14, name: "🏠 BIỆT THỰ DUDE" });
-    }
-
-    // 6. Khu Dân Cư Nhiều Nhà Màu Sắc
-    function createResidentialDistrict() {
-      const houseColors = [0xF87171, 0x60A5FA, 0x34D399, 0xFBBF24, 0xA78BFA];
-      let idx = 0;
-      // Dãy nhà bên trái
+      // Khu Dân Cư
       for (let z = -60; z <= 60; z += 30) {
-        const color = houseColors[idx++ % houseColors.length];
-        createSuburbanHouse(-35, z, color);
+        createBuilding(-35, z, 12, 6, 10, 0xf87171, "Nhà");
+        createBuilding(35, z, 12, 6, 10, 0x60a5fa, "Nhà");
       }
-      // Dãy nhà bên phải
-      for (let z = -60; z <= 60; z += 30) {
-        const color = houseColors[idx++ % houseColors.length];
-        createSuburbanHouse(35, z, color);
+
+      // Cây cối
+      for (let i = 0; i < 40; i++) {
+        const px = (Math.random() - 0.5) * 360;
+        const pz = (Math.random() - 0.5) * 360;
+        if (Math.abs(px) < 14 || Math.abs(pz) < 14) continue;
+        const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.6, 3, 6), new THREE.MeshLambertMaterial({ color: 0x5c3817 }));
+        trunk.position.set(px, 1.5, pz);
+        scene.add(trunk);
+        const leaves = new THREE.Mesh(new THREE.DodecahedronGeometry(2.2), new THREE.MeshLambertMaterial({ color: 0x15803d }));
+        leaves.position.set(px, 4.2, pz);
+        scene.add(leaves);
       }
     }
 
-    function createSuburbanHouse(x, z, wallColor) {
+    function createBuilding(x, z, w, h, d, color, name) {
+      const b = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), new THREE.MeshLambertMaterial({ color }));
+      b.position.set(x, h / 2, z);
+      b.castShadow = true;
+      b.receiveShadow = true;
+      scene.add(b);
+
+      // Roof edge
+      const roof = new THREE.Mesh(new THREE.BoxGeometry(w + 1, 1, d + 1), new THREE.MeshLambertMaterial({ color: 0x0f172a }));
+      roof.position.set(x, h + 0.5, z);
+      scene.add(roof);
+
+      buildings.push({ x, z, radius: Math.max(w, d) / 2, name });
+    }
+
+    // XE CỘ CÓ THỂ LÁI
+    function createCar(type = 'lambo', color = 0xdc2626) {
       const group = new THREE.Group();
-      const body = new THREE.Mesh(new THREE.BoxGeometry(12, 6, 10), new THREE.MeshLambertMaterial({ color: wallColor }));
-      body.position.set(0, 3, 0);
+      const body = new THREE.Mesh(new THREE.BoxGeometry(2.4, 1.0, 4.6), new THREE.MeshLambertMaterial({ color }));
+      body.position.y = 0.8;
       body.castShadow = true;
       group.add(body);
 
-      // Roof
-      const roof = new THREE.Mesh(new THREE.ConeGeometry(9, 3.5, 4), new THREE.MeshLambertMaterial({ color: 0x374151 }));
-      roof.rotation.y = Math.PI / 4;
-      roof.position.set(0, 7.5, 0);
-      group.add(roof);
-
-      group.position.set(x, 0, z);
-      scene.add(group);
-      buildings.push({ x, z, radius: 8, name: "Nhà Dân" });
-    }
-
-    // 7. Cây Cối & Đèn Đường
-    function createCityProps() {
-      // Cây xanh rải rác
-      for (let i = 0; i < 45; i++) {
-        const px = (Math.random() - 0.5) * 360;
-        const pz = (Math.random() - 0.5) * 360;
-        // Tránh đặt đè lên đường chính
-        if (Math.abs(px) < 12 || Math.abs(pz) < 12) continue;
-
-        const tree = new THREE.Group();
-        const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.6, 3, 6), new THREE.MeshLambertMaterial({ color: 0x5C3817 }));
-        trunk.position.y = 1.5;
-        trunk.castShadow = true;
-        tree.add(trunk);
-
-        const leaves = new THREE.Mesh(new THREE.DodecahedronGeometry(2.2), new THREE.MeshLambertMaterial({ color: 0x15803D }));
-        leaves.position.y = 4.2;
-        leaves.castShadow = true;
-        tree.add(leaves);
-
-        tree.position.set(px, 0, pz);
-        scene.add(tree);
-      }
-    }
-
-    // ==========================================
-    // VEHICLE SYSTEM (XE CỘ CÓ THỂ LÁI)
-    // ==========================================
-    function createCarMesh(type = 'sport') {
-      const car = new THREE.Group();
-      let bodyColor = 0xDC2626; // Sport red
-      if (type === 'police') bodyColor = 0x1E293B;
-      if (type === 'truck') bodyColor = 0x10B981;
-
-      // Chassis
-      const body = new THREE.Mesh(new THREE.BoxGeometry(2.4, 1.0, 4.6), new THREE.MeshLambertMaterial({ color: bodyColor }));
-      body.position.y = 0.8;
-      body.castShadow = true;
-      car.add(body);
-
-      // Cabin / Glass
       const cabin = new THREE.Mesh(new THREE.BoxGeometry(2.0, 0.8, 2.4), new THREE.MeshLambertMaterial({ color: 0x0f172a }));
       cabin.position.set(0, 1.5, -0.3);
-      cabin.castShadow = true;
-      car.add(cabin);
+      group.add(cabin);
 
-      // Police Lights if police car
-      if (type === 'police') {
-        const lightBar = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.25, 0.5), new THREE.MeshBasicMaterial({ color: 0x3B82F6 }));
-        lightBar.position.set(0, 2.0, -0.3);
-        car.add(lightBar);
-      }
-
-      // Wheels
-      const wheelGeo = new THREE.CylinderGeometry(0.45, 0.45, 0.35, 12);
-      const wheelMat = new THREE.MeshLambertMaterial({ color: 0x111827 });
-      const wheelPositions = [
-        [-1.25, 0.45, 1.4],
-        [1.25, 0.45, 1.4],
-        [-1.25, 0.45, -1.4],
-        [1.25, 0.45, -1.4]
-      ];
-      wheelPositions.forEach(pos => {
-        const wheel = new THREE.Mesh(wheelGeo, wheelMat);
+      // Bánh xe
+      const wGeo = new THREE.CylinderGeometry(0.45, 0.45, 0.35, 12);
+      const wMat = new THREE.MeshLambertMaterial({ color: 0x111827 });
+      [[-1.25, 0.45, 1.4], [1.25, 0.45, 1.4], [-1.25, 0.45, -1.4], [1.25, 0.45, -1.4]].forEach(p => {
+        const wheel = new THREE.Mesh(wGeo, wMat);
         wheel.rotation.z = Math.PI / 2;
-        wheel.position.set(...pos);
-        wheel.castShadow = true;
-        car.add(wheel);
+        wheel.position.set(...p);
+        group.add(wheel);
       });
 
-      // Headlights
-      const lightGeo = new THREE.BoxGeometry(0.4, 0.2, 0.1);
-      const lightMat = new THREE.MeshBasicMaterial({ color: 0xFEF08A });
-      const hl1 = new THREE.Mesh(lightGeo, lightMat);
-      hl1.position.set(-0.8, 0.85, 2.32);
-      const hl2 = new THREE.Mesh(lightGeo, lightMat);
-      hl2.position.set(0.8, 0.85, 2.32);
-      car.add(hl1);
-      car.add(hl2);
-
-      return car;
+      return group;
     }
 
-    function spawnDefaultVehicles() {
-      // Xe đậu gần biệt thự Dude
-      addCarToWorld(8, 0, 15, 'sport');
-      // Xe cảnh sát tại Police Station
-      addCarToWorld(65, 0, 50, 'police');
-      // Xe bán tải gần Trạm xăng
-      addCarToWorld(-50, 0, 55, 'truck');
+    function spawnVehicles() {
+      addCar(8, 15, 'lambo', 0xdc2626);
+      addCar(65, 50, 'police', 0x1e293b);
+      addCar(-50, 55, 'truck', 0x10b981);
     }
 
-    function addCarToWorld(x, y, z, type = 'sport') {
-      const mesh = createCarMesh(type);
-      mesh.position.set(x, y, z);
+    function addCar(x, z, type, color) {
+      const mesh = createCar(type, color);
+      mesh.position.set(x, 0, z);
       scene.add(mesh);
-
-      const carData = {
-        mesh: mesh,
-        type: type,
-        speed: 0,
-        maxSpeed: type === 'sport' ? 0.95 : 0.7,
-        rotation: 0
-      };
+      const carData = { mesh, type, speed: 0, rot: 0, maxSpeed: 1.0 };
       vehicles.push(carData);
       return carData;
     }
 
-    // ==========================================
-    // CONTROLS & EVENT LISTENERS
-    // ==========================================
-    function setupEventListeners() {
-      // Keyboard
-      window.addEventListener('keydown', (e) => {
-        switch (e.code) {
-          case 'KeyW': case 'ArrowUp': keys.w = true; break;
-          case 'KeyS': case 'ArrowDown': keys.s = true; break;
-          case 'KeyA': case 'ArrowLeft': keys.a = true; break;
-          case 'KeyD': case 'ArrowRight': keys.d = true; break;
-          case 'Space': keys.space = true; playerJump(); break;
-          case 'ShiftLeft': case 'ShiftRight': keys.shift = true; break;
-          case 'KeyF': toggleDriveCar(); break;
-          case 'KeyC': toggleCameraView(); break;
-          case 'KeyP': toggleAdminPanel(); break;
-        }
+    // NPC DÂN LÀNG ĐI BỘ
+    function spawnNPCs() {
+      for (let i = 0; i < 15; i++) {
+        const npc = new THREE.Group();
+        const mat = new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff });
+        const body = new THREE.Mesh(new THREE.BoxGeometry(0.7, 1.0, 0.4), mat);
+        body.position.y = 1.2;
+        npc.add(body);
+        const h = new THREE.Mesh(new THREE.BoxGeometry(0.45, 0.45, 0.45), new THREE.MeshLambertMaterial({ color: 0xffdcb1 }));
+        h.position.y = 1.95;
+        npc.add(h);
+
+        npc.position.set((Math.random() - 0.5) * 200, 0, (Math.random() - 0.5) * 200);
+        npc.userData = { dir: Math.random() * Math.PI * 2, speed: 1.8 + Math.random() };
+        scene.add(npc);
+        npcs.push(npc);
+      }
+    }
+
+    // BIND SỰ KIỆN
+    function bindEvents() {
+      window.addEventListener('keydown', e => {
+        if (e.code === 'KeyW' || e.code === 'ArrowUp') keys.w = true;
+        if (e.code === 'KeyS' || e.code === 'ArrowDown') keys.s = true;
+        if (e.code === 'KeyA' || e.code === 'ArrowLeft') keys.a = true;
+        if (e.code === 'KeyD' || e.code === 'ArrowRight') keys.d = true;
+        if (e.code === 'Space') { keys.space = true; doJump(); }
+        if (e.code === 'ShiftLeft') keys.shift = true;
+        if (e.code === 'KeyF') handleCarInteraction();
+        if (e.code === 'Tab' || e.code === 'KeyT') { e.preventDefault(); toggleDPhone(); }
+        if (e.code === 'Digit1') selectWeapon('ak47');
+        if (e.code === 'Digit2') selectWeapon('shotgun');
+        if (e.code === 'Digit3') selectWeapon('pistol');
       });
 
-      window.addEventListener('keyup', (e) => {
-        switch (e.code) {
-          case 'KeyW': case 'ArrowUp': keys.w = false; break;
-          case 'KeyS': case 'ArrowDown': keys.s = false; break;
-          case 'KeyA': case 'ArrowLeft': keys.a = false; break;
-          case 'KeyD': case 'ArrowRight': keys.d = false; break;
-          case 'Space': keys.space = false; break;
-          case 'ShiftLeft': case 'ShiftRight': keys.shift = false; break;
-        }
+      window.addEventListener('keyup', e => {
+        if (e.code === 'KeyW' || e.code === 'ArrowUp') keys.w = false;
+        if (e.code === 'KeyS' || e.code === 'ArrowDown') keys.s = false;
+        if (e.code === 'KeyA' || e.code === 'ArrowLeft') keys.a = false;
+        if (e.code === 'KeyD' || e.code === 'ArrowRight') keys.d = false;
+        if (e.code === 'Space') keys.space = false;
+        if (e.code === 'ShiftLeft') keys.shift = false;
       });
 
-      // Mouse Look
       const canvas = document.getElementById('game-canvas');
       canvas.addEventListener('click', () => {
-        if (!isPointerLocked && document.getElementById('name-modal').classList.contains('hidden')) {
+        if (!isLocked && !AppState.dPhoneOpen && document.getElementById('name-dialog').classList.contains('hidden')) {
           canvas.requestPointerLock();
-        } else if (isPointerLocked) {
-          playerShoot();
+        } else if (isLocked) {
+          doShoot();
         }
       });
 
       document.addEventListener('pointerlockchange', () => {
-        isPointerLocked = (document.pointerLockElement === canvas);
+        isLocked = (document.pointerLockElement === canvas);
       });
 
-      window.addEventListener('mousemove', (e) => {
-        if (isPointerLocked) {
-          cameraAngle.yaw -= e.movementX * 0.003;
-          cameraAngle.pitch -= e.movementY * 0.003;
-          cameraAngle.pitch = Math.max(-0.6, Math.min(0.85, cameraAngle.pitch));
+      window.addEventListener('mousemove', e => {
+        if (isLocked) {
+          camYaw -= e.movementX * 0.003;
+          camPitch -= e.movementY * 0.003;
+          camPitch = Math.max(-0.6, Math.min(0.85, camPitch));
         }
       });
 
-      // Window resize
       window.addEventListener('resize', () => {
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
@@ -1021,337 +836,310 @@
       });
     }
 
-    // Player Actions
-    function playerJump() {
-      if (isGrounded && !GameState.inVehicle) {
-        playerVelocity.y = GameState.superJump ? 18 : 8.5;
+    // ACTIONS
+    function doJump() {
+      if (isGrounded && !AppState.inVehicle) {
+        playerVel.y = 8.5 * AppState.jumpMulti;
         isGrounded = false;
-        AudioEngine.playJumpSound();
+        Sound.playJump();
       }
     }
 
-    function playerShoot() {
-      if (GameState.inVehicle) return;
-      AudioEngine.playShootSound();
+    function doShoot() {
+      if (AppState.inVehicle) return;
+      Sound.playShot();
 
-      // Spawn projectile bullet
-      const bGeo = new THREE.SphereGeometry(0.15, 8, 8);
-      const bMat = new THREE.MeshBasicMaterial({ color: 0xFDE047 });
+      const bGeo = new THREE.SphereGeometry(0.18, 8, 8);
+      const bMat = new THREE.MeshBasicMaterial({ color: 0xfacc15 });
       const bullet = new THREE.Mesh(bGeo, bMat);
 
       const spawnPos = player.position.clone().add(new THREE.Vector3(0, 1.4, 0));
       bullet.position.copy(spawnPos);
 
-      // Direction based on camera angle
       const dir = new THREE.Vector3(
-        -Math.sin(cameraAngle.yaw) * Math.cos(cameraAngle.pitch),
-        Math.sin(cameraAngle.pitch),
-        -Math.cos(cameraAngle.yaw) * Math.cos(cameraAngle.pitch)
+        -Math.sin(camYaw) * Math.cos(camPitch),
+        Math.sin(camPitch),
+        -Math.cos(camYaw) * Math.cos(camPitch)
       ).normalize();
 
-      bullet.userData = { direction: dir, life: 70 };
+      bullet.userData = { dir, life: 60 };
       scene.add(bullet);
       bullets.push(bullet);
 
-      // Arm recoil animation
+      // Arm Recoil
       rightArm.rotation.x = -Math.PI / 2 + 0.3;
-      setTimeout(() => { rightArm.rotation.x = 0; }, 120);
+      setTimeout(() => rightArm.rotation.x = 0, 100);
     }
 
-    function toggleCameraView() {
-      GameState.firstPerson = !GameState.firstPerson;
-      showToast(GameState.firstPerson ? "Góc nhìn: Thứ nhất (FPS)" : "Góc nhìn: Thứ ba (TPS)");
-    }
-
-    // Lên / Xuống Xe
-    function toggleDriveCar() {
-      if (GameState.inVehicle) {
-        // Rời xe
-        const car = GameState.inVehicle;
-        player.position.copy(car.mesh.position).add(new THREE.Vector3(2.5, 0, 0));
+    function handleCarInteraction() {
+      if (AppState.inVehicle) {
+        // Exit
+        const c = AppState.inVehicle;
+        player.position.copy(c.mesh.position).add(new THREE.Vector3(2.5, 0, 0));
         player.visible = true;
-        GameState.inVehicle = null;
-        showToast("Đã xuống xe");
-        document.getElementById('car-action-btn').innerHTML = '<i class="fa-solid fa-car"></i><span class="text-[9px] font-bold">Lên Xe</span>';
+        AppState.inVehicle = null;
+        toast("Đã xuống xe");
       } else {
-        // Tìm xe gần nhất trong phạm vi 4 đơn vị
-        let nearestCar = null;
-        let minDist = 5.0;
-        vehicles.forEach(car => {
-          const dist = player.position.distanceTo(car.mesh.position);
-          if (dist < minDist) {
-            minDist = dist;
-            nearestCar = car;
-          }
+        // Enter
+        let closest = null, minD = 5.0;
+        vehicles.forEach(c => {
+          const d = player.position.distanceTo(c.mesh.position);
+          if (d < minD) { minD = d; closest = c; }
         });
-
-        if (nearestCar) {
-          GameState.inVehicle = nearestCar;
+        if (closest) {
+          AppState.inVehicle = closest;
           player.visible = false;
-          showToast("Đã lên " + (nearestCar.type === 'police' ? 'Xe Cảnh Sát' : 'Siêu Xe'));
-          document.getElementById('car-action-btn').innerHTML = '<i class="fa-solid fa-person-walking"></i><span class="text-[9px] font-bold">Xuống Xe</span>';
+          toast("Đã lên " + (closest.type === 'police' ? "Xe Cảnh Sát" : "Siêu Xe"));
         } else {
-          showToast("Không có xe nào ở gần bạn!");
+          toast("Không có xe nào ở gần bạn!");
         }
       }
     }
 
-    // ==========================================
-    // TÊN NHÂN VẬT & DEV ADMIN PANEL TRIGGER
-    // ==========================================
+    // DPHONE CONTROLLER
+    function toggleDPhone() {
+      AppState.dPhoneOpen = !AppState.dPhoneOpen;
+      const phone = document.getElementById('dphone');
+      if (AppState.dPhoneOpen) {
+        phone.classList.add('open');
+        document.exitPointerLock?.();
+      } else {
+        phone.classList.remove('open');
+      }
+    }
+
+    function openPhoneApp(appId) {
+      document.querySelectorAll('#phone-screen > div').forEach(d => d.classList.add('hidden'));
+      const target = document.getElementById('phone-' + appId);
+      if (target) target.classList.remove('hidden');
+    }
+
+    function backToPhoneHome() {
+      document.querySelectorAll('#phone-screen > div').forEach(d => d.classList.add('hidden'));
+      document.getElementById('phone-home').classList.remove('hidden');
+    }
+
+    // CHEATS SYSTEM (TƯƠNG THÍCH DUDE THEFT WARS)
+    function submitCheatCode() {
+      const code = document.getElementById('cheat-input').value.trim().toLowerCase();
+      if (!code) return;
+
+      if (code === 'dev') {
+        activateDevRights();
+      } else if (code === 'dudebolt') {
+        AppState.speedMulti = 3;
+        toast("⚡ Mã DUDEBOLT: Tốc độ x3!");
+      } else if (code === 'moon') {
+        AppState.jumpMulti = 2.5;
+        toast("🌌 Mã MOON: Trọng lực mặt trăng!");
+      } else if (code === 'cash') {
+        addCash(500000);
+      } else if (code === 'night') {
+        setNight(true);
+      } else if (code === 'day') {
+        setNight(false);
+      } else {
+        toast("Mã không đúng! Hãy thử: dudebolt, moon, dev, cash");
+      }
+      document.getElementById('cheat-input').value = '';
+    }
+
+    function activateDevRights() {
+      AppState.isDev = true;
+      Sound.playFanfare();
+      document.getElementById('dev-active-badge').classList.remove('hidden');
+      toast("★ CHÀO DEV! TOÀN QUYỀN ADMIN ĐÃ MỞ KHÓA ★");
+      openPhoneApp('devadmin');
+    }
+
     function openNameModal() {
-      document.getElementById('name-modal').classList.remove('hidden');
+      document.getElementById('name-dialog').classList.remove('hidden');
       document.exitPointerLock?.();
     }
 
-    function confirmPlayerName() {
-      const input = document.getElementById('player-name-input').value.trim();
-      if (!input) return;
+    function savePlayerName() {
+      const name = document.getElementById('char-name-input').value.trim();
+      if (!name) return;
 
-      GameState.playerName = input;
-      document.getElementById('player-name-display').innerText = input;
-      document.getElementById('name-modal').classList.add('hidden');
+      AppState.name = name;
+      document.getElementById('player-name-label').innerText = name;
+      document.getElementById('name-dialog').classList.add('hidden');
 
-      // KIỂM TRA NẾU TÊN ĐỔI THÀNH 'dev' (hoặc 'DEV')
-      if (input.toLowerCase() === 'dev') {
-        activateDevMode();
+      // NẾU TÊN ĐẶT THÀNH "dev"
+      if (name.toLowerCase() === 'dev') {
+        activateDevRights();
       } else {
-        GameState.isDev = false;
-        document.getElementById('admin-menu-btn').classList.add('hidden');
-        document.getElementById('admin-panel').classList.add('hidden');
-        showToast("Xin chào " + input + "!");
+        toast("Chào mừng " + name + "!");
       }
     }
 
-    // KÍCH HOẠT DEV ADMIN PANEL
-    function activateDevMode() {
-      GameState.isDev = true;
-      // Âm thanh vinh quang Fanfare
-      AudioEngine.playDevFanfare();
-
-      // Hiện nút Admin Panel nhảy tưng bừng
-      const btn = document.getElementById('admin-menu-btn');
-      btn.classList.remove('hidden');
-
-      showToast("★ DEV ACCESS GRANTED! ADMIN PANEL ĐÃ MỞ KHÓA ★");
-      toggleAdminPanel(true);
-    }
-
-    function toggleAdminPanel(forceOpen = null) {
-      if (!GameState.isDev) return;
-      const panel = document.getElementById('admin-panel');
-      if (forceOpen === true) {
-        panel.classList.remove('hidden');
-      } else if (forceOpen === false) {
-        panel.classList.add('hidden');
-      } else {
-        panel.classList.toggle('hidden');
-      }
-    }
-
-    // ==========================================
-    // DEV CHEAT FUNCTIONS
-    // ==========================================
+    // DEV CHEATS
     function toggleGodMode() {
-      GameState.isGodMode = !GameState.isGodMode;
-      const status = document.getElementById('godmode-status');
-      if (GameState.isGodMode) {
-        status.innerText = "BẬT";
-        status.className = "text-[10px] bg-emerald-900/60 text-emerald-300 px-1.5 py-0.5 rounded";
-        showToast("🛡️ Bất tử: BẬT");
-      } else {
-        status.innerText = "TẮT";
-        status.className = "text-[10px] bg-red-900/60 text-red-300 px-1.5 py-0.5 rounded";
-        showToast("🛡️ Bất tử: TẮT");
-      }
+      AppState.isGod = !AppState.isGod;
+      const st = document.getElementById('god-status');
+      st.innerText = AppState.isGod ? "BẬT" : "TẮT";
+      st.className = AppState.isGod ? "text-[10px] bg-emerald-900 text-emerald-300 px-2 py-0.5 rounded" : "text-[10px] bg-red-950 text-red-400 px-2 py-0.5 rounded";
+      toast("🛡️ Bất tử: " + (AppState.isGod ? "BẬT" : "TẮT"));
     }
 
-    function addDevCash(amount) {
-      GameState.cash += amount;
-      document.getElementById('cash-display').innerText = '$' + GameState.cash.toLocaleString();
-      AudioEngine.playCashSound();
-      showToast("💰 Nhận +" + amount.toLocaleString() + "$");
+    function addCash(num) {
+      AppState.cash += num;
+      document.getElementById('cash-label').innerText = '$' + AppState.cash.toLocaleString();
+      Sound.playCash();
+      toast("💰 Nhận +" + num.toLocaleString() + "$");
     }
 
-    function toggleSuperSpeed() {
-      GameState.superSpeed = !GameState.superSpeed;
-      const status = document.getElementById('speed-status');
-      status.innerText = GameState.superSpeed ? "BẬT" : "TẮT";
-      status.className = GameState.superSpeed ? "text-[10px] bg-amber-900/60 text-amber-300 px-1.5 py-0.5 rounded" : "text-[10px] bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded";
-      showToast("⚡ Tốc độ x3: " + (GameState.superSpeed ? "BẬT" : "TẮT"));
+    function toggleSpeed() {
+      AppState.speedMulti = (AppState.speedMulti === 1) ? 3 : 1;
+      const st = document.getElementById('speed-status');
+      st.innerText = (AppState.speedMulti === 3) ? "BẬT" : "TẮT";
+      st.className = (AppState.speedMulti === 3) ? "text-[10px] bg-amber-900 text-amber-300 px-2 py-0.5 rounded" : "text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded";
+      toast("⚡ Siêu tốc độ: " + (AppState.speedMulti === 3 ? "BẬT" : "TẮT"));
     }
 
-    function toggleSuperJump() {
-      GameState.superJump = !GameState.superJump;
-      const status = document.getElementById('jump-status');
-      status.innerText = GameState.superJump ? "BẬT" : "TẮT";
-      status.className = GameState.superJump ? "text-[10px] bg-amber-900/60 text-amber-300 px-1.5 py-0.5 rounded" : "text-[10px] bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded";
-      showToast("🦘 Siêu nhảy: " + (GameState.superJump ? "BẬT" : "TẮT"));
+    function toggleJump() {
+      AppState.jumpMulti = (AppState.jumpMulti === 1) ? 3 : 1;
+      const st = document.getElementById('jump-status');
+      st.innerText = (AppState.jumpMulti === 3) ? "BẬT" : "TẮT";
+      st.className = (AppState.jumpMulti === 3) ? "text-[10px] bg-amber-900 text-amber-300 px-2 py-0.5 rounded" : "text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded";
+      toast("🦘 Siêu nhảy: " + (AppState.jumpMulti === 3 ? "BẬT" : "TẮT"));
     }
 
-    function spawnVehicle(type) {
-      const forward = new THREE.Vector3(
-        -Math.sin(cameraAngle.yaw),
-        0,
-        -Math.cos(cameraAngle.yaw)
-      ).multiplyScalar(6);
-      const spawnPos = player.position.clone().add(forward);
-      addCarToWorld(spawnPos.x, 0.5, spawnPos.z, type);
-      showToast("🚗 Đã thả xe mới ngay trước mặt!");
-    }
-
-    function clearAllVehicles() {
-      if (GameState.inVehicle) toggleDriveCar();
-      vehicles.forEach(v => scene.remove(v.mesh));
-      vehicles = [];
-      showToast("🧹 Đã dọn sạch toàn bộ xe!");
-    }
-
-    function teleportTo(x, y, z) {
-      if (GameState.inVehicle) {
-        GameState.inVehicle.mesh.position.set(x, y, z);
-      } else {
-        player.position.set(x, y, z);
-      }
-      playerVelocity.set(0, 0, 0);
-      showToast("🌀 Đã dịch chuyển tức thời!");
-    }
-
-    function toggleDayNight() {
-      GameState.isNight = !GameState.isNight;
-      const text = document.getElementById('daynight-text');
-      if (GameState.isNight) {
-        scene.background.setHex(0x0a0e1a);
-        scene.fog.color.setHex(0x0a0e1a);
-        ambientLight.intensity = 0.15;
-        sunLight.intensity = 0.2;
-        text.innerText = "☀️ Sang Ban Ngày";
-        showToast("🌙 Chế độ Ban Đêm Neon");
-      } else {
-        scene.background.setHex(0x87CEEB);
-        scene.fog.color.setHex(0x87CEEB);
-        ambientLight.intensity = 0.55;
-        sunLight.intensity = 0.95;
-        text.innerText = "🌙 Sang Ban Đêm";
-        showToast("☀️ Chế độ Ban Ngày Nắng Ấm");
-      }
-    }
-
-    function toggleMoonGravity() {
-      GameState.moonGravity = !GameState.moonGravity;
-      const text = document.getElementById('gravity-text');
-      text.innerText = GameState.moonGravity ? "🌍 Trọng Lực Trái Đất" : "🌌 Trọng Lực Mặt Trăng";
-      showToast(GameState.moonGravity ? "🌌 Bật trọng lực mặt trăng lơ lửng!" : "🌍 Trọng lực bình thường");
-    }
-
-    function setWantedLevel(stars) {
-      GameState.wantedLevel = stars;
-      const container = document.getElementById('wanted-stars');
+    function setWanted(lvl) {
+      AppState.wanted = lvl;
       let html = '';
       for (let i = 0; i < 5; i++) {
-        if (i < stars) {
-          html += '<i class="fa-solid fa-star text-yellow-400 animate-pulse"></i>';
-        } else {
-          html += '<i class="fa-solid fa-star text-slate-600"></i>';
-        }
+        html += (i < lvl) ? '<i class="fa-solid fa-star star-active animate-pulse"></i>' : '<i class="fa-solid fa-star"></i>';
       }
-      container.innerHTML = html;
-      showToast(stars === 0 ? "⭐ Đã xóa sạch truy nã!" : `🚨 Báo động cấp độ ${stars} sao!`);
+      document.getElementById('wanted-stars').innerHTML = html;
+      toast(lvl === 0 ? "⭐ Xóa sạch tội danh!" : `🚨 Báo động cấp độ ${lvl} sao!`);
     }
 
-    function showToast(msg) {
-      const toast = document.getElementById('notice-toast');
-      toast.innerText = msg;
-      toast.classList.remove('opacity-0', '-translate-y-4');
-      toast.classList.add('opacity-100', 'translate-y-0');
-      clearTimeout(toast.timer);
-      toast.timer = setTimeout(() => {
-        toast.classList.remove('opacity-100', 'translate-y-0');
-        toast.classList.add('opacity-0', '-translate-y-4');
-      }, 2600);
+    function spawnCar(type) {
+      const fwd = new THREE.Vector3(-Math.sin(camYaw), 0, -Math.cos(camYaw)).multiplyScalar(6);
+      const pos = player.position.clone().add(fwd);
+      let col = 0xdc2626;
+      if (type === 'police') col = 0x1e293b;
+      if (type === 'truck') col = 0x10b981;
+      if (type === 'bugatti') col = 0xf59e0b;
+      addCar(pos.x, pos.z, type, col);
+      toast("🚗 dUber: Đã thả xe trước mặt bạn!");
     }
 
-    // ==========================================
-    // MAIN LOOP: ANIMATION & UPDATE
-    // ==========================================
-    function animate() {
-      requestAnimationFrame(animate);
+    function teleport(x, y, z) {
+      if (AppState.inVehicle) AppState.inVehicle.mesh.position.set(x, y, z);
+      else player.position.set(x, y, z);
+      playerVel.set(0, 0, 0);
+      toast("🌀 Đã dịch chuyển đến địa điểm!");
+    }
+
+    function setNight(night) {
+      AppState.isNight = night;
+      if (night) {
+        scene.background.setHex(0x0a0f1d);
+        scene.fog.color.setHex(0x0a0f1d);
+        ambientLight.intensity = 0.2;
+        sunLight.intensity = 0.25;
+        toast("🌙 Chuyển sang Ban Đêm Neon");
+      } else {
+        scene.background.setHex(0x70c5ff);
+        scene.fog.color.setHex(0x70c5ff);
+        ambientLight.intensity = 0.6;
+        sunLight.intensity = 0.95;
+        toast("☀️ Chuyển sang Ban Ngày");
+      }
+    }
+
+    function selectWeapon(wId) {
+      AppState.currentWeapon = wId;
+      const names = { ak47: 'AK-47', shotgun: 'Shotgun Bắn Tỉa', pistol: 'Súng Lục' };
+      document.getElementById('weapon-name').innerHTML = `<i class="fa-solid fa-gun"></i> ` + names[wId];
+      toast("Đã trang bị: " + names[wId]);
+    }
+
+    function switchWeapon() {
+      const list = ['ak47', 'shotgun', 'pistol'];
+      const next = list[(list.indexOf(AppState.currentWeapon) + 1) % list.length];
+      selectWeapon(next);
+    }
+
+    function toast(txt) {
+      const t = document.getElementById('game-toast');
+      t.innerText = txt;
+      t.classList.remove('opacity-0', '-translate-y-4');
+      t.classList.add('opacity-100', 'translate-y-0');
+      clearTimeout(t.timer);
+      t.timer = setTimeout(() => {
+        t.classList.remove('opacity-100', 'translate-y-0');
+        t.classList.add('opacity-0', '-translate-y-4');
+      }, 2500);
+    }
+
+    // MAIN LOOP
+    function loop() {
+      requestAnimationFrame(loop);
       const delta = Math.min(clock.getDelta(), 0.1);
 
       updatePlayer(delta);
-      updateVehicles(delta);
+      updateCars(delta);
       updateBullets(delta);
+      updateNPCs(delta);
       updateCamera();
-      drawMiniMap();
+      drawRadar();
 
       renderer.render(scene, camera);
     }
 
     function updatePlayer(delta) {
-      if (GameState.inVehicle) return;
+      if (AppState.inVehicle) return;
 
-      // Base move speed
-      let speed = GameState.superSpeed ? 24 : (keys.shift ? 12 : 6.5);
-      const moveDir = new THREE.Vector3();
+      const speed = (keys.shift ? 12 : 6.5) * AppState.speedMulti;
+      const move = new THREE.Vector3();
+      if (keys.w) move.z -= 1;
+      if (keys.s) move.z += 1;
+      if (keys.a) move.x -= 1;
+      if (keys.d) move.x += 1;
 
-      if (keys.w) moveDir.z -= 1;
-      if (keys.s) moveDir.z += 1;
-      if (keys.a) moveDir.x -= 1;
-      if (keys.d) moveDir.x += 1;
+      if (move.lengthSq() > 0) {
+        move.normalize();
+        move.applyAxisAngle(new THREE.Vector3(0, 1, 0), camYaw);
+        player.position.x += move.x * speed * delta;
+        player.position.z += move.z * speed * delta;
+        player.rotation.y = camYaw + Math.PI;
 
-      if (moveDir.lengthSq() > 0) {
-        moveDir.normalize();
-        // Rotate move direction with camera yaw
-        moveDir.applyAxisAngle(new THREE.Vector3(0, 1, 0), cameraAngle.yaw);
-
-        player.position.x += moveDir.x * speed * delta;
-        player.position.z += moveDir.z * speed * delta;
-
-        // Player rotation facing movement
-        player.rotation.y = cameraAngle.yaw + Math.PI;
-
-        // Walking leg & arm swing
-        const t = clock.getElapsedTime() * (keys.shift ? 15 : 9);
+        const t = clock.getElapsedTime() * 11;
         leftLeg.rotation.x = Math.sin(t) * 0.6;
         rightLeg.rotation.x = -Math.sin(t) * 0.6;
-        leftArm.rotation.x = -Math.sin(t) * 0.5;
       } else {
         leftLeg.rotation.x = 0;
         rightLeg.rotation.x = 0;
-        leftArm.rotation.x = 0;
       }
 
-      // Gravity & Vertical physics
-      const gravity = GameState.moonGravity ? 8 : 22;
-      playerVelocity.y -= gravity * delta;
-      player.position.y += playerVelocity.y * delta;
-
+      playerVel.y -= 22 * delta;
+      player.position.y += playerVel.y * delta;
       if (player.position.y <= 0) {
         player.position.y = 0;
-        playerVelocity.y = 0;
+        playerVel.y = 0;
         isGrounded = true;
       }
     }
 
-    function updateVehicles(delta) {
-      vehicles.forEach(car => {
-        if (GameState.inVehicle === car) {
-          // Player is driving this car
-          if (keys.w) car.speed = Math.min(car.speed + 1.2 * delta, car.maxSpeed);
-          else if (keys.s) car.speed = Math.max(car.speed - 1.0 * delta, -car.maxSpeed * 0.4);
-          else car.speed *= 0.95; // Drag
+    function updateCars(delta) {
+      vehicles.forEach(c => {
+        if (AppState.inVehicle === c) {
+          if (keys.w) c.speed = Math.min(c.speed + 1.2 * delta, c.maxSpeed);
+          else if (keys.s) c.speed = Math.max(c.speed - 1.0 * delta, -0.4);
+          else c.speed *= 0.96;
 
-          if (Math.abs(car.speed) > 0.02) {
-            const steer = (car.speed > 0 ? 1 : -1) * (keys.a ? 1 : keys.d ? -1 : 0);
-            car.rotation += steer * 2.2 * delta;
+          if (Math.abs(c.speed) > 0.02) {
+            const steer = (c.speed > 0 ? 1 : -1) * (keys.a ? 1 : keys.d ? -1 : 0);
+            c.rot += steer * 2.2 * delta;
           }
 
-          car.mesh.rotation.y = car.rotation;
-          car.mesh.position.x += Math.sin(car.rotation) * car.speed;
-          car.mesh.position.z += Math.cos(car.rotation) * car.speed;
-
-          // Camera syncs with car
-          cameraAngle.yaw = car.rotation + Math.PI;
+          c.mesh.rotation.y = c.rot;
+          c.mesh.position.x += Math.sin(c.rot) * c.speed;
+          c.mesh.position.z += Math.cos(c.rot) * c.speed;
+          camYaw = c.rot + Math.PI;
         }
       });
     }
@@ -1359,7 +1147,7 @@
     function updateBullets(delta) {
       for (let i = bullets.length - 1; i >= 0; i--) {
         const b = bullets[i];
-        b.position.addScaledVector(b.userData.direction, 65 * delta);
+        b.position.addScaledVector(b.userData.dir, 65 * delta);
         b.userData.life--;
         if (b.userData.life <= 0 || b.position.y <= 0) {
           scene.remove(b);
@@ -1368,76 +1156,58 @@
       }
     }
 
-    function updateCamera() {
-      let targetPos;
-      if (GameState.inVehicle) {
-        targetPos = GameState.inVehicle.mesh.position.clone().add(new THREE.Vector3(0, 1.5, 0));
-      } else {
-        targetPos = player.position.clone().add(new THREE.Vector3(0, 1.4, 0));
-      }
-
-      if (GameState.firstPerson && !GameState.inVehicle) {
-        camera.position.copy(targetPos).add(new THREE.Vector3(0, 0.4, 0));
-        const lookDir = new THREE.Vector3(
-          -Math.sin(cameraAngle.yaw) * Math.cos(cameraAngle.pitch),
-          Math.sin(cameraAngle.pitch),
-          -Math.cos(cameraAngle.yaw) * Math.cos(cameraAngle.pitch)
-        );
-        camera.lookAt(camera.position.clone().add(lookDir));
-      } else {
-        // Third Person Camera Orbit
-        const distance = GameState.inVehicle ? 7.5 : 4.8;
-        const offsetX = Math.sin(cameraAngle.yaw) * Math.cos(cameraAngle.pitch) * distance;
-        const offsetY = Math.sin(cameraAngle.pitch) * distance + 1.2;
-        const offsetZ = Math.cos(cameraAngle.yaw) * Math.cos(cameraAngle.pitch) * distance;
-
-        camera.position.set(targetPos.x + offsetX, targetPos.y + offsetY, targetPos.z + offsetZ);
-        camera.lookAt(targetPos);
-      }
+    function updateNPCs(delta) {
+      npcs.forEach(n => {
+        n.position.x += Math.cos(n.userData.dir) * n.userData.speed * delta;
+        n.position.z += Math.sin(n.userData.dir) * n.userData.speed * delta;
+        if (Math.random() < 0.01) n.userData.dir = Math.random() * Math.PI * 2;
+      });
     }
 
-    // Radar / Minimap rendering
-    function drawMiniMap() {
-      const mapCanvas = document.getElementById('minimap-canvas');
-      const ctx = mapCanvas.getContext('2d');
-      ctx.clearRect(0, 0, 130, 130);
+    function updateCamera() {
+      const target = AppState.inVehicle ? AppState.inVehicle.mesh.position.clone().add(new THREE.Vector3(0, 1.5, 0)) : player.position.clone().add(new THREE.Vector3(0, 1.4, 0));
+      const dist = AppState.inVehicle ? 7.5 : 4.8;
+      const ox = Math.sin(camYaw) * Math.cos(camPitch) * dist;
+      const oy = Math.sin(camPitch) * dist + 1.2;
+      const oz = Math.cos(camYaw) * Math.cos(camPitch) * dist;
+      camera.position.set(target.x + ox, target.y + oy, target.z + oz);
+      camera.lookAt(target);
+    }
 
-      const centerX = 65;
-      const centerY = 65;
-      const scale = 0.38;
+    function drawRadar() {
+      const c = document.getElementById('minimap-canvas');
+      const ctx = c.getContext('2d');
+      ctx.clearRect(0, 0, 120, 120);
 
-      const pPos = GameState.inVehicle ? GameState.inVehicle.mesh.position : player.position;
+      const cx = 60, cy = 60, sc = 0.35;
+      const pos = AppState.inVehicle ? AppState.inVehicle.mesh.position : player.position;
 
-      // Draw Buildings on Radar
       buildings.forEach(b => {
-        const dx = (b.x - pPos.x) * scale;
-        const dz = (b.z - pPos.z) * scale;
+        const dx = (b.x - pos.x) * sc, dz = (b.z - pos.z) * sc;
         ctx.fillStyle = '#3b82f6';
         ctx.beginPath();
-        ctx.arc(centerX + dx, centerY + dz, Math.max(3, b.radius * scale), 0, Math.PI * 2);
+        ctx.arc(cx + dx, cy + dz, Math.max(3, b.radius * sc), 0, Math.PI * 2);
         ctx.fill();
       });
 
-      // Draw Vehicles on Radar
       vehicles.forEach(v => {
-        const dx = (v.mesh.position.x - pPos.x) * scale;
-        const dz = (v.mesh.position.z - pPos.z) * scale;
+        const dx = (v.mesh.position.x - pos.x) * sc, dz = (v.mesh.position.z - pos.z) * sc;
         ctx.fillStyle = '#f59e0b';
-        ctx.fillRect(centerX + dx - 2, centerY + dz - 2, 4, 4);
+        ctx.fillRect(cx + dx - 2, cy + dz - 2, 4, 4);
       });
 
-      // Draw Player in Center
+      // Player
       ctx.fillStyle = '#ef4444';
       ctx.beginPath();
-      ctx.arc(centerX, centerY, 4.5, 0, Math.PI * 2);
+      ctx.arc(cx, cy, 4, 0, Math.PI * 2);
       ctx.fill();
 
-      // Heading arrow
-      ctx.strokeStyle = '#ffffff';
+      // Heading
+      ctx.strokeStyle = '#fff';
       ctx.lineWidth = 2;
       ctx.beginPath();
-      ctx.moveTo(centerX, centerY);
-      ctx.lineTo(centerX - Math.sin(cameraAngle.yaw) * 10, centerY - Math.cos(cameraAngle.yaw) * 10);
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(cx - Math.sin(camYaw) * 9, cy - Math.cos(camYaw) * 9);
       ctx.stroke();
     }
   </script>
