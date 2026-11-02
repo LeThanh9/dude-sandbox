@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>Dude Theft Wars: Mobile Dev Edition</title>
+  <title>Dude Theft Wars: Mega Dev Edition 3D</title>
 
   <!-- Tailwind CSS & FontAwesome -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -30,7 +30,7 @@
       position: fixed;
       touch-action: none;
       overscroll-behavior: none;
-      background: #4ab3ff;
+      background: #38bdf8;
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     }
     #game-canvas {
@@ -41,7 +41,6 @@
       height: 100%;
       z-index: 1;
     }
-    /* Touch Interaction Layers */
     #touch-layer {
       position: absolute;
       top: 0;
@@ -49,7 +48,6 @@
       width: 100%;
       height: 100%;
       z-index: 5;
-      pointer-events: auto;
     }
     #ui-hud {
       position: absolute;
@@ -64,18 +62,18 @@
       pointer-events: auto;
       touch-action: manipulation;
     }
-    /* Cartoon Low-Poly Dude UI */
+    /* Dude Theft Wars Style HUD */
     .dude-pill {
-      background: rgba(15, 23, 42, 0.88);
+      background: rgba(15, 23, 42, 0.9);
       border: 3px solid #f59e0b;
       border-radius: 9999px;
-      box-shadow: 0 6px 0 rgba(0, 0, 0, 0.5);
+      box-shadow: 0 5px 0 rgba(0, 0, 0, 0.5);
     }
     .dude-card {
-      background: rgba(15, 23, 42, 0.92);
-      border: 3px solid #f59e0b;
-      border-radius: 20px;
-      box-shadow: 0 8px 0 rgba(0, 0, 0, 0.55);
+      background: rgba(15, 23, 42, 0.94);
+      border: 3.5px solid #f59e0b;
+      border-radius: 22px;
+      box-shadow: 0 8px 0 rgba(0, 0, 0, 0.6);
     }
     .btn-action {
       background: #f59e0b;
@@ -103,13 +101,22 @@
       transform: translateY(4px);
       box-shadow: 0 1px 0 #991b1b;
     }
+    .btn-nitro {
+      background: linear-gradient(135deg, #06b6d4, #3b82f6);
+      box-shadow: 0 5px 0 #1d4ed8;
+      color: #fff;
+    }
+    .btn-nitro:active {
+      transform: translateY(4px);
+      box-shadow: 0 1px 0 #1d4ed8;
+    }
     /* Dynamic Virtual Joystick */
     #joystick-base {
       position: absolute;
       width: 120px;
       height: 120px;
-      background: rgba(255, 255, 255, 0.15);
-      border: 3px solid rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.18);
+      border: 3px solid rgba(255, 255, 255, 0.45);
       border-radius: 50%;
       pointer-events: none;
       transform: translate(-50%, -50%);
@@ -125,7 +132,7 @@
       background: #f59e0b;
       border: 3px solid #ffffff;
       border-radius: 50%;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
       transform: translate(-50%, -50%);
       pointer-events: none;
     }
@@ -135,8 +142,8 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
       pointer-events: none;
       z-index: 12;
     }
@@ -144,22 +151,22 @@
       content: '';
       position: absolute;
       background: #ffffff;
-      box-shadow: 0 0 3px rgba(0,0,0,0.8);
+      box-shadow: 0 0 4px rgba(0,0,0,0.8);
     }
-    #crosshair::before { top: 8px; left: 0; width: 18px; height: 2px; }
-    #crosshair::after { top: 0; left: 8px; width: 2px; height: 18px; }
+    #crosshair::before { top: 9px; left: 0; width: 20px; height: 2px; }
+    #crosshair::after { top: 0; left: 9px; width: 2px; height: 20px; }
 
-    /* SMARTPHONE DPHONE (DUDE THEFT WARS) */
+    /* SMARTPHONE DPHONE */
     #dphone {
       position: absolute;
       bottom: 12px;
       right: 12px;
-      width: min(340px, 92vw);
-      height: min(560px, 86vh);
-      background: #0b1120;
+      width: min(350px, 94vw);
+      height: min(580px, 88vh);
+      background: #090e17;
       border: 6px solid #1e293b;
-      border-radius: 38px;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(255, 255, 255, 0.1);
+      border-radius: 40px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), inset 0 0 15px rgba(255, 255, 255, 0.1);
       transform: translateY(120%);
       transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.25);
       z-index: 60;
@@ -188,25 +195,31 @@
       transition: opacity 0.2s;
     }
     .siren-active {
-      animation: sirenFlash 0.7s infinite alternate;
+      animation: sirenStrobe 0.6s infinite alternate;
     }
-    @keyframes sirenFlash {
-      0% { background: rgba(59, 130, 246, 0.15); opacity: 1; }
-      100% { background: rgba(239, 68, 68, 0.18); opacity: 1; }
+    @keyframes sirenStrobe {
+      0% { background: rgba(59, 130, 246, 0.2); opacity: 1; }
+      100% { background: rgba(239, 68, 68, 0.25); opacity: 1; }
     }
     /* Minimap */
     #minimap {
-      width: 105px;
-      height: 105px;
+      width: 110px;
+      height: 110px;
       border-radius: 50%;
-      border: 3.5px solid #f59e0b;
-      background: rgba(15, 23, 42, 0.92);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.5);
+      border: 4px solid #f59e0b;
+      background: rgba(15, 23, 42, 0.95);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.6);
       overflow: hidden;
     }
     .star-glow {
       color: #eab308;
       text-shadow: 0 0 10px #eab308;
+    }
+    /* Custom Scroll */
+    .custom-scroll::-webkit-scrollbar { width: 4px; }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: rgba(245, 158, 11, 0.5);
+      border-radius: 99px;
     }
   </style>
 </head>
@@ -217,25 +230,24 @@
   <div id="crosshair"></div>
   <div id="police-siren-overlay"></div>
 
-  <!-- Touch Tracking Layer for Mobile -->
+  <!-- Touch Interaction Tracking Layer -->
   <div id="touch-layer"></div>
 
-  <!-- Virtual Joystick elements -->
+  <!-- Virtual Joystick -->
   <div id="joystick-base">
     <div id="joystick-stick"></div>
   </div>
 
   <!-- ============================================== -->
-  <!-- IN-GAME HUD (GIAO DIỆN CHUẨN DUDE THEFT WARS) -->
+  <!-- IN-GAME HUD (ĐẬM CHẤT DUDE THEFT WARS GỐC)     -->
   <!-- ============================================== -->
   <div id="ui-hud" class="p-2 sm:p-4 flex flex-col justify-between">
     
-    <!-- TOP BAR -->
+    <!-- TOP HEADER -->
     <div class="flex justify-between items-start w-full">
       
       <!-- Player Status: Health, Name, Cash -->
       <div class="flex flex-col gap-1.5 touch-btn">
-        <!-- Health & Name -->
         <div class="dude-pill px-3 py-1.5 flex items-center gap-2">
           <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-500 to-yellow-300 flex items-center justify-center text-slate-950 font-black shadow border border-white">
             <i class="fa-solid fa-face-grin-squint-tears text-base"></i>
@@ -258,7 +270,7 @@
         <div class="dude-pill px-3 py-1 flex items-center justify-between gap-3 max-w-fit">
           <div class="text-emerald-400 font-black text-sm flex items-center gap-1">
             <i class="fa-solid fa-sack-dollar text-xs"></i>
-            <span id="cash-val">$2,500</span>
+            <span id="cash-val">$5,000</span>
           </div>
           <div class="flex gap-0.5 text-slate-600 text-xs" id="wanted-stars-hud">
             <i class="fa-solid fa-star"></i>
@@ -274,15 +286,15 @@
       <div class="flex flex-col items-end gap-1.5 touch-btn">
         <!-- Dev Badge -->
         <div id="dev-badge-hud" class="hidden bg-gradient-to-r from-yellow-400 to-amber-500 border-2 border-white text-slate-950 font-black text-[10px] px-2.5 py-1 rounded-full shadow-lg animate-pulse flex items-center gap-1">
-          <i class="fa-solid fa-crown"></i> DEV ADMIN
+          <i class="fa-solid fa-crown"></i> DEV ADMIN ACTIVE
         </div>
 
-        <!-- Radar / Minimap -->
+        <!-- Minimap Radar -->
         <div id="minimap" class="flex items-center justify-center">
-          <canvas id="minimap-canvas" width="105" height="105"></canvas>
+          <canvas id="minimap-canvas" width="110" height="110"></canvas>
         </div>
 
-        <!-- Weapon Icon Switcher -->
+        <!-- Weapon Switcher Button -->
         <button onclick="cycleWeapon()" class="dude-pill px-2.5 py-1 text-xs font-black text-amber-400 flex items-center gap-1.5 hover:scale-105 active:scale-95 transition-transform">
           <span id="weapon-label"><i class="fa-solid fa-gun"></i> AK-47</span>
           <i class="fa-solid fa-repeat text-[10px] text-white"></i>
@@ -295,20 +307,33 @@
       Thông báo
     </div>
 
-    <!-- BOTTOM CONTROLS FOR MOBILE (ON-SCREEN BUTTONS) -->
+    <!-- BOTTOM CONTROLS FOR MOBILE -->
     <div class="flex justify-between items-end w-full">
       
-      <!-- Left Bottom: Car Controls (Khi đang lái xe) HOẶC Nhắc Joystick -->
+      <!-- Left Bottom: Car Pedals (Khi lái xe) & Ragdoll Button -->
       <div id="mobile-left-controls" class="flex items-center gap-2 touch-btn">
-        <!-- Khi đang lái xe: Bàn đạp Phanh / Lùi xe -->
+        
+        <!-- Car Pedals -->
         <div id="car-pedals-left" class="hidden flex gap-2">
           <button id="btn-brake" class="btn-action btn-danger w-14 h-14 text-sm font-black">
             <i class="fa-solid fa-backward-step"></i>
             <span class="text-[9px]">Phanh</span>
           </button>
-          <button id="btn-honk" onclick="Sound.playCarHorn()" class="btn-action w-12 h-12 text-sm bg-blue-500 box-shadow text-white">
+          <button id="btn-nitro" class="btn-action btn-nitro w-14 h-14 text-sm font-black">
+            <i class="fa-solid fa-fire-flame-curved"></i>
+            <span class="text-[9px]">NITRO</span>
+          </button>
+          <button onclick="Sound.playCarHorn()" class="btn-action w-12 h-12 text-sm bg-blue-500 text-white">
             <i class="fa-solid fa-bullhorn"></i>
             <span class="text-[8px]">Còi</span>
+          </button>
+        </div>
+
+        <!-- Ragdoll Flop Button (Nút ngã lộn nhào cười bò của Dude Theft Wars) -->
+        <div id="ragdoll-btn-wrap" class="flex gap-2">
+          <button onclick="triggerRagdollFlop()" class="btn-action w-12 h-12 text-slate-950 bg-yellow-400">
+            <i class="fa-solid fa-person-falling text-lg"></i>
+            <span class="text-[8px]">Ngã</span>
           </button>
         </div>
       </div>
@@ -318,26 +343,26 @@
         
         <!-- On Foot Controls -->
         <div id="onfoot-buttons" class="flex items-end gap-2">
-          <!-- Sprint Button (Chạy Nhanh) -->
+          <!-- Sprint Button -->
           <button id="btn-sprint" class="btn-action w-12 h-12 text-slate-950 text-xs">
             <i class="fa-solid fa-person-running text-base"></i>
             <span class="text-[8px]">Chạy</span>
           </button>
 
-          <!-- Jump Button (Nhảy) -->
+          <!-- Jump Button -->
           <button id="btn-jump" onclick="doPlayerJump()" class="btn-action w-14 h-14 text-slate-950 text-base">
             <i class="fa-solid fa-arrow-up text-lg"></i>
             <span class="text-[9px]">Nhảy</span>
           </button>
 
-          <!-- Shoot Button (Bắn Súng) -->
+          <!-- Shoot Button -->
           <button id="btn-shoot" class="btn-action btn-danger w-16 h-16 text-lg">
             <i class="fa-solid fa-crosshairs text-2xl"></i>
             <span class="text-[9px]">Bắn</span>
           </button>
         </div>
 
-        <!-- In Car Pedal (Ga / Tăng Tốc) -->
+        <!-- In Car Gas Pedal -->
         <div id="incar-buttons" class="hidden flex items-end gap-2">
           <button id="btn-gas" class="btn-action w-16 h-16 bg-emerald-500 text-white text-base">
             <i class="fa-solid fa-gas-pump text-2xl"></i>
@@ -351,7 +376,7 @@
           <span id="car-btn-txt" class="text-[8px] font-black uppercase">Lên Xe</span>
         </button>
 
-        <!-- dPhone Button (Điện Thoại Poxel) -->
+        <!-- dPhone Button -->
         <button onclick="togglePhone()" class="w-14 h-16 rounded-2xl bg-gradient-to-tr from-amber-500 to-yellow-400 border-3 border-white shadow-xl flex flex-col items-center justify-center text-slate-950 font-black hover:scale-105 active:scale-95 transition-all">
           <i class="fa-solid fa-mobile-screen-button text-2xl"></i>
           <span class="text-[8px] font-black uppercase tracking-tighter mt-0.5">dPhone</span>
@@ -362,7 +387,7 @@
   </div>
 
   <!-- ============================================== -->
-  <!-- CHIẾC ĐIỆN THOẠI DPHONE CHUẨN DUDE THEFT WARS  -->
+  <!-- CHIẾC ĐIỆN THOẠI DPHONE (FULL APPS ĐỈNH CAO)   -->
   <!-- ============================================== -->
   <div id="dphone">
     <div class="speaker-notch"></div>
@@ -370,7 +395,7 @@
     <!-- Phone Top Status Bar -->
     <div class="px-5 py-1.5 flex justify-between items-center text-[10px] font-bold text-slate-400 border-b border-slate-800">
       <span>12:00 PM</span>
-      <span class="text-amber-400 font-black tracking-wide">dPhone 15 Pro</span>
+      <span class="text-amber-400 font-black tracking-wide">dPhone 15 Pro Max</span>
       <div class="flex gap-1.5 items-center">
         <i class="fa-solid fa-signal text-[9px]"></i>
         <i class="fa-solid fa-wifi text-[9px]"></i>
@@ -379,13 +404,13 @@
     </div>
 
     <!-- Phone Screen Views -->
-    <div class="flex-1 p-3.5 overflow-y-auto" id="phone-container">
+    <div class="flex-1 p-3.5 overflow-y-auto custom-scroll" id="phone-container">
       
-      <!-- Screen 1: App Grid (Màn hình chính) -->
-      <div id="view-home" class="space-y-3.5">
+      <!-- Screen 1: App Grid -->
+      <div id="view-home" class="space-y-3">
         <div class="text-center pt-1 pb-1">
-          <div class="text-lg font-black text-white tracking-wide">DudeOS 2.0</div>
-          <p class="text-[10px] text-slate-400">Chạm vào ứng dụng để sử dụng</p>
+          <div class="text-lg font-black text-white tracking-wide">DudeOS 2.5</div>
+          <p class="text-[10px] text-slate-400">Hệ điều hành thế giới mở Dude Theft Wars</p>
         </div>
 
         <div class="grid grid-cols-3 gap-2.5 text-center">
@@ -411,10 +436,10 @@
             <div class="w-13 h-13 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-600 flex items-center justify-center text-white text-xl shadow-lg border border-white/20">
               <i class="fa-solid fa-gun"></i>
             </div>
-            <span class="text-[10px] font-bold text-slate-200 mt-1">Kho Súng</span>
+            <span class="text-[10px] font-bold text-slate-200 mt-1">Vũ Khí</span>
           </div>
 
-          <!-- App DEV ADMIN (Mở khi tên là dev) -->
+          <!-- App DEV ADMIN CONSOLE -->
           <div id="app-btn-devadmin" onclick="switchPhoneView('devadmin')" class="flex flex-col items-center cursor-pointer active:scale-90 transition-transform">
             <div class="w-13 h-13 rounded-2xl bg-gradient-to-tr from-yellow-400 to-amber-600 flex items-center justify-center text-slate-950 text-xl shadow-lg border-2 border-white">
               <i class="fa-solid fa-crown"></i>
@@ -427,7 +452,7 @@
             <div class="w-13 h-13 rounded-2xl bg-gradient-to-tr from-blue-500 to-indigo-600 flex items-center justify-center text-white text-xl shadow-lg border border-white/20">
               <i class="fa-solid fa-map-location-dot"></i>
             </div>
-            <span class="text-[10px] font-bold text-slate-200 mt-1">Dịch Chuyển</span>
+            <span class="text-[10px] font-bold text-slate-200 mt-1">Bản Đồ</span>
           </div>
 
           <!-- App Đổi Tên Nhân Vật -->
@@ -451,7 +476,6 @@
           <input id="input-cheat-code" type="text" placeholder="Nhập mã cheat..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white font-mono uppercase focus:border-amber-400">
           <button onclick="executeEnteredCheat()" class="dude-pill px-3 py-1.5 text-xs text-white bg-amber-500 font-black">GỬI</button>
         </div>
-        <!-- Quick Cheat Chips -->
         <div class="text-[11px] text-slate-300">
           <div class="text-amber-400 font-bold mb-1">Mã bấm nhanh một chạm:</div>
           <div class="grid grid-cols-2 gap-1.5 text-[10px]">
@@ -459,17 +483,17 @@
             <button onclick="runQuickCheat('moon')" class="bg-slate-900 border border-slate-800 p-1.5 rounded-lg text-left font-bold text-purple-300">🌌 moon (Mặt trăng)</button>
             <button onclick="runQuickCheat('cash')" class="bg-slate-900 border border-slate-800 p-1.5 rounded-lg text-left font-bold text-emerald-400">💰 cash (+$500,000)</button>
             <button onclick="runQuickCheat('dev')" class="bg-slate-900 border border-slate-800 p-1.5 rounded-lg text-left font-bold text-amber-400">👑 dev (Admin Panel)</button>
-            <button onclick="runQuickCheat('night')" class="bg-slate-900 border border-slate-800 p-1.5 rounded-lg text-left font-bold text-blue-300">🌙 night (Ban đêm)</button>
-            <button onclick="runQuickCheat('day')" class="bg-slate-900 border border-slate-800 p-1.5 rounded-lg text-left font-bold text-amber-200">☀️ day (Ban ngày)</button>
+            <button onclick="runQuickCheat('giant')" class="bg-slate-900 border border-slate-800 p-1.5 rounded-lg text-left font-bold text-rose-300">🗿 giantdude (Khổng lồ)</button>
+            <button onclick="runQuickCheat('tiny')" class="bg-slate-900 border border-slate-800 p-1.5 rounded-lg text-left font-bold text-cyan-300">🐜 tinydude (Tí hon)</button>
           </div>
         </div>
       </div>
 
-      <!-- Screen 3: DUBER (Car Spawner) -->
+      <!-- Screen 3: DUBER (Car Spawner Đầy Đủ) -->
       <div id="view-duber" class="hidden space-y-2">
         <div class="flex items-center gap-2 pb-1.5 border-b border-slate-800 text-white font-bold text-xs">
           <button onclick="switchPhoneView('home')" class="text-amber-400 p-1"><i class="fa-solid fa-chevron-left"></i></button>
-          <span>dUber Car Delivery</span>
+          <span>dUber Delivery (Thả Phương Tiện)</span>
         </div>
         <div class="grid grid-cols-1 gap-1.5 text-xs">
           <button onclick="orderVehicle('lambo')" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 p-2 rounded-xl text-left font-bold text-white flex items-center justify-between">
@@ -478,6 +502,10 @@
           </button>
           <button onclick="orderVehicle('bugatti')" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 p-2 rounded-xl text-left font-bold text-white flex items-center justify-between">
             <span>⚡ Siêu Xe Bugatti Vàng</span>
+            <span class="text-emerald-400 font-mono text-[10px]">GIAO NGAY</span>
+          </button>
+          <button onclick="orderVehicle('monster')" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 p-2 rounded-xl text-left font-bold text-amber-400 flex items-center justify-between">
+            <span>🛞 Monster Truck Bánh Khổng Lồ</span>
             <span class="text-emerald-400 font-mono text-[10px]">GIAO NGAY</span>
           </button>
           <button onclick="orderVehicle('police')" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 p-2 rounded-xl text-left font-bold text-white flex items-center justify-between">
@@ -514,6 +542,14 @@
           <span>🦘 Siêu Nhảy Cao x3</span>
           <span id="jump-txt" class="text-[9px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded font-black">TẮT</span>
         </button>
+        <button onclick="spawnSoccerBall()" class="w-full bg-slate-900 p-2 rounded-xl border border-slate-700 text-left font-bold text-amber-300 flex justify-between items-center">
+          <span>⚽ Thả Quả Bóng Đá Khổng Lồ</span>
+          <i class="fa-solid fa-futbol"></i>
+        </button>
+        <button onclick="toggleSlowMotion()" class="w-full bg-slate-900 p-2 rounded-xl border border-slate-700 text-left font-bold text-purple-300 flex justify-between items-center">
+          <span>⏱️ Chế Độ Quay Chậm (Slow-Mo Matrix)</span>
+          <span id="slowmo-txt" class="text-[9px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded font-black">TẮT</span>
+        </button>
         <div class="grid grid-cols-2 gap-1.5">
           <button onclick="setWantedLevel(0)" class="bg-slate-900 p-2 rounded-xl border border-slate-700 font-bold text-emerald-400">
             ⭐ Xóa Tội (0 Sao)
@@ -536,6 +572,7 @@
         <button onclick="teleportPlayer(-65, 2, 65)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-white">⛽ Trạm Xăng Trung Tâm</button>
         <button onclick="teleportPlayer(0, 75, -80)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-white">🏢 Nóc Tháp Empire 75m</button>
         <button onclick="teleportPlayer(45, 12, -45)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-amber-300">🎪 Dốc Bay Đua Xe (Stunt Ramp)</button>
+        <button onclick="teleportPlayer(120, 2, -120)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-emerald-400">⚽ Sân Vận Động Bóng Đá</button>
       </div>
 
       <!-- Screen 6: WEAPONS APP -->
@@ -544,6 +581,10 @@
           <button onclick="switchPhoneView('home')" class="text-amber-400 p-1"><i class="fa-solid fa-chevron-left"></i></button>
           <span>Kho Trang Bị Vũ Khí</span>
         </div>
+        <button onclick="selectWeapon('rpg')" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-rose-400 flex justify-between">
+          <span>🚀 Súng Phóng Lựu RPG</span>
+          <span class="text-amber-400 font-bold">CHỌN</span>
+        </button>
         <button onclick="selectWeapon('ak47')" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-white flex justify-between">
           <span>🔫 Súng Trường Tấn Công AK-47</span>
           <span class="text-amber-400 font-bold">CHỌN</span>
@@ -607,23 +648,38 @@
           o.start(now + i * 0.12); o.stop(now + i * 0.12 + 0.4);
         });
       },
-      playGunshot() {
+      playGunshot(type = 'ak47') {
         this.init();
         const now = this.ctx.currentTime;
-        const b = this.ctx.createBuffer(1, this.ctx.sampleRate * 0.08, this.ctx.sampleRate);
+        const dur = type === 'rpg' ? 0.35 : 0.08;
+        const b = this.ctx.createBuffer(1, this.ctx.sampleRate * dur, this.ctx.sampleRate);
         const d = b.getChannelData(0);
         for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
         const n = this.ctx.createBufferSource();
         n.buffer = b;
         const f = this.ctx.createBiquadFilter();
         f.type = 'bandpass';
-        f.frequency.setValueAtTime(1100, now);
-        f.frequency.linearRampToValueAtTime(100, now + 0.08);
+        f.frequency.setValueAtTime(type === 'rpg' ? 300 : 1100, now);
+        f.frequency.linearRampToValueAtTime(type === 'rpg' ? 50 : 100, now + dur);
         const g = this.ctx.createGain();
-        g.gain.setValueAtTime(0.4, now);
-        g.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
+        g.gain.setValueAtTime(type === 'rpg' ? 0.7 : 0.4, now);
+        g.gain.exponentialRampToValueAtTime(0.01, now + dur);
         n.connect(f); f.connect(g); g.connect(this.ctx.destination);
         n.start(now);
+      },
+      playExplosion() {
+        this.init();
+        const now = this.ctx.currentTime;
+        // Low sub boom
+        const osc = this.ctx.createOscillator();
+        const gOsc = this.ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(140, now);
+        osc.frequency.exponentialRampToValueAtTime(20, now + 0.5);
+        gOsc.gain.setValueAtTime(0.6, now);
+        gOsc.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
+        osc.connect(gOsc); gOsc.connect(this.ctx.destination);
+        osc.start(now); osc.stop(now + 0.5);
       },
       playCoin() {
         this.init();
@@ -664,42 +720,56 @@
           o.connect(g); g.connect(this.ctx.destination);
           o.start(now); o.stop(now + 0.35);
         });
+      },
+      playBoing() {
+        this.init();
+        const now = this.ctx.currentTime;
+        const o = this.ctx.createOscillator();
+        const g = this.ctx.createGain();
+        o.type = 'sine';
+        o.frequency.setValueAtTime(150, now);
+        o.frequency.exponentialRampToValueAtTime(800, now + 0.3);
+        g.gain.setValueAtTime(0.3, now);
+        g.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+        o.connect(g); g.connect(this.ctx.destination);
+        o.start(now); o.stop(now + 0.3);
       }
     };
   </script>
 
   <!-- ============================================== -->
-  <!-- THREE.JS 3D GAME ENGINE & MOBILE CONTROLS      -->
+  <!-- THREE.JS 3D ENGINE & COMPREHENSIVE SIMULATION  -->
   <!-- ============================================== -->
   <script>
-    // Game State
     const State = {
       name: 'Dude',
       isDev: false,
       health: 100,
-      cash: 2500,
+      cash: 5000,
       wanted: 0,
       isGod: false,
       speedMulti: 1,
       jumpMulti: 1,
+      playerScale: 1,
+      timeScale: 1,
       weapon: 'ak47',
       inVehicle: null,
       phoneOpen: false,
-      isSprinting: false
+      isSprinting: false,
+      isRagdoll: false
     };
 
     let scene, camera, renderer, clock;
     let player, playerBody, head, leftArm, rightArm, leftLeg, rightLeg;
     let buildings = [], vehicles = [], bullets = [], npcs = [], policeSquad = [];
+    let soccerBall = null, trampolineMesh = null;
     let sunLight, ambientLight;
 
-    // Movement & Touch tracking
     let moveDir = { x: 0, z: 0 };
     let playerVel = new THREE.Vector3();
     let isGrounded = true;
     let camYaw = 0, camPitch = 0.25;
 
-    // Touch pointers tracking
     let joystickTouchId = null;
     let joystickOrigin = { x: 0, y: 0 };
     let lookTouchId = null;
@@ -709,6 +779,7 @@
       initThreeEngine();
       buildCityMap();
       spawnDefaultVehicles();
+      spawnSoccerStadium();
       spawnCityNPCs();
       setupMobileTouchEvents();
       setupKeyboardControls();
@@ -717,8 +788,8 @@
 
     function initThreeEngine() {
       scene = new THREE.Scene();
-      scene.background = new THREE.Color(0x4ab3ff);
-      scene.fog = new THREE.FogExp2(0x4ab3ff, 0.0055);
+      scene.background = new THREE.Color(0x38bdf8);
+      scene.fog = new THREE.FogExp2(0x38bdf8, 0.005);
 
       camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 1000);
       clock = new THREE.Clock();
@@ -738,7 +809,7 @@
       sunLight.castShadow = true;
       sunLight.shadow.mapSize.width = 2048;
       sunLight.shadow.mapSize.height = 2048;
-      const d = 160;
+      const d = 180;
       sunLight.shadow.camera.left = -d;
       sunLight.shadow.camera.right = d;
       sunLight.shadow.camera.top = d;
@@ -748,7 +819,7 @@
       createDudeCharacter();
     }
 
-    // Nhân vật Dude Low-poly màu cam/vàng
+    // Dude Low-poly Model
     function createDudeCharacter() {
       player = new THREE.Group();
       const shirtMat = new THREE.MeshLambertMaterial({ color: 0xF59E0B });
@@ -763,7 +834,6 @@
       head = new THREE.Mesh(new THREE.BoxGeometry(0.55, 0.55, 0.55), skinMat);
       head.position.set(0, 0.85, 0);
       head.castShadow = true;
-      // Cap
       const cap = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.18, 0.7), new THREE.MeshLambertMaterial({ color: 0xDC2626 }));
       cap.position.set(0, 0.32, 0.05);
       head.add(cap);
@@ -778,7 +848,6 @@
       rightArm = new THREE.Mesh(armGeo, shirtMat);
       rightArm.position.set(0.58, 0.1, 0);
       rightArm.castShadow = true;
-      // Gun Mesh
       const gunMesh = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.2, 0.55), new THREE.MeshLambertMaterial({ color: 0x111827 }));
       gunMesh.position.set(0, -0.4, 0.3);
       rightArm.add(gunMesh);
@@ -798,20 +867,26 @@
       scene.add(player);
     }
 
-    // THÀNH PHỐ ĐẦY ĐỦ CÔNG TRÌNH & DỐC BAY XE STUNT RAMPS
+    // THÀNH PHỐ THẾ GIỚI MỞ HOÀN CHỈNH
     function buildCityMap() {
       // Grass Ground
-      const ground = new THREE.Mesh(new THREE.PlaneGeometry(550, 550), new THREE.MeshLambertMaterial({ color: 0x22c55e }));
+      const ground = new THREE.Mesh(new THREE.PlaneGeometry(600, 600), new THREE.MeshLambertMaterial({ color: 0x22c55e }));
       ground.rotation.x = -Math.PI / 2;
       ground.receiveShadow = true;
       scene.add(ground);
 
-      // Main Roads
+      // Roads Grid
       const roadMat = new THREE.MeshLambertMaterial({ color: 0x334155 });
-      const r1 = new THREE.Mesh(new THREE.PlaneGeometry(500, 16), roadMat);
+      const r1 = new THREE.Mesh(new THREE.PlaneGeometry(550, 16), roadMat);
       r1.rotation.x = -Math.PI / 2; r1.position.y = 0.02; scene.add(r1);
-      const r2 = new THREE.Mesh(new THREE.PlaneGeometry(16, 500), roadMat);
+      const r2 = new THREE.Mesh(new THREE.PlaneGeometry(16, 550), roadMat);
       r2.rotation.x = -Math.PI / 2; r2.position.y = 0.02; scene.add(r2);
+
+      // Outer highway
+      const r3 = new THREE.Mesh(new THREE.PlaneGeometry(400, 12), roadMat);
+      r3.rotation.x = -Math.PI / 2; r3.position.set(0, 0.02, 120); scene.add(r3);
+      const r4 = new THREE.Mesh(new THREE.PlaneGeometry(400, 12), roadMat);
+      r4.rotation.x = -Math.PI / 2; r4.position.set(0, 0.02, -120); scene.add(r4);
 
       // 1. Tháp Empire Skyscraper
       createBuilding(0, -80, 26, 75, 26, 0x0284c7, "🏢 Tháp Empire");
@@ -824,20 +899,23 @@
       // 5. Biệt Thự Dude
       createBuilding(0, 30, 20, 9, 16, 0xfef08a, "🏠 Biệt Thự Dude");
 
-      // Dốc Bay Đua Xe (Stunt Ramps đặc trưng Dude Theft Wars)
-      createStuntRamp(45, -45, 12, 5, 20, 0xf59e0b);
-      createStuntRamp(-45, 45, 12, 5, 20, 0xef4444);
+      // Bạt Nhún Lò Xo Trampoline sau vườn Dude Villa
+      createTrampoline(15, 30);
 
-      // Khu Dân Cư Nhiều Nhà Màu Sắc
+      // Dốc Bay Đua Xe (Stunt Ramps)
+      createStuntRamp(45, -45, 12, 6, 20, 0xf59e0b);
+      createStuntRamp(-45, 45, 12, 6, 20, 0xef4444);
+
+      // Dãy Nhà Phố
       for (let z = -60; z <= 60; z += 30) {
         createBuilding(-35, z, 12, 6, 10, 0xf87171, "Nhà");
         createBuilding(35, z, 12, 6, 10, 0x60a5fa, "Nhà");
       }
 
       // Cây cối
-      for (let i = 0; i < 45; i++) {
-        const px = (Math.random() - 0.5) * 400;
-        const pz = (Math.random() - 0.5) * 400;
+      for (let i = 0; i < 50; i++) {
+        const px = (Math.random() - 0.5) * 450;
+        const pz = (Math.random() - 0.5) * 450;
         if (Math.abs(px) < 14 || Math.abs(pz) < 14) continue;
         const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.6, 3, 6), new THREE.MeshLambertMaterial({ color: 0x5c3817 }));
         trunk.position.set(px, 1.5, pz);
@@ -877,19 +955,67 @@
       scene.add(mesh);
     }
 
+    function createTrampoline(x, z) {
+      const ring = new THREE.Mesh(new THREE.CylinderGeometry(3.5, 3.5, 0.5, 16), new THREE.MeshLambertMaterial({ color: 0x0284c7 }));
+      ring.position.set(x, 0.4, z);
+      scene.add(ring);
+      const mat = new THREE.Mesh(new THREE.CylinderGeometry(3.2, 3.2, 0.1, 16), new THREE.MeshLambertMaterial({ color: 0x1e293b }));
+      mat.position.set(x, 0.65, z);
+      scene.add(mat);
+      trampolineMesh = { x, z, radius: 3.5 };
+    }
+
+    // SÂN VẬN ĐỘNG & BÓNG ĐÁ KHỔNG LỒ (ĐẶC TRƯNG DUDE THEFT WARS)
+    function spawnSoccerStadium() {
+      const field = new THREE.Mesh(new THREE.PlaneGeometry(60, 40), new THREE.MeshLambertMaterial({ color: 0x16a34a }));
+      field.rotation.x = -Math.PI / 2;
+      field.position.set(120, 0.03, -120);
+      scene.add(field);
+
+      // Goal posts
+      const goal1 = new THREE.Mesh(new THREE.BoxGeometry(1, 4, 10), new THREE.MeshLambertMaterial({ color: 0xffffff }));
+      goal1.position.set(90, 2, -120); scene.add(goal1);
+      const goal2 = new THREE.Mesh(new THREE.BoxGeometry(1, 4, 10), new THREE.MeshLambertMaterial({ color: 0xffffff }));
+      goal2.position.set(150, 2, -120); scene.add(goal2);
+
+      spawnSoccerBall();
+      buildings.push({ x: 120, z: -120, radius: 30, name: "⚽ Sân Bóng Đá" });
+    }
+
+    function spawnSoccerBall() {
+      if (soccerBall) scene.remove(soccerBall.mesh);
+      const ballGeo = new THREE.DodecahedronGeometry(2.5, 2);
+      const ballMat = new THREE.MeshLambertMaterial({ color: 0xffffff });
+      const bMesh = new THREE.Mesh(ballGeo, ballMat);
+      bMesh.position.set(120, 3, -120);
+      bMesh.castShadow = true;
+      scene.add(bMesh);
+      soccerBall = { mesh: bMesh, vel: new THREE.Vector3() };
+      showToast("⚽ Đã thả quả bóng đá khổng lồ!");
+    }
+
     // VEHICLE CREATOR
     function createCarMesh(type = 'lambo', color = 0xdc2626) {
       const g = new THREE.Group();
-      const b = new THREE.Mesh(new THREE.BoxGeometry(2.4, 1.0, 4.6), new THREE.MeshLambertMaterial({ color }));
-      b.position.y = 0.8; b.castShadow = true; g.add(b);
+      const isMonster = (type === 'monster');
+      const bH = isMonster ? 1.6 : 1.0;
+      const bY = isMonster ? 1.6 : 0.8;
+
+      const b = new THREE.Mesh(new THREE.BoxGeometry(2.4, bH, 4.6), new THREE.MeshLambertMaterial({ color }));
+      b.position.y = bY; b.castShadow = true; g.add(b);
 
       const cab = new THREE.Mesh(new THREE.BoxGeometry(2.0, 0.8, 2.4), new THREE.MeshLambertMaterial({ color: 0x0f172a }));
-      cab.position.set(0, 1.5, -0.3); g.add(cab);
+      cab.position.set(0, bY + 0.7, -0.3); g.add(cab);
 
       // Bánh xe
-      const wGeo = new THREE.CylinderGeometry(0.45, 0.45, 0.35, 12);
+      const wRadius = isMonster ? 1.1 : 0.45;
+      const wWidth = isMonster ? 0.8 : 0.35;
+      const wY = isMonster ? 1.0 : 0.45;
+      const wGeo = new THREE.CylinderGeometry(wRadius, wRadius, wWidth, 14);
       const wMat = new THREE.MeshLambertMaterial({ color: 0x111827 });
-      [[-1.25, 0.45, 1.4], [1.25, 0.45, 1.4], [-1.25, 0.45, -1.4], [1.25, 0.45, -1.4]].forEach(p => {
+      
+      const xOff = isMonster ? 1.55 : 1.25;
+      [[-xOff, wY, 1.4], [xOff, wY, 1.4], [-xOff, wY, -1.4], [xOff, wY, -1.4]].forEach(p => {
         const w = new THREE.Mesh(wGeo, wMat);
         w.rotation.z = Math.PI / 2;
         w.position.set(...p);
@@ -908,14 +1034,13 @@
       const mesh = createCarMesh(type, color);
       mesh.position.set(x, 0, z);
       scene.add(mesh);
-      const car = { mesh, type, speed: 0, rot: 0, maxSpeed: 1.1, gas: false, brake: false };
+      const car = { mesh, type, speed: 0, rot: 0, maxSpeed: type === 'monster' ? 0.95 : 1.2, gas: false, brake: false, nitro: false };
       vehicles.push(car);
       return car;
     }
 
-    // NPCS
     function spawnCityNPCs() {
-      for (let i = 0; i < 18; i++) {
+      for (let i = 0; i < 20; i++) {
         const npc = new THREE.Group();
         const mat = new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff });
         const body = new THREE.Mesh(new THREE.BoxGeometry(0.7, 1.0, 0.4), mat);
@@ -923,16 +1048,14 @@
         const h = new THREE.Mesh(new THREE.BoxGeometry(0.45, 0.45, 0.45), new THREE.MeshLambertMaterial({ color: 0xffdcb1 }));
         h.position.y = 1.95; npc.add(h);
 
-        npc.position.set((Math.random() - 0.5) * 220, 0, (Math.random() - 0.5) * 220);
-        npc.userData = { dir: Math.random() * Math.PI * 2, speed: 1.6 + Math.random(), panicked: false };
+        npc.position.set((Math.random() - 0.5) * 240, 0, (Math.random() - 0.5) * 240);
+        npc.userData = { dir: Math.random() * Math.PI * 2, speed: 1.6 + Math.random() };
         scene.add(npc);
         npcs.push(npc);
       }
     }
 
-    // ==============================================
-    // MULTI-TOUCH MOBILE CONTROLS SYSTEM
-    // ==============================================
+    // MULTI-TOUCH MOBILE CONTROLS
     function setupMobileTouchEvents() {
       const touchLayer = document.getElementById('touch-layer');
       const joyBase = document.getElementById('joystick-base');
@@ -941,7 +1064,6 @@
       touchLayer.addEventListener('touchstart', (e) => {
         for (let i = 0; i < e.changedTouches.length; i++) {
           const t = e.changedTouches[i];
-          // Nửa trái màn hình: Virtual Joystick
           if (t.clientX < window.innerWidth / 2 && joystickTouchId === null) {
             joystickTouchId = t.identifier;
             joystickOrigin = { x: t.clientX, y: t.clientY };
@@ -949,9 +1071,7 @@
             joyBase.style.top = t.clientY + 'px';
             joyBase.style.display = 'block';
             joyStick.style.transform = `translate(-50%, -50%)`;
-          }
-          // Nửa phải màn hình: Xoay Camera Orbit / Aim
-          else if (t.clientX >= window.innerWidth / 2 && lookTouchId === null) {
+          } else if (t.clientX >= window.innerWidth / 2 && lookTouchId === null) {
             lookTouchId = t.identifier;
             lastLookPos = { x: t.clientX, y: t.clientY };
           }
@@ -973,7 +1093,6 @@
             const knobY = Math.sin(angle) * clampedDist;
             joyStick.style.transform = `translate(calc(-50% + ${knobX}px), calc(-50% + ${knobY}px))`;
 
-            // Normalized direction
             moveDir.x = knobX / maxRadius;
             moveDir.z = knobY / maxRadius;
           } else if (t.identifier === lookTouchId) {
@@ -1003,11 +1122,11 @@
       touchLayer.addEventListener('touchend', clearTouch);
       touchLayer.addEventListener('touchcancel', clearTouch);
 
-      // On-Screen Buttons Bindings
       bindHoldBtn('btn-sprint', (active) => { State.isSprinting = active; });
       bindHoldBtn('btn-shoot', (active) => { if (active) doPlayerShoot(); });
       bindHoldBtn('btn-gas', (active) => { if (State.inVehicle) State.inVehicle.gas = active; });
       bindHoldBtn('btn-brake', (active) => { if (State.inVehicle) State.inVehicle.brake = active; });
+      bindHoldBtn('btn-nitro', (active) => { if (State.inVehicle) State.inVehicle.nitro = active; });
     }
 
     function bindHoldBtn(id, callback) {
@@ -1019,7 +1138,7 @@
       el.addEventListener('mouseup', () => callback(false));
     }
 
-    // Keyboard Fallback for PC
+    // Keyboard Controls
     const keys = { w: false, a: false, s: false, d: false, space: false, shift: false };
     function setupKeyboardControls() {
       window.addEventListener('keydown', e => {
@@ -1032,8 +1151,10 @@
         if (e.code === 'KeyF') toggleCarDrive();
         if (e.code === 'Tab' || e.code === 'KeyT') { e.preventDefault(); togglePhone(); }
         if (e.code === 'Digit1') selectWeapon('ak47');
-        if (e.code === 'Digit2') selectWeapon('shotgun');
-        if (e.code === 'Digit3') selectWeapon('pistol');
+        if (e.code === 'Digit2') selectWeapon('rpg');
+        if (e.code === 'Digit3') selectWeapon('shotgun');
+        if (e.code === 'Digit4') selectWeapon('pistol');
+        if (e.code === 'KeyR') triggerRagdollFlop();
       });
       window.addEventListener('keyup', e => {
         if (e.code === 'KeyW' || e.code === 'ArrowUp') keys.w = false;
@@ -1058,15 +1179,28 @@
       }
     }
 
-    function doPlayerShoot() {
+    function triggerRagdollFlop() {
       if (State.inVehicle) return;
-      Sound.playGunshot();
+      State.isRagdoll = true;
+      player.rotation.z = Math.PI / 2;
+      playerVel.y = 6.0;
+      showToast("🤪 NGÃ LỘN NHÀO (RAGDOLL)!");
+      setTimeout(() => {
+        player.rotation.z = 0;
+        State.isRagdoll = false;
+      }, 1400);
+    }
 
-      const bGeo = new THREE.SphereGeometry(0.18, 8, 8);
-      const bMat = new THREE.MeshBasicMaterial({ color: 0xfacc15 });
+    function doPlayerShoot() {
+      if (State.inVehicle || State.isRagdoll) return;
+      Sound.playGunshot(State.weapon);
+
+      const isRpg = (State.weapon === 'rpg');
+      const bGeo = new THREE.SphereGeometry(isRpg ? 0.35 : 0.18, 8, 8);
+      const bMat = new THREE.MeshBasicMaterial({ color: isRpg ? 0xef4444 : 0xfacc15 });
       const bullet = new THREE.Mesh(bGeo, bMat);
 
-      const spawnPos = player.position.clone().add(new THREE.Vector3(0, 1.4, 0));
+      const spawnPos = player.position.clone().add(new THREE.Vector3(0, 1.4 * State.playerScale, 0));
       bullet.position.copy(spawnPos);
 
       const dir = new THREE.Vector3(
@@ -1075,23 +1209,20 @@
         -Math.cos(camYaw) * Math.cos(camPitch)
       ).normalize();
 
-      bullet.userData = { dir, life: 60 };
+      bullet.userData = { dir, life: 60, isRpg };
       scene.add(bullet);
       bullets.push(bullet);
 
-      // Trigger Police Wanted if shooting in public!
       if (Math.random() < 0.25 && State.wanted < 5) {
         setWantedLevel(Math.min(5, State.wanted + 1));
       }
 
-      // Arm Recoil
       rightArm.rotation.x = -Math.PI / 2 + 0.3;
       setTimeout(() => rightArm.rotation.x = 0, 90);
     }
 
     function toggleCarDrive() {
       if (State.inVehicle) {
-        // Exit
         const c = State.inVehicle;
         player.position.copy(c.mesh.position).add(new THREE.Vector3(2.5, 0, 0));
         player.visible = true;
@@ -1099,7 +1230,6 @@
         updateMobileHUD(false);
         showToast("Đã xuống xe");
       } else {
-        // Enter
         let closest = null, minD = 5.0;
         vehicles.forEach(c => {
           const d = player.position.distanceTo(c.mesh.position);
@@ -1109,7 +1239,7 @@
           State.inVehicle = closest;
           player.visible = false;
           updateMobileHUD(true);
-          showToast("Đã lên " + (closest.type === 'police' ? "Xe Cảnh Sát" : "Siêu Xe"));
+          showToast("Đã lên " + (closest.type === 'police' ? "Xe Cảnh Sát" : closest.type === 'monster' ? "Monster Truck" : "Siêu Xe"));
         } else {
           showToast("Không có xe nào ở gần bạn!");
         }
@@ -1118,12 +1248,13 @@
 
     function updateMobileHUD(inCar) {
       document.getElementById('car-pedals-left').classList.toggle('hidden', !inCar);
+      document.getElementById('ragdoll-btn-wrap').classList.toggle('hidden', inCar);
       document.getElementById('onfoot-buttons').classList.toggle('hidden', inCar);
       document.getElementById('incar-buttons').classList.toggle('hidden', !inCar);
       document.getElementById('car-btn-txt').innerText = inCar ? 'Xuống' : 'Lên Xe';
     }
 
-    // DPHONE CONTROLLER
+    // DPHONE
     function togglePhone() {
       State.phoneOpen = !State.phoneOpen;
       document.getElementById('dphone').classList.toggle('open', State.phoneOpen);
@@ -1135,7 +1266,6 @@
       if (v) v.classList.remove('hidden');
     }
 
-    // CHEATS SYSTEM (TƯƠNG THÍCH DUDE THEFT WARS)
     function executeEnteredCheat() {
       const c = document.getElementById('input-cheat-code').value.trim().toLowerCase();
       if (!c) return;
@@ -1154,16 +1284,15 @@
         showToast("🌌 MOON: Trọng lực mặt trăng lơ lửng!");
       } else if (code === 'cash') {
         addMoney(500000);
-      } else if (code === 'night') {
-        setNightMode(true);
-      } else if (code === 'day') {
-        setNightMode(false);
+      } else if (code === 'giant') {
+        setPlayerScale(2.5);
+      } else if (code === 'tiny') {
+        setPlayerScale(0.4);
       } else {
-        showToast("Mã sai! Hãy thử: dudebolt, moon, dev, cash");
+        showToast("Mã sai! Hãy thử: dudebolt, moon, dev, cash, giant, tiny");
       }
     }
 
-    // KÍCH HOẠT QUYỀN DEV ADMIN
     function unlockDevAdmin() {
       State.isDev = true;
       Sound.playFanfare();
@@ -1222,6 +1351,19 @@
       showToast("🦘 Siêu nhảy: " + (State.jumpMulti === 3 ? "BẬT" : "TẮT"));
     }
 
+    function setPlayerScale(s) {
+      State.playerScale = s;
+      player.scale.set(s, s, s);
+      showToast(s > 1 ? "🗿 CHẾ ĐỘ NGƯỜI KHỔNG LỒ (GIANT)!" : "🐜 CHẾ ĐỘ NGƯỜI KIẾN TÍ HON (TINY)!");
+    }
+
+    function toggleSlowMotion() {
+      State.timeScale = (State.timeScale === 1) ? 0.35 : 1;
+      const el = document.getElementById('slowmo-txt');
+      el.innerText = (State.timeScale < 1) ? "BẬT" : "TẮT";
+      showToast(State.timeScale < 1 ? "⏱️ Quay Chậm Matrix: BẬT" : "⏱️ Tốc Độ Bình Thường");
+    }
+
     function setWantedLevel(lvl) {
       State.wanted = lvl;
       let h = '';
@@ -1233,27 +1375,24 @@
       const overlay = document.getElementById('police-siren-overlay');
       if (lvl > 0) {
         overlay.classList.add('siren-active');
-        spawnPolicePursuit();
+        if (policeSquad.length < 2) {
+          const pCar = addVehicle(player.position.x + 35, player.position.z + 35, 'police', 0x1e293b);
+          policeSquad.push(pCar);
+        }
       } else {
         overlay.classList.remove('siren-active');
       }
       showToast(lvl === 0 ? "⭐ Đã xóa sạch tội danh!" : `🚨 Báo động truy nã cấp độ ${lvl} sao!`);
     }
 
-    function spawnPolicePursuit() {
-      if (policeSquad.length < 2) {
-        const pCar = addVehicle(player.position.x + 35, player.position.z + 35, 'police', 0x1e293b);
-        policeSquad.push(pCar);
-      }
-    }
-
     function orderVehicle(type) {
-      const fwd = new THREE.Vector3(-Math.sin(camYaw), 0, -Math.cos(camYaw)).multiplyScalar(6);
+      const fwd = new THREE.Vector3(-Math.sin(camYaw), 0, -Math.cos(camYaw)).multiplyScalar(7);
       const pos = player.position.clone().add(fwd);
       let col = 0xdc2626;
       if (type === 'police') col = 0x1e293b;
       if (type === 'truck') col = 0x10b981;
       if (type === 'bugatti') col = 0xf59e0b;
+      if (type === 'monster') col = 0x8b5cf6;
       addVehicle(pos.x, pos.z, type, col);
       showToast("🚗 dUber: Đã giao xe tới bạn!");
     }
@@ -1265,31 +1404,15 @@
       showToast("🌀 Đã dịch chuyển đến địa điểm!");
     }
 
-    function setNightMode(night) {
-      if (night) {
-        scene.background.setHex(0x0a0f1d);
-        scene.fog.color.setHex(0x0a0f1d);
-        ambientLight.intensity = 0.25;
-        sunLight.intensity = 0.3;
-        showToast("🌙 Chuyển sang Ban Đêm Neon");
-      } else {
-        scene.background.setHex(0x4ab3ff);
-        scene.fog.color.setHex(0x4ab3ff);
-        ambientLight.intensity = 0.65;
-        sunLight.intensity = 0.95;
-        showToast("☀️ Chuyển sang Ban Ngày");
-      }
-    }
-
     function selectWeapon(wId) {
       State.weapon = wId;
-      const names = { ak47: 'AK-47', shotgun: 'Shotgun', pistol: 'Súng Lục' };
+      const names = { ak47: 'AK-47', rpg: 'RPG Phóng Lựu', shotgun: 'Shotgun', pistol: 'Súng Lục' };
       document.getElementById('weapon-label').innerHTML = `<i class="fa-solid fa-gun"></i> ` + names[wId];
       showToast("Trang bị: " + names[wId]);
     }
 
     function cycleWeapon() {
-      const list = ['ak47', 'shotgun', 'pistol'];
+      const list = ['ak47', 'rpg', 'shotgun', 'pistol'];
       const next = list[(list.indexOf(State.weapon) + 1) % list.length];
       selectWeapon(next);
     }
@@ -1309,11 +1432,14 @@
     // MAIN GAME LOOP
     function mainLoop() {
       requestAnimationFrame(mainLoop);
-      const delta = Math.min(clock.getDelta(), 0.1);
+      const rawDelta = Math.min(clock.getDelta(), 0.1);
+      const delta = rawDelta * State.timeScale;
 
       updatePlayerMovement(delta);
       updateVehiclesMovement(delta);
       updateBulletsMovement(delta);
+      updateSoccerPhysics(delta);
+      updateTrampoline();
       updateNPCsMovement(delta);
       updateCameraOrbit();
       renderRadar();
@@ -1322,7 +1448,7 @@
     }
 
     function updatePlayerMovement(delta) {
-      if (State.inVehicle) return;
+      if (State.inVehicle || State.isRagdoll) return;
 
       const isRunning = keys.shift || State.isSprinting;
       const speed = (isRunning ? 13 : 6.8) * State.speedMulti;
@@ -1370,12 +1496,15 @@
         if (State.inVehicle === c) {
           const gas = c.gas || keys.w;
           const brake = c.brake || keys.s;
+          const nitro = c.nitro;
 
-          if (gas) c.speed = Math.min(c.speed + 1.4 * delta, c.maxSpeed);
+          const topSpeed = c.maxSpeed * (nitro ? 1.8 : 1.0);
+          const accel = (nitro ? 2.8 : 1.4) * delta;
+
+          if (gas) c.speed = Math.min(c.speed + accel, topSpeed);
           else if (brake) c.speed = Math.max(c.speed - 1.2 * delta, -0.45);
           else c.speed *= 0.96;
 
-          // Steering from joystick or keys
           let steer = 0;
           if (Math.abs(moveDir.x) > 0.1) steer = -moveDir.x;
           if (keys.a) steer = 1;
@@ -1389,10 +1518,21 @@
           c.mesh.position.x += Math.sin(c.rot) * c.speed;
           c.mesh.position.z += Math.cos(c.rot) * c.speed;
           camYaw = c.rot + Math.PI;
+
+          // Soccer Ball Interaction with Car
+          if (soccerBall) {
+            const dist = c.mesh.position.distanceTo(soccerBall.mesh.position);
+            if (dist < 4.5) {
+              soccerBall.vel.x = Math.sin(c.rot) * (c.speed * 28);
+              soccerBall.vel.z = Math.cos(c.rot) * (c.speed * 28);
+              soccerBall.vel.y = 12;
+              Sound.playBoing();
+            }
+          }
         }
       });
 
-      // Police Chase AI
+      // Police Chase
       policeSquad.forEach(p => {
         if (State.wanted > 0) {
           const d = player.position.clone().sub(p.mesh.position);
@@ -1409,10 +1549,44 @@
         const b = bullets[i];
         b.position.addScaledVector(b.userData.dir, 70 * delta);
         b.userData.life--;
+
+        // Ground hit or expiry
         if (b.userData.life <= 0 || b.position.y <= 0) {
+          if (b.userData.isRpg) {
+            Sound.playExplosion();
+            // Explosion force to soccer ball
+            if (soccerBall && soccerBall.mesh.position.distanceTo(b.position) < 14) {
+              soccerBall.vel.y += 22;
+              soccerBall.vel.x += (Math.random() - 0.5) * 20;
+              soccerBall.vel.z += (Math.random() - 0.5) * 20;
+            }
+          }
           scene.remove(b);
           bullets.splice(i, 1);
         }
+      }
+    }
+
+    function updateSoccerPhysics(delta) {
+      if (!soccerBall) return;
+      soccerBall.mesh.position.addScaledVector(soccerBall.vel, delta);
+      soccerBall.vel.y -= 20 * delta; // Gravity
+      soccerBall.vel.x *= 0.98; // Drag
+      soccerBall.vel.z *= 0.98;
+
+      if (soccerBall.mesh.position.y <= 2.5) {
+        soccerBall.mesh.position.y = 2.5;
+        soccerBall.vel.y = -soccerBall.vel.y * 0.7; // Bounce
+      }
+    }
+
+    function updateTrampoline() {
+      if (!trampolineMesh || State.inVehicle) return;
+      const d = Math.hypot(player.position.x - trampolineMesh.x, player.position.z - trampolineMesh.z);
+      if (d < trampolineMesh.radius && player.position.y <= 1.0) {
+        playerVel.y = 28.0; // Mega Launch!
+        Sound.playBoing();
+        showToast("🚀 BẬT TUNG NÓC NHÀ (MEGA BOING)!");
       }
     }
 
@@ -1425,8 +1599,8 @@
     }
 
     function updateCameraOrbit() {
-      const target = State.inVehicle ? State.inVehicle.mesh.position.clone().add(new THREE.Vector3(0, 1.5, 0)) : player.position.clone().add(new THREE.Vector3(0, 1.4, 0));
-      const dist = State.inVehicle ? 7.5 : 4.8;
+      const target = State.inVehicle ? State.inVehicle.mesh.position.clone().add(new THREE.Vector3(0, 1.5, 0)) : player.position.clone().add(new THREE.Vector3(0, 1.4 * State.playerScale, 0));
+      const dist = State.inVehicle ? 7.5 : 4.8 * State.playerScale;
       const ox = Math.sin(camYaw) * Math.cos(camPitch) * dist;
       const oy = Math.sin(camPitch) * dist + 1.2;
       const oz = Math.cos(camYaw) * Math.cos(camPitch) * dist;
@@ -1437,9 +1611,9 @@
     function renderRadar() {
       const c = document.getElementById('minimap-canvas');
       const ctx = c.getContext('2d');
-      ctx.clearRect(0, 0, 105, 105);
+      ctx.clearRect(0, 0, 110, 110);
 
-      const cx = 52.5, cy = 52.5, sc = 0.32;
+      const cx = 55, cy = 55, sc = 0.3;
       const pos = State.inVehicle ? State.inVehicle.mesh.position : player.position;
 
       // Buildings
@@ -1458,6 +1632,15 @@
         ctx.fillRect(cx + dx - 2, cy + dz - 2, 4, 4);
       });
 
+      // Soccer Ball
+      if (soccerBall) {
+        const dx = (soccerBall.mesh.position.x - pos.x) * sc, dz = (soccerBall.mesh.position.z - pos.z) * sc;
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(cx + dx, cy + dz, 3, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
       // Player Arrow
       ctx.fillStyle = '#ef4444';
       ctx.beginPath();
@@ -1468,7 +1651,7 @@
       ctx.lineWidth = 2;
       ctx.beginPath();
       ctx.moveTo(cx, cy);
-      ctx.lineTo(cx - Math.sin(camYaw) * 8, cy - Math.cos(camYaw) * 8);
+      ctx.lineTo(cx - Math.sin(camYaw) * 9, cy - Math.cos(camYaw) * 9);
       ctx.stroke();
     }
   </script>
