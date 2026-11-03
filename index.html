@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>Dude Theft Wars: Mega Dev Edition 3D</title>
+  <title>Dude Theft Wars 3D: Authentic 99% Map & UI Edition</title>
 
   <!-- Tailwind CSS & FontAwesome -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -62,61 +62,74 @@
       pointer-events: auto;
       touch-action: manipulation;
     }
-    /* Dude Theft Wars Style HUD */
-    .dude-pill {
-      background: rgba(15, 23, 42, 0.9);
+
+    /* ==========================================================
+       AUTHENTIC DUDE THEFT WARS UI (VIỀN CARTOON 3D VÀNG ĐẬM)
+       ========================================================== */
+    .dtw-panel {
+      background: linear-gradient(180deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%);
+      border: 3.5px solid #f59e0b;
+      border-radius: 20px;
+      box-shadow: 0 6px 0 #b45309, 0 10px 25px rgba(0, 0, 0, 0.6);
+    }
+    .dtw-pill {
+      background: linear-gradient(180deg, rgba(30, 41, 59, 0.94) 0%, rgba(15, 23, 42, 0.96) 100%);
       border: 3px solid #f59e0b;
       border-radius: 9999px;
-      box-shadow: 0 5px 0 rgba(0, 0, 0, 0.5);
+      box-shadow: 0 4px 0 #b45309, 0 6px 16px rgba(0, 0, 0, 0.5);
     }
-    .dude-card {
-      background: rgba(15, 23, 42, 0.94);
-      border: 3.5px solid #f59e0b;
-      border-radius: 22px;
-      box-shadow: 0 8px 0 rgba(0, 0, 0, 0.6);
-    }
-    .btn-action {
-      background: #f59e0b;
+    .btn-dtw {
+      background: linear-gradient(180deg, #fbbf24 0%, #f59e0b 100%);
       border: 3px solid #ffffff;
       color: #0f172a;
       font-weight: 900;
       border-radius: 9999px;
-      box-shadow: 0 5px 0 #b45309;
+      box-shadow: 0 5px 0 #b45309, 0 8px 18px rgba(0,0,0,0.4);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       transition: transform 0.08s ease, box-shadow 0.08s ease;
     }
-    .btn-action:active {
+    .btn-dtw:active {
       transform: translateY(4px);
       box-shadow: 0 1px 0 #b45309;
     }
-    .btn-danger {
-      background: #ef4444;
-      box-shadow: 0 5px 0 #991b1b;
-      color: #fff;
+    .btn-dtw-red {
+      background: linear-gradient(180deg, #f87171 0%, #ef4444 100%);
+      box-shadow: 0 5px 0 #991b1b, 0 8px 18px rgba(0,0,0,0.4);
+      color: #ffffff;
     }
-    .btn-danger:active {
+    .btn-dtw-red:active {
       transform: translateY(4px);
       box-shadow: 0 1px 0 #991b1b;
     }
-    .btn-nitro {
-      background: linear-gradient(135deg, #06b6d4, #3b82f6);
-      box-shadow: 0 5px 0 #1d4ed8;
-      color: #fff;
+    .btn-dtw-blue {
+      background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%);
+      box-shadow: 0 5px 0 #0369a1, 0 8px 18px rgba(0,0,0,0.4);
+      color: #ffffff;
     }
-    .btn-nitro:active {
+    .btn-dtw-blue:active {
       transform: translateY(4px);
-      box-shadow: 0 1px 0 #1d4ed8;
+      box-shadow: 0 1px 0 #0369a1;
     }
-    /* Dynamic Virtual Joystick */
+    .btn-dtw-nitro {
+      background: linear-gradient(180deg, #06b6d4 0%, #2563eb 100%);
+      box-shadow: 0 5px 0 #1e40af, 0 8px 18px rgba(0,0,0,0.4);
+      color: #ffffff;
+    }
+    .btn-dtw-nitro:active {
+      transform: translateY(4px);
+      box-shadow: 0 1px 0 #1e40af;
+    }
+
+    /* Virtual Joystick */
     #joystick-base {
       position: absolute;
-      width: 120px;
-      height: 120px;
+      width: 126px;
+      height: 126px;
       background: rgba(255, 255, 255, 0.18);
-      border: 3px solid rgba(255, 255, 255, 0.45);
+      border: 3.5px solid rgba(255, 255, 255, 0.45);
       border-radius: 50%;
       pointer-events: none;
       transform: translate(-50%, -50%);
@@ -127,23 +140,24 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 52px;
-      height: 52px;
-      background: #f59e0b;
+      width: 54px;
+      height: 54px;
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
       border: 3px solid #ffffff;
       border-radius: 50%;
       box-shadow: 0 4px 12px rgba(0,0,0,0.5);
       transform: translate(-50%, -50%);
       pointer-events: none;
     }
+
     /* Crosshair */
     #crosshair {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       pointer-events: none;
       z-index: 12;
     }
@@ -151,12 +165,12 @@
       content: '';
       position: absolute;
       background: #ffffff;
-      box-shadow: 0 0 4px rgba(0,0,0,0.8);
+      box-shadow: 0 0 4px rgba(0,0,0,0.9);
     }
-    #crosshair::before { top: 9px; left: 0; width: 20px; height: 2px; }
-    #crosshair::after { top: 0; left: 9px; width: 2px; height: 20px; }
+    #crosshair::before { top: 10px; left: 0; width: 22px; height: 2px; }
+    #crosshair::after { top: 0; left: 10px; width: 2px; height: 22px; }
 
-    /* SMARTPHONE DPHONE */
+    /* SMARTPHONE DPHONE 15 PRO */
     #dphone {
       position: absolute;
       bottom: 12px;
@@ -185,7 +199,8 @@
       border-radius: 99px;
       margin: 10px auto 4px auto;
     }
-    /* Police Siren Overlay */
+
+    /* Police Siren Strobe */
     #police-siren-overlay {
       position: absolute;
       inset: 0;
@@ -195,27 +210,32 @@
       transition: opacity 0.2s;
     }
     .siren-active {
-      animation: sirenStrobe 0.6s infinite alternate;
+      animation: sirenStrobe 0.55s infinite alternate;
     }
     @keyframes sirenStrobe {
-      0% { background: rgba(59, 130, 246, 0.2); opacity: 1; }
-      100% { background: rgba(239, 68, 68, 0.25); opacity: 1; }
+      0% { background: rgba(59, 130, 246, 0.22); opacity: 1; }
+      100% { background: rgba(239, 68, 68, 0.26); opacity: 1; }
     }
-    /* Minimap */
+
+    /* Minimap Radar */
     #minimap {
-      width: 110px;
-      height: 110px;
+      width: 115px;
+      height: 115px;
       border-radius: 50%;
       border: 4px solid #f59e0b;
       background: rgba(15, 23, 42, 0.95);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.6);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.6);
       overflow: hidden;
     }
-    .star-glow {
-      color: #eab308;
-      text-shadow: 0 0 10px #eab308;
+
+    /* Speedometer Gauge for Cars */
+    #speedo-hud {
+      background: rgba(15, 23, 42, 0.92);
+      border: 3px solid #f59e0b;
+      border-radius: 20px;
+      box-shadow: 0 5px 0 #b45309;
     }
-    /* Custom Scroll */
+
     .custom-scroll::-webkit-scrollbar { width: 4px; }
     .custom-scroll::-webkit-scrollbar-thumb {
       background: rgba(245, 158, 11, 0.5);
@@ -225,12 +245,12 @@
 </head>
 <body>
 
-  <!-- 3D Canvas -->
+  <!-- Three.js Canvas -->
   <canvas id="game-canvas"></canvas>
   <div id="crosshair"></div>
   <div id="police-siren-overlay"></div>
 
-  <!-- Touch Interaction Tracking Layer -->
+  <!-- Touch Tracking Layer -->
   <div id="touch-layer"></div>
 
   <!-- Virtual Joystick -->
@@ -239,38 +259,44 @@
   </div>
 
   <!-- ============================================== -->
-  <!-- IN-GAME HUD (ĐẬM CHẤT DUDE THEFT WARS GỐC)     -->
+  <!-- IN-GAME HUD CHUẨN DUDE THEFT WARS (99% GIỐNG)  -->
   <!-- ============================================== -->
   <div id="ui-hud" class="p-2 sm:p-4 flex flex-col justify-between">
     
     <!-- TOP HEADER -->
     <div class="flex justify-between items-start w-full">
       
-      <!-- Player Status: Health, Name, Cash -->
+      <!-- Player Info & Stats -->
       <div class="flex flex-col gap-1.5 touch-btn">
-        <div class="dude-pill px-3 py-1.5 flex items-center gap-2">
-          <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-500 to-yellow-300 flex items-center justify-center text-slate-950 font-black shadow border border-white">
-            <i class="fa-solid fa-face-grin-squint-tears text-base"></i>
+        <!-- Player Badge -->
+        <div class="dtw-pill px-3 py-1.5 flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-amber-500 to-yellow-300 flex items-center justify-center text-slate-950 font-black shadow border-2 border-white">
+            <i class="fa-solid fa-face-grin-squint-tears text-lg"></i>
           </div>
           <div>
-            <div class="flex items-center gap-1 leading-none">
-              <span id="player-name-val" class="font-black text-white text-xs tracking-wide">Dude</span>
-              <button onclick="openNameModal()" class="text-amber-400 p-0.5" title="Đổi tên nhân vật">
-                <i class="fa-solid fa-pen-to-square text-[10px]"></i>
+            <div class="flex items-center gap-1.5 leading-none">
+              <span id="player-name-val" class="font-black text-white text-xs tracking-wide">Jack (Dude)</span>
+              <button onclick="openNameModal()" class="text-amber-400 p-0.5 hover:text-amber-300" title="Đổi tên nhân vật">
+                <i class="fa-solid fa-pen-to-square text-[11px]"></i>
               </button>
             </div>
-            <!-- Health Bar -->
-            <div class="w-24 sm:w-28 h-2.5 bg-slate-900 rounded-full overflow-hidden mt-1 border border-slate-700">
-              <div id="health-bar-fill" class="h-full bg-emerald-500 transition-all duration-150" style="width: 100%"></div>
+            <!-- Health Bar & Armor Bar -->
+            <div class="flex items-center gap-1 mt-1">
+              <div class="w-20 sm:w-24 h-2.5 bg-slate-950 rounded-full overflow-hidden border border-slate-700">
+                <div id="health-bar-fill" class="h-full bg-gradient-to-r from-emerald-500 to-green-400 transition-all duration-150" style="width: 100%"></div>
+              </div>
+              <div class="w-10 sm:w-12 h-2.5 bg-slate-950 rounded-full overflow-hidden border border-slate-700">
+                <div id="armor-bar-fill" class="h-full bg-gradient-to-r from-cyan-500 to-blue-400" style="width: 100%"></div>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Cash & Wanted Stars -->
-        <div class="dude-pill px-3 py-1 flex items-center justify-between gap-3 max-w-fit">
-          <div class="text-emerald-400 font-black text-sm flex items-center gap-1">
+        <div class="dtw-pill px-3.5 py-1 flex items-center justify-between gap-3 max-w-fit">
+          <div class="text-emerald-400 font-black text-sm flex items-center gap-1.5">
             <i class="fa-solid fa-sack-dollar text-xs"></i>
-            <span id="cash-val">$5,000</span>
+            <span id="cash-val">$15,000</span>
           </div>
           <div class="flex gap-0.5 text-slate-600 text-xs" id="wanted-stars-hud">
             <i class="fa-solid fa-star"></i>
@@ -282,58 +308,78 @@
         </div>
       </div>
 
-      <!-- Right Top: Radar & Dev Active Badge -->
+      <!-- Right Top: Minimap Radar & Dev Badge & Weapon Card -->
       <div class="flex flex-col items-end gap-1.5 touch-btn">
         <!-- Dev Badge -->
-        <div id="dev-badge-hud" class="hidden bg-gradient-to-r from-yellow-400 to-amber-500 border-2 border-white text-slate-950 font-black text-[10px] px-2.5 py-1 rounded-full shadow-lg animate-pulse flex items-center gap-1">
+        <div id="dev-badge-hud" class="hidden bg-gradient-to-r from-yellow-400 to-amber-500 border-2 border-white text-slate-950 font-black text-[10px] px-3 py-1 rounded-full shadow-lg animate-pulse flex items-center gap-1">
           <i class="fa-solid fa-crown"></i> DEV ADMIN ACTIVE
         </div>
 
         <!-- Minimap Radar -->
-        <div id="minimap" class="flex items-center justify-center">
-          <canvas id="minimap-canvas" width="110" height="110"></canvas>
+        <div id="minimap" class="flex items-center justify-center relative">
+          <canvas id="minimap-canvas" width="115" height="115"></canvas>
+          <div class="absolute top-1 text-[8px] font-black text-amber-400 pointer-events-none">BẮC (N)</div>
         </div>
 
-        <!-- Weapon Switcher Button -->
-        <button onclick="cycleWeapon()" class="dude-pill px-2.5 py-1 text-xs font-black text-amber-400 flex items-center gap-1.5 hover:scale-105 active:scale-95 transition-transform">
+        <!-- Weapon Card Switcher -->
+        <button onclick="cycleWeapon()" class="dtw-pill px-3 py-1.5 text-xs font-black text-amber-400 flex items-center gap-2 hover:scale-105 active:scale-95 transition-transform">
           <span id="weapon-label"><i class="fa-solid fa-gun"></i> AK-47</span>
+          <span class="text-white text-[10px] bg-slate-800 px-1.5 py-0.5 rounded-full font-mono">∞</span>
           <i class="fa-solid fa-repeat text-[10px] text-white"></i>
         </button>
       </div>
     </div>
 
     <!-- NOTIFICATION TOAST -->
-    <div id="game-toast-box" class="self-center dude-card px-5 py-2 border-2 border-amber-400 text-amber-300 font-black text-center text-xs sm:text-sm shadow-2xl transition-all duration-300 opacity-0 transform -translate-y-4 pointer-events-none">
-      Thông báo
+    <div id="game-toast-box" class="self-center dtw-panel px-5 py-2 text-amber-300 font-black text-center text-xs sm:text-sm shadow-2xl transition-all duration-300 opacity-0 transform -translate-y-4 pointer-events-none">
+      Thông báo trò chơi
     </div>
 
-    <!-- BOTTOM CONTROLS FOR MOBILE -->
+    <!-- SPEEDOMETER HUD (KHI LÁI XE) -->
+    <div id="speedo-container" class="hidden self-center dtw-panel px-4 py-1.5 flex items-center gap-3">
+      <div class="flex flex-col items-center">
+        <span id="speedo-num" class="font-black text-2xl text-white font-mono leading-none">0</span>
+        <span class="text-[9px] font-black text-amber-400 tracking-wider">KM/H</span>
+      </div>
+      <!-- Nitro Meter Bar -->
+      <div class="flex flex-col">
+        <span class="text-[9px] font-bold text-cyan-300">NITRO</span>
+        <div class="w-24 h-2 bg-slate-900 rounded-full overflow-hidden border border-cyan-500/40">
+          <div id="nitro-bar-fill" class="h-full bg-gradient-to-r from-cyan-400 to-blue-500" style="width: 100%"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM MOBILE CONTROLS -->
     <div class="flex justify-between items-end w-full">
       
-      <!-- Left Bottom: Car Pedals (Khi lái xe) & Ragdoll Button -->
+      <!-- Left Bottom Controls -->
       <div id="mobile-left-controls" class="flex items-center gap-2 touch-btn">
-        
-        <!-- Car Pedals -->
+        <!-- In Car Pedals -->
         <div id="car-pedals-left" class="hidden flex gap-2">
-          <button id="btn-brake" class="btn-action btn-danger w-14 h-14 text-sm font-black">
+          <button id="btn-brake" class="btn-dtw btn-dtw-red w-14 h-14 text-sm font-black">
             <i class="fa-solid fa-backward-step"></i>
             <span class="text-[9px]">Phanh</span>
           </button>
-          <button id="btn-nitro" class="btn-action btn-nitro w-14 h-14 text-sm font-black">
-            <i class="fa-solid fa-fire-flame-curved"></i>
+          <button id="btn-nitro" class="btn-dtw btn-dtw-nitro w-14 h-14 text-sm font-black">
+            <i class="fa-solid fa-fire-flame-curved text-lg"></i>
             <span class="text-[9px]">NITRO</span>
           </button>
-          <button onclick="Sound.playCarHorn()" class="btn-action w-12 h-12 text-sm bg-blue-500 text-white">
+          <button onclick="Sound.playCarHorn()" class="btn-dtw btn-dtw-blue w-12 h-12 text-sm">
             <i class="fa-solid fa-bullhorn"></i>
             <span class="text-[8px]">Còi</span>
           </button>
         </div>
 
-        <!-- Ragdoll Flop Button (Nút ngã lộn nhào cười bò của Dude Theft Wars) -->
+        <!-- Ragdoll & View Toggle -->
         <div id="ragdoll-btn-wrap" class="flex gap-2">
-          <button onclick="triggerRagdollFlop()" class="btn-action w-12 h-12 text-slate-950 bg-yellow-400">
+          <button onclick="triggerRagdollFlop()" class="btn-dtw w-12 h-12 text-slate-950">
             <i class="fa-solid fa-person-falling text-lg"></i>
             <span class="text-[8px]">Ngã</span>
+          </button>
+          <button onclick="toggleCameraView()" class="btn-dtw btn-dtw-blue w-12 h-12">
+            <i class="fa-solid fa-eye text-base"></i>
+            <span class="text-[8px]" id="cam-view-txt">FPS</span>
           </button>
         </div>
       </div>
@@ -343,20 +389,15 @@
         
         <!-- On Foot Controls -->
         <div id="onfoot-buttons" class="flex items-end gap-2">
-          <!-- Sprint Button -->
-          <button id="btn-sprint" class="btn-action w-12 h-12 text-slate-950 text-xs">
+          <button id="btn-sprint" class="btn-dtw w-12 h-12 text-slate-950 text-xs">
             <i class="fa-solid fa-person-running text-base"></i>
             <span class="text-[8px]">Chạy</span>
           </button>
-
-          <!-- Jump Button -->
-          <button id="btn-jump" onclick="doPlayerJump()" class="btn-action w-14 h-14 text-slate-950 text-base">
+          <button id="btn-jump" onclick="doPlayerJump()" class="btn-dtw w-14 h-14 text-slate-950 text-base">
             <i class="fa-solid fa-arrow-up text-lg"></i>
             <span class="text-[9px]">Nhảy</span>
           </button>
-
-          <!-- Shoot Button -->
-          <button id="btn-shoot" class="btn-action btn-danger w-16 h-16 text-lg">
+          <button id="btn-shoot" class="btn-dtw btn-dtw-red w-16 h-16 text-lg">
             <i class="fa-solid fa-crosshairs text-2xl"></i>
             <span class="text-[9px]">Bắn</span>
           </button>
@@ -364,14 +405,14 @@
 
         <!-- In Car Gas Pedal -->
         <div id="incar-buttons" class="hidden flex items-end gap-2">
-          <button id="btn-gas" class="btn-action w-16 h-16 bg-emerald-500 text-white text-base">
+          <button id="btn-gas" class="btn-dtw w-16 h-16 bg-emerald-500 text-slate-950 text-base">
             <i class="fa-solid fa-gas-pump text-2xl"></i>
             <span class="text-[9px]">Đạp Ga</span>
           </button>
         </div>
 
         <!-- Enter / Exit Car Button -->
-        <button id="btn-car-interact" onclick="toggleCarDrive()" class="btn-action w-13 h-13 p-2 bg-amber-400 text-slate-950">
+        <button id="btn-car-interact" onclick="toggleCarDrive()" class="btn-dtw w-13 h-13 p-2 text-slate-950">
           <i class="fa-solid fa-car text-xl"></i>
           <span id="car-btn-txt" class="text-[8px] font-black uppercase">Lên Xe</span>
         </button>
@@ -409,8 +450,8 @@
       <!-- Screen 1: App Grid -->
       <div id="view-home" class="space-y-3">
         <div class="text-center pt-1 pb-1">
-          <div class="text-lg font-black text-white tracking-wide">DudeOS 2.5</div>
-          <p class="text-[10px] text-slate-400">Hệ điều hành thế giới mở Dude Theft Wars</p>
+          <div class="text-lg font-black text-white tracking-wide">DudeOS 3.0</div>
+          <p class="text-[10px] text-slate-400">Hệ điều hành thế giới mở Dude City 99%</p>
         </div>
 
         <div class="grid grid-cols-3 gap-2.5 text-center">
@@ -474,7 +515,7 @@
         </div>
         <div class="flex gap-1.5">
           <input id="input-cheat-code" type="text" placeholder="Nhập mã cheat..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white font-mono uppercase focus:border-amber-400">
-          <button onclick="executeEnteredCheat()" class="dude-pill px-3 py-1.5 text-xs text-white bg-amber-500 font-black">GỬI</button>
+          <button onclick="executeEnteredCheat()" class="dtw-pill px-3 py-1.5 text-xs text-white bg-amber-500 font-black">GỬI</button>
         </div>
         <div class="text-[11px] text-slate-300">
           <div class="text-amber-400 font-bold mb-1">Mã bấm nhanh một chạm:</div>
@@ -508,6 +549,10 @@
             <span>🛞 Monster Truck Bánh Khổng Lồ</span>
             <span class="text-emerald-400 font-mono text-[10px]">GIAO NGAY</span>
           </button>
+          <button onclick="orderVehicle('f1')" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 p-2 rounded-xl text-left font-bold text-cyan-400 flex items-center justify-between">
+            <span>🏁 Xe Đua F1 Cực Nhanh</span>
+            <span class="text-emerald-400 font-mono text-[10px]">GIAO NGAY</span>
+          </button>
           <button onclick="orderVehicle('police')" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 p-2 rounded-xl text-left font-bold text-white flex items-center justify-between">
             <span>🚔 Xe Cảnh Sát Tuần Tra</span>
             <span class="text-emerald-400 font-mono text-[10px]">GIAO NGAY</span>
@@ -533,6 +578,10 @@
         <button onclick="addMoney(1000000)" class="w-full bg-slate-900 p-2 rounded-xl border border-slate-700 text-left font-bold text-emerald-400 flex justify-between items-center">
           <span>💰 Thêm +$1,000,000 Tiền Mặt</span>
           <i class="fa-solid fa-plus"></i>
+        </button>
+        <button id="fly-toggle" onclick="toggleFlyMode()" class="w-full bg-slate-900 p-2 rounded-xl border border-slate-700 text-left font-bold text-cyan-400 flex justify-between items-center">
+          <span>🦸 Chế Độ Bay Superhero (Fly Mode)</span>
+          <span id="fly-txt" class="text-[9px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded font-black">TẮT</span>
         </button>
         <button id="speed-toggle" onclick="toggleSpeed()" class="w-full bg-slate-900 p-2 rounded-xl border border-slate-700 text-left font-bold text-white flex justify-between items-center">
           <span>⚡ Tốc Độ Tia Chớp x3</span>
@@ -564,15 +613,18 @@
       <div id="view-teleport" class="hidden space-y-1.5 text-xs">
         <div class="flex items-center gap-2 pb-1.5 border-b border-slate-800 text-white font-bold text-xs">
           <button onclick="switchPhoneView('home')" class="text-amber-400 p-1"><i class="fa-solid fa-chevron-left"></i></button>
-          <span>Dịch Chuyển Đến Công Trình</span>
+          <span>Dịch Chuyển Đến Công Trình (99% Map)</span>
         </div>
-        <button onclick="teleportPlayer(0, 2, 0)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-white">🏠 Biệt Thự Dude</button>
-        <button onclick="teleportPlayer(75, 2, 60)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-white">🚔 Đồn Cảnh Sát (Police HQ)</button>
-        <button onclick="teleportPlayer(-70, 2, -60)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-white">🔫 Cửa Hàng Súng Ammu-Nation</button>
-        <button onclick="teleportPlayer(-65, 2, 65)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-white">⛽ Trạm Xăng Trung Tâm</button>
-        <button onclick="teleportPlayer(0, 75, -80)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-white">🏢 Nóc Tháp Empire 75m</button>
-        <button onclick="teleportPlayer(45, 12, -45)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-amber-300">🎪 Dốc Bay Đua Xe (Stunt Ramp)</button>
-        <button onclick="teleportPlayer(120, 2, -120)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-emerald-400">⚽ Sân Vận Động Bóng Đá</button>
+        <button onclick="teleportPlayer(0, 2, 30)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-white">🏠 Nhà của Jack (Dude's House)</button>
+        <button onclick="teleportPlayer(90, 2, 70)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-white">🚔 Đồn Cảnh Sát (Police HQ)</button>
+        <button onclick="teleportPlayer(-80, 2, -70)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-white">🔫 Shop Vũ Khí Ammu-Nation</button>
+        <button onclick="teleportPlayer(-75, 2, 75)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-white">⛽ Trạm Xăng Octan Gas Station</button>
+        <button onclick="teleportPlayer(0, 75, -90)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-white">🏢 Nóc Tháp Empire Skyscraper (75m)</button>
+        <button onclick="teleportPlayer(50, 12, -50)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-amber-300">🎪 Dốc Bay Đua Xe (Stunt Ramp)</button>
+        <button onclick="teleportPlayer(140, 2, -140)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-emerald-400">⚽ Sân Vận Động Bóng Đá</button>
+        <button onclick="teleportPlayer(-150, 2, -150)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-cyan-400">✈️ Sân Bay Dude City (Airport Runway)</button>
+        <button onclick="teleportPlayer(75, 2, -60)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-orange-400">🍔 Tiệm Bánh Dude Burger</button>
+        <button onclick="teleportPlayer(-60, 2, 0)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-rose-400">🏥 Bệnh Viện Trung Tâm (Hospital)</button>
       </div>
 
       <!-- Screen 6: WEAPONS APP -->
@@ -583,6 +635,10 @@
         </div>
         <button onclick="selectWeapon('rpg')" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-rose-400 flex justify-between">
           <span>🚀 Súng Phóng Lựu RPG</span>
+          <span class="text-amber-400 font-bold">CHỌN</span>
+        </button>
+        <button onclick="selectWeapon('sniper')" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-yellow-300 flex justify-between">
+          <span>🎯 Súng Bắn Tỉa Sniper</span>
           <span class="text-amber-400 font-bold">CHỌN</span>
         </button>
         <button onclick="selectWeapon('ak47')" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-white flex justify-between">
@@ -609,7 +665,7 @@
 
   <!-- POPUP ĐỔI TÊN NHÂN VẬT -->
   <div id="modal-name" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 hidden">
-    <div class="dude-card w-full max-w-xs p-5 text-center border-3 border-amber-400 relative">
+    <div class="dtw-panel w-full max-w-xs p-5 text-center relative">
       <div class="w-14 h-14 mx-auto rounded-2xl bg-amber-500 flex items-center justify-center text-slate-950 text-2xl mb-2.5 border-2 border-white shadow-xl">
         <i class="fa-solid fa-crown"></i>
       </div>
@@ -618,7 +674,7 @@
         Đổi tên thành <b class="text-yellow-400 underline font-black">dev</b> để mở khóa toàn quyền Admin!
       </p>
       <input id="char-name-field" type="text" value="dev" maxlength="12" class="w-full bg-slate-900 border-2 border-slate-700 rounded-xl px-3 py-2 text-white font-black text-center text-base focus:border-amber-400 mb-3">
-      <button onclick="confirmNameChange()" class="w-full btn-action py-2.5 text-xs text-slate-950 font-black">
+      <button onclick="confirmNameChange()" class="w-full btn-dtw py-2.5 text-xs text-slate-950 font-black">
         LƯU TÊN & VÀO GAME
       </button>
     </div>
@@ -651,7 +707,7 @@
       playGunshot(type = 'ak47') {
         this.init();
         const now = this.ctx.currentTime;
-        const dur = type === 'rpg' ? 0.35 : 0.08;
+        const dur = (type === 'rpg' || type === 'sniper') ? 0.35 : 0.08;
         const b = this.ctx.createBuffer(1, this.ctx.sampleRate * dur, this.ctx.sampleRate);
         const d = b.getChannelData(0);
         for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
@@ -659,10 +715,10 @@
         n.buffer = b;
         const f = this.ctx.createBiquadFilter();
         f.type = 'bandpass';
-        f.frequency.setValueAtTime(type === 'rpg' ? 300 : 1100, now);
+        f.frequency.setValueAtTime(type === 'rpg' ? 300 : type === 'sniper' ? 1600 : 1100, now);
         f.frequency.linearRampToValueAtTime(type === 'rpg' ? 50 : 100, now + dur);
         const g = this.ctx.createGain();
-        g.gain.setValueAtTime(type === 'rpg' ? 0.7 : 0.4, now);
+        g.gain.setValueAtTime(type === 'rpg' ? 0.75 : 0.4, now);
         g.gain.exponentialRampToValueAtTime(0.01, now + dur);
         n.connect(f); f.connect(g); g.connect(this.ctx.destination);
         n.start(now);
@@ -670,13 +726,12 @@
       playExplosion() {
         this.init();
         const now = this.ctx.currentTime;
-        // Low sub boom
         const osc = this.ctx.createOscillator();
         const gOsc = this.ctx.createGain();
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(140, now);
+        osc.frequency.setValueAtTime(150, now);
         osc.frequency.exponentialRampToValueAtTime(20, now + 0.5);
-        gOsc.gain.setValueAtTime(0.6, now);
+        gOsc.gain.setValueAtTime(0.7, now);
         gOsc.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
         osc.connect(gOsc); gOsc.connect(this.ctx.destination);
         osc.start(now); osc.stop(now + 0.5);
@@ -738,16 +793,17 @@
   </script>
 
   <!-- ============================================== -->
-  <!-- THREE.JS 3D ENGINE & COMPREHENSIVE SIMULATION  -->
+  <!-- 3D GAME ENGINE: 99% DUDE THEFT WARS MAP & PLAY -->
   <!-- ============================================== -->
   <script>
     const State = {
-      name: 'Dude',
+      name: 'Jack (Dude)',
       isDev: false,
       health: 100,
-      cash: 5000,
+      cash: 15000,
       wanted: 0,
       isGod: false,
+      isFlying: false,
       speedMulti: 1,
       jumpMulti: 1,
       playerScale: 1,
@@ -756,14 +812,16 @@
       inVehicle: null,
       phoneOpen: false,
       isSprinting: false,
-      isRagdoll: false
+      isRagdoll: false,
+      firstPerson: false,
+      nitroMeter: 100
     };
 
     let scene, camera, renderer, clock;
     let player, playerBody, head, leftArm, rightArm, leftLeg, rightLeg;
     let buildings = [], vehicles = [], bullets = [], npcs = [], policeSquad = [];
     let soccerBall = null, trampolineMesh = null;
-    let sunLight, ambientLight;
+    let sunLight, ambientLight, clouds = [];
 
     let moveDir = { x: 0, z: 0 };
     let playerVel = new THREE.Vector3();
@@ -777,10 +835,11 @@
 
     window.addEventListener('DOMContentLoaded', () => {
       initThreeEngine();
-      buildCityMap();
+      buildAuthenticDudeCityMap();
       spawnDefaultVehicles();
       spawnSoccerStadium();
       spawnCityNPCs();
+      createCartoonClouds();
       setupMobileTouchEvents();
       setupKeyboardControls();
       mainLoop();
@@ -789,9 +848,9 @@
     function initThreeEngine() {
       scene = new THREE.Scene();
       scene.background = new THREE.Color(0x38bdf8);
-      scene.fog = new THREE.FogExp2(0x38bdf8, 0.005);
+      scene.fog = new THREE.FogExp2(0x38bdf8, 0.0035);
 
-      camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 1200);
       clock = new THREE.Clock();
 
       const canvas = document.getElementById('game-canvas');
@@ -801,15 +860,15 @@
       renderer.shadowMap.enabled = true;
       renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-      ambientLight = new THREE.AmbientLight(0xffffff, 0.65);
+      ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
       scene.add(ambientLight);
 
       sunLight = new THREE.DirectionalLight(0xfffaed, 0.95);
-      sunLight.position.set(90, 160, 70);
+      sunLight.position.set(100, 180, 80);
       sunLight.castShadow = true;
       sunLight.shadow.mapSize.width = 2048;
       sunLight.shadow.mapSize.height = 2048;
-      const d = 180;
+      const d = 220;
       sunLight.shadow.camera.left = -d;
       sunLight.shadow.camera.right = d;
       sunLight.shadow.camera.top = d;
@@ -819,7 +878,7 @@
       createDudeCharacter();
     }
 
-    // Dude Low-poly Model
+    // Dude Low-poly Model (Chuẩn Jack trong Dude Theft Wars)
     function createDudeCharacter() {
       player = new THREE.Group();
       const shirtMat = new THREE.MeshLambertMaterial({ color: 0xF59E0B });
@@ -834,6 +893,7 @@
       head = new THREE.Mesh(new THREE.BoxGeometry(0.55, 0.55, 0.55), skinMat);
       head.position.set(0, 0.85, 0);
       head.castShadow = true;
+      // Cap
       const cap = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.18, 0.7), new THREE.MeshLambertMaterial({ color: 0xDC2626 }));
       cap.position.set(0, 0.32, 0.05);
       head.add(cap);
@@ -864,82 +924,334 @@
       rightLeg.castShadow = true;
       player.add(rightLeg);
 
+      player.position.set(0, 0, 30);
       scene.add(player);
     }
 
-    // THÀNH PHỐ THẾ GIỚI MỞ HOÀN CHỈNH
-    function buildCityMap() {
-      // Grass Ground
-      const ground = new THREE.Mesh(new THREE.PlaneGeometry(600, 600), new THREE.MeshLambertMaterial({ color: 0x22c55e }));
+    // ==========================================================
+    // THÀNH PHỐ DUDE CITY: BẢN ĐỒ GIỐNG BẢN GỐC 99%
+    // ==========================================================
+    function buildAuthenticDudeCityMap() {
+      // 1. Mặt đất thảm cỏ xanh mướt rộng lớn
+      const ground = new THREE.Mesh(new THREE.PlaneGeometry(800, 800), new THREE.MeshLambertMaterial({ color: 0x22c55e }));
       ground.rotation.x = -Math.PI / 2;
       ground.receiveShadow = true;
       scene.add(ground);
 
-      // Roads Grid
-      const roadMat = new THREE.MeshLambertMaterial({ color: 0x334155 });
-      const r1 = new THREE.Mesh(new THREE.PlaneGeometry(550, 16), roadMat);
-      r1.rotation.x = -Math.PI / 2; r1.position.y = 0.02; scene.add(r1);
-      const r2 = new THREE.Mesh(new THREE.PlaneGeometry(16, 550), roadMat);
-      r2.rotation.x = -Math.PI / 2; r2.position.y = 0.02; scene.add(r2);
+      // 2. Dãy Núi Low-Poly bao quanh thung lũng (Background Hills)
+      createLowPolyMountains();
 
-      // Outer highway
-      const r3 = new THREE.Mesh(new THREE.PlaneGeometry(400, 12), roadMat);
-      r3.rotation.x = -Math.PI / 2; r3.position.set(0, 0.02, 120); scene.add(r3);
-      const r4 = new THREE.Mesh(new THREE.PlaneGeometry(400, 12), roadMat);
-      r4.rotation.x = -Math.PI / 2; r4.position.set(0, 0.02, -120); scene.add(r4);
+      // 3. Hệ thống đường xá, vỉa hè bê tông & vạch qua đường
+      createAuthenticRoadNetwork();
 
-      // 1. Tháp Empire Skyscraper
-      createBuilding(0, -80, 26, 75, 26, 0x0284c7, "🏢 Tháp Empire");
-      // 2. Đồn Cảnh Sát Police HQ
-      createBuilding(75, 60, 28, 14, 22, 0x1e293b, "🚔 Đồn Cảnh Sát");
-      // 3. Cửa Hàng Vũ Khí
-      createBuilding(-70, -60, 22, 10, 18, 0x78350f, "🔫 Shop Vũ Khí");
-      // 4. Trạm Xăng Octan
-      createBuilding(-65, 65, 24, 8, 20, 0x10b981, "⛽ Trạm Xăng");
-      // 5. Biệt Thự Dude
-      createBuilding(0, 30, 20, 9, 16, 0xfef08a, "🏠 Biệt Thự Dude");
+      // 4. NHÀ CỦA JACK (DUDE'S HOUSE - ĐIỂM XUẤT PHÁT GỐC)
+      createJacksHouseArea(0, 30);
 
-      // Bạt Nhún Lò Xo Trampoline sau vườn Dude Villa
-      createTrampoline(15, 30);
+      // 5. ĐỒN CẢNH SÁT TRUNG TÂM (POLICE STATION HQ)
+      createPoliceStationHQ(90, 70);
 
-      // Dốc Bay Đua Xe (Stunt Ramps)
-      createStuntRamp(45, -45, 12, 6, 20, 0xf59e0b);
-      createStuntRamp(-45, 45, 12, 6, 20, 0xef4444);
+      // 6. CỬA HÀNG VŨ KHÍ AMMU-NATION (VỚI BIA TẬP BẮN & BIỂN HIỆU NEON)
+      createAmmuNationGunShop(-80, -70);
 
-      // Dãy Nhà Phố
-      for (let z = -60; z <= 60; z += 30) {
-        createBuilding(-35, z, 12, 6, 10, 0xf87171, "Nhà");
-        createBuilding(35, z, 12, 6, 10, 0x60a5fa, "Nhà");
-      }
+      // 7. TRẠM XĂNG OCTAN GAS STATION (CÂY XĂNG & CỬA HÀNG TIỆN LỢI)
+      createOctanGasStation(-75, 75);
 
-      // Cây cối
-      for (let i = 0; i < 50; i++) {
-        const px = (Math.random() - 0.5) * 450;
-        const pz = (Math.random() - 0.5) * 450;
-        if (Math.abs(px) < 14 || Math.abs(pz) < 14) continue;
-        const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.6, 3, 6), new THREE.MeshLambertMaterial({ color: 0x5c3817 }));
-        trunk.position.set(px, 1.5, pz);
-        scene.add(trunk);
-        const leaves = new THREE.Mesh(new THREE.DodecahedronGeometry(2.2), new THREE.MeshLambertMaterial({ color: 0x15803d }));
-        leaves.position.set(px, 4.2, pz);
-        scene.add(leaves);
+      // 8. TÒA THÁP CHỌC TRỜI TRUNG TÂM (EMPIRE TOWER 75M CÓ HELIPAD)
+      createEmpireTower(0, -90);
+
+      // 9. TIỆM BÁNH DUDE BURGER (FAST FOOD CÓ BÁNH BURGER TRÊN NÓC)
+      createDudeBurgerShop(75, -60);
+
+      // 10. BỆNH VIỆN TRUNG TÂM (HOSPITAL CÓ DẤU CHỮ THẬP ĐỎ)
+      createHospitalZone(-60, 0);
+
+      // 11. SÂN BAY DUDE CITY AIRPORT (ĐƯỜNG BĂNG DÀI & NHÀ KHÔNG GIAN HANGAR)
+      createAirportRunwayZone(-150, -150);
+
+      // 12. SÂN TRƯỢT SKATE PARK VỚI HALF-PIPE
+      createSkateParkZone(-50, -30);
+
+      // 13. KHU DÂN CƯ NHIỀU NHÀ VỚI HÀNG RÀO TRẮNG & HỘP THƯ
+      createSuburbanDistrict();
+
+      // 14. ĐÈN ĐƯỜNG, TRỤ NƯỚC CỨU HỎA, GHẾ ĐÁ CÔNG VIÊN
+      createStreetFurniture();
+    }
+
+    // Dãy núi Low-Poly bao bọc bản đồ
+    function createLowPolyMountains() {
+      const mountMat = new THREE.MeshLambertMaterial({ color: 0x15803d, flatShading: true });
+      for (let i = 0; i < 28; i++) {
+        const angle = (i / 28) * Math.PI * 2;
+        const dist = 340 + (Math.sin(i * 3) * 30);
+        const h = 45 + Math.random() * 55;
+        const r = 35 + Math.random() * 25;
+        const cone = new THREE.Mesh(new THREE.ConeGeometry(r, h, 6), mountMat);
+        cone.position.set(Math.cos(angle) * dist, h / 2, Math.sin(angle) * dist);
+        scene.add(cone);
       }
     }
 
-    function createBuilding(x, z, w, h, d, color, name) {
-      const b = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), new THREE.MeshLambertMaterial({ color }));
-      b.position.set(x, h / 2, z);
-      b.castShadow = true; b.receiveShadow = true;
-      scene.add(b);
+    // Hệ thống đường xá chi tiết
+    function createAuthenticRoadNetwork() {
+      const roadMat = new THREE.MeshLambertMaterial({ color: 0x27272a }); // Nhựa đường tối
+      const curbMat = new THREE.MeshLambertMaterial({ color: 0xd4d4d8 }); // Vỉa hè xám sáng
+      const lineMat = new THREE.MeshBasicMaterial({ color: 0xfacc15 }); // Vạch vàng
 
-      const roof = new THREE.Mesh(new THREE.BoxGeometry(w + 1, 1, d + 1), new THREE.MeshLambertMaterial({ color: 0x0f172a }));
-      roof.position.set(x, h + 0.5, z);
-      scene.add(roof);
+      // Trục đường chính Bắc-Nam & Đông-Tây
+      const rH = new THREE.Mesh(new THREE.PlaneGeometry(600, 18), roadMat);
+      rH.rotation.x = -Math.PI / 2; rH.position.y = 0.02; scene.add(rH);
 
-      buildings.push({ x, z, radius: Math.max(w, d) / 2, name });
+      const rV = new THREE.Mesh(new THREE.PlaneGeometry(18, 600), roadMat);
+      rV.rotation.x = -Math.PI / 2; rV.position.y = 0.02; scene.add(rV);
+
+      // Đường vành đai Outer Ring
+      [120, -120].forEach(z => {
+        const ringH = new THREE.Mesh(new THREE.PlaneGeometry(450, 14), roadMat);
+        ringH.rotation.x = -Math.PI / 2; ringH.position.set(0, 0.02, z); scene.add(ringH);
+      });
+      [120, -120].forEach(x => {
+        const ringV = new THREE.Mesh(new THREE.PlaneGeometry(14, 450), roadMat);
+        ringV.rotation.x = -Math.PI / 2; ringV.position.set(x, 0.02, 0); scene.add(ringV);
+      });
+
+      // Vỉa hè nổi (Curbs)
+      const curbH1 = new THREE.Mesh(new THREE.BoxGeometry(600, 0.25, 2.5), curbMat);
+      curbH1.position.set(0, 0.12, 10); scene.add(curbH1);
+      const curbH2 = new THREE.Mesh(new THREE.BoxGeometry(600, 0.25, 2.5), curbMat);
+      curbH2.position.set(0, 0.12, -10); scene.add(curbH2);
     }
 
-    function createStuntRamp(x, z, w, h, d, color) {
+    // 4. NHÀ CỦA JACK (DUDE'S HOUSE CHUẨN GỐC)
+    function createJacksHouseArea(x, z) {
+      const group = new THREE.Group();
+
+      // House main block
+      const house = new THREE.Mesh(new THREE.BoxGeometry(18, 8.5, 14), new THREE.MeshLambertMaterial({ color: 0xfef9c3 }));
+      house.position.set(0, 4.25, 0); house.castShadow = true; group.add(house);
+
+      // Roof (Mái ngói nâu đỏ)
+      const roof = new THREE.Mesh(new THREE.ConeGeometry(13.5, 4.2, 4), new THREE.MeshLambertMaterial({ color: 0x991b1b }));
+      roof.rotation.y = Math.PI / 4; roof.position.set(0, 10.5, 0); group.add(roof);
+
+      // Garage bên hông
+      const garage = new THREE.Mesh(new THREE.BoxGeometry(10, 6, 12), new THREE.MeshLambertMaterial({ color: 0xf3f4f6 }));
+      garage.position.set(-13, 3, 0); garage.castShadow = true; group.add(garage);
+      const garageDoor = new THREE.Mesh(new THREE.PlaneGeometry(7.5, 4.8), new THREE.MeshLambertMaterial({ color: 0x334155 }));
+      garageDoor.position.set(-13, 2.5, 6.05); group.add(garageDoor);
+
+      // Đường lái xe bê tông (Driveway)
+      const driveway = new THREE.Mesh(new THREE.PlaneGeometry(12, 18), new THREE.MeshLambertMaterial({ color: 0xa1a1aa }));
+      driveway.rotation.x = -Math.PI / 2; driveway.position.set(-13, 0.03, 14); group.add(driveway);
+
+      // Hàng rào trắng quanh sân trước (Picket Fence)
+      createPicketFence(group, -20, 20, 20);
+
+      // Hồ bơi sau vườn
+      const pool = new THREE.Mesh(new THREE.PlaneGeometry(12, 8), new THREE.MeshBasicMaterial({ color: 0x06b6d4 }));
+      pool.rotation.x = -Math.PI / 2; pool.position.set(0, 0.05, -14); group.add(pool);
+
+      // Bạt nhún lò xo Trampoline
+      createTrampoline(x + 10, z - 14);
+
+      group.position.set(x, 0, z);
+      scene.add(group);
+      buildings.push({ x, z, radius: 18, name: "🏠 Nhà của Jack (Dude)" });
+    }
+
+    function createPicketFence(parent, x, z, len) {
+      const fenceMat = new THREE.MeshLambertMaterial({ color: 0xffffff });
+      for (let p = 0; p < len; p += 2.5) {
+        const post = new THREE.Mesh(new THREE.BoxGeometry(0.2, 1.2, 0.2), fenceMat);
+        post.position.set(x + p, 0.6, z);
+        parent.add(post);
+      }
+      const rail = new THREE.Mesh(new THREE.BoxGeometry(len, 0.15, 0.1), fenceMat);
+      rail.position.set(x + len / 2, 0.7, z);
+      parent.add(rail);
+    }
+
+    // 5. ĐỒN CẢNH SÁT POLICE HQ
+    function createPoliceStationHQ(x, z) {
+      const g = new THREE.Group();
+      const main = new THREE.Mesh(new THREE.BoxGeometry(28, 14, 22), new THREE.MeshLambertMaterial({ color: 0x1e293b }));
+      main.position.set(0, 7, 0); main.castShadow = true; g.add(main);
+
+      // Mái xanh cảnh sát
+      const roof = new THREE.Mesh(new THREE.BoxGeometry(30, 1.6, 24), new THREE.MeshLambertMaterial({ color: 0x2563eb }));
+      roof.position.set(0, 14.5, 0); g.add(roof);
+
+      // Còi hú xoay vòng trên nóc
+      const sirenRed = new THREE.Mesh(new THREE.CylinderGeometry(0.8, 0.8, 1.2, 12), new THREE.MeshBasicMaterial({ color: 0xef4444 }));
+      sirenRed.position.set(-3, 16, 0); g.add(sirenRed);
+      const sirenBlue = new THREE.Mesh(new THREE.CylinderGeometry(0.8, 0.8, 1.2, 12), new THREE.MeshBasicMaterial({ color: 0x3b82f6 }));
+      sirenBlue.position.set(3, 16, 0); g.add(sirenBlue);
+
+      // Biển chữ POLICE
+      const sign = new THREE.Mesh(new THREE.BoxGeometry(16, 3, 0.8), new THREE.MeshLambertMaterial({ color: 0x1d4ed8 }));
+      sign.position.set(0, 11, 11.4); g.add(sign);
+
+      g.position.set(x, 0, z);
+      scene.add(g);
+      buildings.push({ x, z, radius: 18, name: "🚔 Đồn Cảnh Sát" });
+    }
+
+    // 6. AMMU-NATION GUN SHOP
+    function createAmmuNationGunShop(x, z) {
+      const g = new THREE.Group();
+      const base = new THREE.Mesh(new THREE.BoxGeometry(24, 10, 20), new THREE.MeshLambertMaterial({ color: 0x78350f }));
+      base.position.set(0, 5, 0); base.castShadow = true; g.add(base);
+
+      // Biển hiệu neon đỏ rực
+      const sign = new THREE.Mesh(new THREE.BoxGeometry(18, 3.5, 1), new THREE.MeshBasicMaterial({ color: 0xdc2626 }));
+      sign.position.set(0, 11.5, 10.4); g.add(sign);
+
+      // Súng tượng trưng trên nóc
+      const gunRoof = new THREE.Mesh(new THREE.BoxGeometry(14, 1.5, 1.5), new THREE.MeshLambertMaterial({ color: 0x111827 }));
+      gunRoof.position.set(0, 13, 10.4); g.add(gunRoof);
+
+      // Bia tập bắn ngoài sân
+      for (let i = -5; i <= 5; i += 5) {
+        const target = new THREE.Mesh(new THREE.CylinderGeometry(1.2, 1.2, 0.1, 16), new THREE.MeshBasicMaterial({ color: 0xef4444 }));
+        target.rotation.x = Math.PI / 2;
+        target.position.set(i, 2.5, 14);
+        g.add(target);
+      }
+
+      g.position.set(x, 0, z);
+      scene.add(g);
+      buildings.push({ x, z, radius: 16, name: "🔫 Shop Vũ Khí" });
+    }
+
+    // 7. TRẠM XĂNG OCTAN GAS STATION
+    function createOctanGasStation(x, z) {
+      const g = new THREE.Group();
+      // Mái che trạm xăng xanh lá
+      const canopy = new THREE.Mesh(new THREE.BoxGeometry(28, 1.6, 22), new THREE.MeshLambertMaterial({ color: 0x10b981 }));
+      canopy.position.set(0, 8.5, 0); canopy.castShadow = true; g.add(canopy);
+
+      // 4 cột trụ
+      for (let px of [-10, 10]) {
+        for (let pz of [-8, 8]) {
+          const col = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.5, 8.5, 8), new THREE.MeshLambertMaterial({ color: 0xe5e7eb }));
+          col.position.set(px, 4.25, pz); g.add(col);
+        }
+      }
+
+      // Cây bơm xăng đỏ
+      for (let px of [-5, 5]) {
+        const pump = new THREE.Mesh(new THREE.BoxGeometry(1.6, 3.4, 1.2), new THREE.MeshLambertMaterial({ color: 0xef4444 }));
+        pump.position.set(px, 1.7, 0); g.add(pump);
+      }
+
+      // Cửa hàng tiện lợi Mart phía sau
+      const mart = new THREE.Mesh(new THREE.BoxGeometry(20, 6.5, 12), new THREE.MeshLambertMaterial({ color: 0xf8fafc }));
+      mart.position.set(0, 3.25, -18); mart.castShadow = true; g.add(mart);
+
+      g.position.set(x, 0, z);
+      scene.add(g);
+      buildings.push({ x, z, radius: 18, name: "⛽ Trạm Xăng Octan" });
+    }
+
+    // 8. TÒA THÁP CHỌC TRỜI EMPIRE TOWER (75M)
+    function createEmpireTower(x, z) {
+      const g = new THREE.Group();
+      const tower = new THREE.Mesh(new THREE.BoxGeometry(26, 75, 26), new THREE.MeshLambertMaterial({ color: 0x0284c7 }));
+      tower.position.set(0, 37.5, 0); tower.castShadow = true; g.add(tower);
+
+      // Sân trực thăng Helipad trên nóc
+      const heli = new THREE.Mesh(new THREE.CylinderGeometry(7, 7, 0.4, 16), new THREE.MeshLambertMaterial({ color: 0xf59e0b }));
+      heli.position.set(0, 75.2, 0); g.add(heli);
+
+      // Dải cửa sổ kính
+      for (let y = 6; y < 72; y += 7) {
+        const strip = new THREE.Mesh(new THREE.BoxGeometry(26.2, 2.5, 26.2), new THREE.MeshLambertMaterial({ color: 0x0f172a }));
+        strip.position.set(0, y, 0); g.add(strip);
+      }
+
+      g.position.set(x, 0, z);
+      scene.add(g);
+      buildings.push({ x, z, radius: 18, name: "🏢 Tháp Empire" });
+    }
+
+    // 9. TIỆM BÁNH DUDE BURGER
+    function createDudeBurgerShop(x, z) {
+      const g = new THREE.Group();
+      const b = new THREE.Mesh(new THREE.BoxGeometry(20, 8, 16), new THREE.MeshLambertMaterial({ color: 0xf97316 }));
+      b.position.set(0, 4, 0); b.castShadow = true; g.add(b);
+
+      // Bánh Burger 3D khổng lồ trên nóc
+      const bunBottom = new THREE.Mesh(new THREE.CylinderGeometry(3.5, 3.2, 1, 16), new THREE.MeshLambertMaterial({ color: 0xd97706 }));
+      bunBottom.position.set(0, 8.8, 0); g.add(bunBottom);
+      const meat = new THREE.Mesh(new THREE.CylinderGeometry(3.6, 3.6, 0.8, 16), new THREE.MeshLambertMaterial({ color: 0x451a03 }));
+      meat.position.set(0, 9.7, 0); g.add(meat);
+      const cheese = new THREE.Mesh(new THREE.BoxGeometry(6, 0.2, 6), new THREE.MeshLambertMaterial({ color: 0xfacc15 }));
+      cheese.position.set(0, 10.2, 0); g.add(cheese);
+      const bunTop = new THREE.Mesh(new THREE.SphereGeometry(3.6, 16, 8, 0, Math.PI * 2, 0, Math.PI / 2), new THREE.MeshLambertMaterial({ color: 0xd97706 }));
+      bunTop.position.set(0, 10.3, 0); g.add(bunTop);
+
+      g.position.set(x, 0, z);
+      scene.add(g);
+      buildings.push({ x, z, radius: 15, name: "🍔 Tiệm Bánh Dude Burger" });
+    }
+
+    // 10. BỆNH VIỆN TRUNG TÂM (HOSPITAL)
+    function createHospitalZone(x, z) {
+      const g = new THREE.Group();
+      const hosp = new THREE.Mesh(new THREE.BoxGeometry(26, 12, 18), new THREE.MeshLambertMaterial({ color: 0xffffff }));
+      hosp.position.set(0, 6, 0); hosp.castShadow = true; g.add(hosp);
+
+      // Dấu chữ thập đỏ Red Cross
+      const crossV = new THREE.Mesh(new THREE.BoxGeometry(1.6, 5, 0.2), new THREE.MeshBasicMaterial({ color: 0xef4444 }));
+      crossV.position.set(0, 8, 9.15); g.add(crossV);
+      const crossH = new THREE.Mesh(new THREE.BoxGeometry(5, 1.6, 0.2), new THREE.MeshBasicMaterial({ color: 0xef4444 }));
+      crossH.position.set(0, 8, 9.15); g.add(crossH);
+
+      g.position.set(x, 0, z);
+      scene.add(g);
+      buildings.push({ x, z, radius: 16, name: "🏥 Bệnh Viện Trung Tâm" });
+    }
+
+    // 11. SÂN BAY DUDE CITY AIRPORT RUNWAY
+    function createAirportRunwayZone(x, z) {
+      const g = new THREE.Group();
+      // Đường băng cất hạ cánh dài 220 mét
+      const runway = new THREE.Mesh(new THREE.PlaneGeometry(30, 220), new THREE.MeshLambertMaterial({ color: 0x18181b }));
+      runway.rotation.x = -Math.PI / 2; runway.position.y = 0.03; g.add(runway);
+
+      // Vạch kẻ trắng giữa đường băng
+      for (let rz = -90; rz <= 90; rz += 20) {
+        const stripe = new THREE.Mesh(new THREE.PlaneGeometry(2, 10), new THREE.MeshBasicMaterial({ color: 0xffffff }));
+        stripe.rotation.x = -Math.PI / 2; stripe.position.set(0, 0.04, rz); g.add(stripe);
+      }
+
+      // Nhà chứa máy bay (Hangar)
+      const hangar = new THREE.Mesh(new THREE.CylinderGeometry(15, 15, 30, 16, 1, false, 0, Math.PI), new THREE.MeshLambertMaterial({ color: 0x64748b, side: THREE.DoubleSide }));
+      hangar.rotation.z = Math.PI / 2; hangar.position.set(30, 0, 0); g.add(hangar);
+
+      g.position.set(x, 0, z);
+      scene.add(g);
+      buildings.push({ x, z, radius: 45, name: "✈️ Sân Bay Dude City" });
+    }
+
+    // 12. SÂN TRƯỢT SKATE PARK
+    function createSkateParkZone(x, z) {
+      const g = new THREE.Group();
+      const floor = new THREE.Mesh(new THREE.PlaneGeometry(35, 35), new THREE.MeshLambertMaterial({ color: 0xa1a1aa }));
+      floor.rotation.x = -Math.PI / 2; floor.position.y = 0.03; g.add(floor);
+
+      // Half Pipe Ramp
+      const ramp1 = createRampMesh(14, 4, 8, 0xef4444);
+      ramp1.position.set(-8, 0, 0); g.add(ramp1);
+      const ramp2 = createRampMesh(14, 4, 8, 0x3b82f6);
+      ramp2.rotation.y = Math.PI; ramp2.position.set(8, 0, 0); g.add(ramp2);
+
+      g.position.set(x, 0, z);
+      scene.add(g);
+      buildings.push({ x, z, radius: 20, name: "🛹 Skate Park" });
+    }
+
+    function createRampMesh(w, h, d, color) {
       const geo = new THREE.BufferGeometry();
       const vertices = new Float32Array([
         -w/2, 0, -d/2,   w/2, 0, -d/2,   w/2, h, d/2,
@@ -949,10 +1261,65 @@
       ]);
       geo.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
       geo.computeVertexNormals();
-      const mesh = new THREE.Mesh(geo, new THREE.MeshLambertMaterial({ color, side: THREE.DoubleSide }));
-      mesh.position.set(x, 0, z);
-      mesh.castShadow = true;
-      scene.add(mesh);
+      return new THREE.Mesh(geo, new THREE.MeshLambertMaterial({ color, side: THREE.DoubleSide }));
+    }
+
+    // 13. KHU DÂN CƯ NHIỀU NHÀ MÀU SẮC
+    function createSuburbanDistrict() {
+      const colors = [0xf87171, 0x60a5fa, 0x34d399, 0xfbbf24, 0xa78bfa, 0xf472b6];
+      let ci = 0;
+      for (let z = -70; z <= 70; z += 35) {
+        createSuburbanHouse(-42, z, colors[ci++ % colors.length]);
+        createSuburbanHouse(42, z, colors[ci++ % colors.length]);
+      }
+    }
+
+    function createSuburbanHouse(x, z, wallColor) {
+      const g = new THREE.Group();
+      const b = new THREE.Mesh(new THREE.BoxGeometry(13, 6.5, 11), new THREE.MeshLambertMaterial({ color: wallColor }));
+      b.position.set(0, 3.25, 0); b.castShadow = true; g.add(b);
+
+      const roof = new THREE.Mesh(new THREE.ConeGeometry(9.5, 3.8, 4), new THREE.MeshLambertMaterial({ color: 0x1e293b }));
+      roof.rotation.y = Math.PI / 4; roof.position.set(0, 8.2, 0); g.add(roof);
+
+      g.position.set(x, 0, z);
+      scene.add(g);
+      buildings.push({ x, z, radius: 9, name: "Nhà Dân" });
+    }
+
+    // 14. ĐỒ ĐẠC ĐƯỜNG PHỐ (STREET FURNITURE)
+    function createStreetFurniture() {
+      // Đèn đường (Streetlights)
+      for (let z = -180; z <= 180; z += 60) {
+        createStreetLight(-11, z);
+        createStreetLight(11, z);
+      }
+      // Trụ cứu hỏa & Ghế đá
+      for (let z = -140; z <= 140; z += 70) {
+        createFireHydrant(-11.5, z + 15);
+        createParkBench(11.5, z + 15);
+      }
+    }
+
+    function createStreetLight(x, z) {
+      const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.22, 7, 8), new THREE.MeshLambertMaterial({ color: 0x475569 }));
+      pole.position.set(x, 3.5, z);
+      scene.add(pole);
+      const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.4, 8, 8), new THREE.MeshBasicMaterial({ color: 0xfef08a }));
+      bulb.position.set(x + (x > 0 ? -0.8 : 0.8), 7, z);
+      scene.add(bulb);
+    }
+
+    function createFireHydrant(x, z) {
+      const h = new THREE.Mesh(new THREE.CylinderGeometry(0.25, 0.3, 0.9, 8), new THREE.MeshLambertMaterial({ color: 0xef4444 }));
+      h.position.set(x, 0.45, z);
+      scene.add(h);
+    }
+
+    function createParkBench(x, z) {
+      const bench = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.4, 0.8), new THREE.MeshLambertMaterial({ color: 0x78350f }));
+      bench.position.set(x, 0.35, z);
+      scene.add(bench);
     }
 
     function createTrampoline(x, z) {
@@ -965,41 +1332,61 @@
       trampolineMesh = { x, z, radius: 3.5 };
     }
 
-    // SÂN VẬN ĐỘNG & BÓNG ĐÁ KHỔNG LỒ (ĐẶC TRƯNG DUDE THEFT WARS)
+    // SÂN VẬN ĐỘNG BÓNG ĐÁ
     function spawnSoccerStadium() {
-      const field = new THREE.Mesh(new THREE.PlaneGeometry(60, 40), new THREE.MeshLambertMaterial({ color: 0x16a34a }));
+      const field = new THREE.Mesh(new THREE.PlaneGeometry(65, 45), new THREE.MeshLambertMaterial({ color: 0x16a34a }));
       field.rotation.x = -Math.PI / 2;
-      field.position.set(120, 0.03, -120);
+      field.position.set(140, 0.03, -140);
       scene.add(field);
 
-      // Goal posts
-      const goal1 = new THREE.Mesh(new THREE.BoxGeometry(1, 4, 10), new THREE.MeshLambertMaterial({ color: 0xffffff }));
-      goal1.position.set(90, 2, -120); scene.add(goal1);
-      const goal2 = new THREE.Mesh(new THREE.BoxGeometry(1, 4, 10), new THREE.MeshLambertMaterial({ color: 0xffffff }));
-      goal2.position.set(150, 2, -120); scene.add(goal2);
+      // Cột đèn sân bóng ở 4 góc
+      [[110, -120], [170, -120], [110, -160], [170, -160]].forEach(p => {
+        const lightPole = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.4, 16, 8), new THREE.MeshLambertMaterial({ color: 0xe2e8f0 }));
+        lightPole.position.set(p[0], 8, p[1]);
+        scene.add(lightPole);
+      });
 
       spawnSoccerBall();
-      buildings.push({ x: 120, z: -120, radius: 30, name: "⚽ Sân Bóng Đá" });
+      buildings.push({ x: 140, z: -140, radius: 32, name: "⚽ Sân Bóng Đá" });
     }
 
     function spawnSoccerBall() {
       if (soccerBall) scene.remove(soccerBall.mesh);
-      const ballGeo = new THREE.DodecahedronGeometry(2.5, 2);
+      const ballGeo = new THREE.DodecahedronGeometry(2.6, 2);
       const ballMat = new THREE.MeshLambertMaterial({ color: 0xffffff });
       const bMesh = new THREE.Mesh(ballGeo, ballMat);
-      bMesh.position.set(120, 3, -120);
+      bMesh.position.set(140, 3, -140);
       bMesh.castShadow = true;
       scene.add(bMesh);
       soccerBall = { mesh: bMesh, vel: new THREE.Vector3() };
       showToast("⚽ Đã thả quả bóng đá khổng lồ!");
     }
 
-    // VEHICLE CREATOR
+    // Mây hoạt hình lơ lửng trên bầu trời (Cartoon Clouds)
+    function createCartoonClouds() {
+      const cMat = new THREE.MeshLambertMaterial({ color: 0xffffff, transparent: true, opacity: 0.85 });
+      for (let i = 0; i < 20; i++) {
+        const cloud = new THREE.Group();
+        for (let j = 0; j < 5; j++) {
+          const puff = new THREE.Mesh(new THREE.DodecahedronGeometry(6 + Math.random() * 4), cMat);
+          puff.position.set((j - 2) * 5, Math.random() * 2, Math.random() * 3);
+          cloud.add(puff);
+        }
+        cloud.position.set((Math.random() - 0.5) * 500, 85 + Math.random() * 30, (Math.random() - 0.5) * 500);
+        scene.add(cloud);
+        clouds.push(cloud);
+      }
+    }
+
+    // ==========================================================
+    // XE CỘ: LAMBO, BUGATTI, F1, MONSTER TRUCK, POLICE
+    // ==========================================================
     function createCarMesh(type = 'lambo', color = 0xdc2626) {
       const g = new THREE.Group();
       const isMonster = (type === 'monster');
-      const bH = isMonster ? 1.6 : 1.0;
-      const bY = isMonster ? 1.6 : 0.8;
+      const isF1 = (type === 'f1');
+      const bH = isMonster ? 1.6 : isF1 ? 0.6 : 1.0;
+      const bY = isMonster ? 1.6 : isF1 ? 0.5 : 0.8;
 
       const b = new THREE.Mesh(new THREE.BoxGeometry(2.4, bH, 4.6), new THREE.MeshLambertMaterial({ color }));
       b.position.y = bY; b.castShadow = true; g.add(b);
@@ -1007,9 +1394,21 @@
       const cab = new THREE.Mesh(new THREE.BoxGeometry(2.0, 0.8, 2.4), new THREE.MeshLambertMaterial({ color: 0x0f172a }));
       cab.position.set(0, bY + 0.7, -0.3); g.add(cab);
 
+      // Cánh gió F1 Spoiler
+      if (isF1) {
+        const wing = new THREE.Mesh(new THREE.BoxGeometry(2.6, 0.15, 0.8), new THREE.MeshLambertMaterial({ color: 0x111827 }));
+        wing.position.set(0, 1.4, -2.1); g.add(wing);
+      }
+
+      // Đèn cảnh sát
+      if (type === 'police') {
+        const lightBar = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.25, 0.5), new THREE.MeshBasicMaterial({ color: 0x3b82f6 }));
+        lightBar.position.set(0, 2.0, -0.3); g.add(lightBar);
+      }
+
       // Bánh xe
-      const wRadius = isMonster ? 1.1 : 0.45;
-      const wWidth = isMonster ? 0.8 : 0.35;
+      const wRadius = isMonster ? 1.1 : isF1 ? 0.5 : 0.45;
+      const wWidth = isMonster ? 0.8 : isF1 ? 0.45 : 0.35;
       const wY = isMonster ? 1.0 : 0.45;
       const wGeo = new THREE.CylinderGeometry(wRadius, wRadius, wWidth, 14);
       const wMat = new THREE.MeshLambertMaterial({ color: 0x111827 });
@@ -1025,22 +1424,29 @@
     }
 
     function spawnDefaultVehicles() {
-      addVehicle(8, 15, 'lambo', 0xdc2626);
-      addVehicle(65, 50, 'police', 0x1e293b);
-      addVehicle(-50, 55, 'truck', 0x10b981);
+      // Xe đậu trước cửa nhà Jack
+      addVehicle(-13, 22, 'lambo', 0xdc2626);
+      // Xe cảnh sát tại Police Station
+      addVehicle(80, 60, 'police', 0x1e293b);
+      // Xe bán tải gần Trạm xăng
+      addVehicle(-60, 65, 'truck', 0x10b981);
     }
 
     function addVehicle(x, z, type, color) {
       const mesh = createCarMesh(type, color);
       mesh.position.set(x, 0, z);
       scene.add(mesh);
-      const car = { mesh, type, speed: 0, rot: 0, maxSpeed: type === 'monster' ? 0.95 : 1.2, gas: false, brake: false, nitro: false };
+      const car = {
+        mesh, type, speed: 0, rot: 0,
+        maxSpeed: type === 'f1' ? 1.45 : type === 'monster' ? 0.95 : 1.2,
+        gas: false, brake: false, nitro: false
+      };
       vehicles.push(car);
       return car;
     }
 
     function spawnCityNPCs() {
-      for (let i = 0; i < 20; i++) {
+      for (let i = 0; i < 22; i++) {
         const npc = new THREE.Group();
         const mat = new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff });
         const body = new THREE.Mesh(new THREE.BoxGeometry(0.7, 1.0, 0.4), mat);
@@ -1048,7 +1454,7 @@
         const h = new THREE.Mesh(new THREE.BoxGeometry(0.45, 0.45, 0.45), new THREE.MeshLambertMaterial({ color: 0xffdcb1 }));
         h.position.y = 1.95; npc.add(h);
 
-        npc.position.set((Math.random() - 0.5) * 240, 0, (Math.random() - 0.5) * 240);
+        npc.position.set((Math.random() - 0.5) * 260, 0, (Math.random() - 0.5) * 260);
         npc.userData = { dir: Math.random() * Math.PI * 2, speed: 1.6 + Math.random() };
         scene.add(npc);
         npcs.push(npc);
@@ -1152,9 +1558,11 @@
         if (e.code === 'Tab' || e.code === 'KeyT') { e.preventDefault(); togglePhone(); }
         if (e.code === 'Digit1') selectWeapon('ak47');
         if (e.code === 'Digit2') selectWeapon('rpg');
-        if (e.code === 'Digit3') selectWeapon('shotgun');
-        if (e.code === 'Digit4') selectWeapon('pistol');
+        if (e.code === 'Digit3') selectWeapon('sniper');
+        if (e.code === 'Digit4') selectWeapon('shotgun');
+        if (e.code === 'Digit5') selectWeapon('pistol');
         if (e.code === 'KeyR') triggerRagdollFlop();
+        if (e.code === 'KeyC') toggleCameraView();
       });
       window.addEventListener('keyup', e => {
         if (e.code === 'KeyW' || e.code === 'ArrowUp') keys.w = false;
@@ -1173,10 +1581,16 @@
     // ACTIONS
     function doPlayerJump() {
       if (isGrounded && !State.inVehicle) {
-        playerVel.y = 8.5 * State.jumpMulti;
+        playerVel.y = 8.8 * State.jumpMulti;
         isGrounded = false;
         Sound.playJumpSound();
       }
+    }
+
+    function toggleCameraView() {
+      State.firstPerson = !State.firstPerson;
+      document.getElementById('cam-view-txt').innerText = State.firstPerson ? 'TPS' : 'FPS';
+      showToast(State.firstPerson ? "Góc nhìn: Thứ Nhất (FPS)" : "Góc nhìn: Thứ Ba (TPS)");
     }
 
     function triggerRagdollFlop() {
@@ -1239,7 +1653,7 @@
           State.inVehicle = closest;
           player.visible = false;
           updateMobileHUD(true);
-          showToast("Đã lên " + (closest.type === 'police' ? "Xe Cảnh Sát" : closest.type === 'monster' ? "Monster Truck" : "Siêu Xe"));
+          showToast("Đã lên " + (closest.type === 'police' ? "Xe Cảnh Sát" : closest.type === 'monster' ? "Monster Truck" : closest.type === 'f1' ? "Xe Đua F1" : "Siêu Xe"));
         } else {
           showToast("Không có xe nào ở gần bạn!");
         }
@@ -1251,10 +1665,11 @@
       document.getElementById('ragdoll-btn-wrap').classList.toggle('hidden', inCar);
       document.getElementById('onfoot-buttons').classList.toggle('hidden', inCar);
       document.getElementById('incar-buttons').classList.toggle('hidden', !inCar);
+      document.getElementById('speedo-container').classList.toggle('hidden', !inCar);
       document.getElementById('car-btn-txt').innerText = inCar ? 'Xuống' : 'Lên Xe';
     }
 
-    // DPHONE
+    // DPHONE CONTROLLER
     function togglePhone() {
       State.phoneOpen = !State.phoneOpen;
       document.getElementById('dphone').classList.toggle('open', State.phoneOpen);
@@ -1328,6 +1743,14 @@
       showToast("🛡️ Bất tử: " + (State.isGod ? "BẬT" : "TẮT"));
     }
 
+    function toggleFlyMode() {
+      State.isFlying = !State.isFlying;
+      const el = document.getElementById('fly-txt');
+      el.innerText = State.isFlying ? "BẬT" : "TẮT";
+      el.className = State.isFlying ? "text-[9px] bg-cyan-900 text-cyan-300 px-2 py-0.5 rounded font-black" : "text-[9px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded font-black";
+      showToast(State.isFlying ? "🦸 Chế Độ Bay: BẬT (Ấn nhảy để bay cao)" : "🦸 Chế Độ Bay: TẮT");
+    }
+
     function addMoney(amt) {
       State.cash += amt;
       document.getElementById('cash-val').innerText = '$' + State.cash.toLocaleString();
@@ -1393,6 +1816,7 @@
       if (type === 'truck') col = 0x10b981;
       if (type === 'bugatti') col = 0xf59e0b;
       if (type === 'monster') col = 0x8b5cf6;
+      if (type === 'f1') col = 0x06b6d4;
       addVehicle(pos.x, pos.z, type, col);
       showToast("🚗 dUber: Đã giao xe tới bạn!");
     }
@@ -1406,13 +1830,13 @@
 
     function selectWeapon(wId) {
       State.weapon = wId;
-      const names = { ak47: 'AK-47', rpg: 'RPG Phóng Lựu', shotgun: 'Shotgun', pistol: 'Súng Lục' };
+      const names = { ak47: 'AK-47', rpg: 'RPG Phóng Lựu', sniper: 'Sniper Tỉa', shotgun: 'Shotgun', pistol: 'Súng Lục' };
       document.getElementById('weapon-label').innerHTML = `<i class="fa-solid fa-gun"></i> ` + names[wId];
       showToast("Trang bị: " + names[wId]);
     }
 
     function cycleWeapon() {
-      const list = ['ak47', 'rpg', 'shotgun', 'pistol'];
+      const list = ['ak47', 'rpg', 'sniper', 'shotgun', 'pistol'];
       const next = list[(list.indexOf(State.weapon) + 1) % list.length];
       selectWeapon(next);
     }
@@ -1441,6 +1865,7 @@
       updateSoccerPhysics(delta);
       updateTrampoline();
       updateNPCsMovement(delta);
+      updateClouds(delta);
       updateCameraOrbit();
       renderRadar();
 
@@ -1482,12 +1907,20 @@
         rightLeg.rotation.x = 0;
       }
 
-      playerVel.y -= 22 * delta;
-      player.position.y += playerVel.y * delta;
-      if (player.position.y <= 0) {
-        player.position.y = 0;
-        playerVel.y = 0;
-        isGrounded = true;
+      // Fly Mode or Normal Gravity
+      if (State.isFlying) {
+        if (keys.space) player.position.y += 18 * delta;
+        else if (moveDir.z < -0.6) player.position.y += 10 * delta;
+        else playerVel.y = 0;
+        isGrounded = false;
+      } else {
+        playerVel.y -= 22 * delta;
+        player.position.y += playerVel.y * delta;
+        if (player.position.y <= 0) {
+          player.position.y = 0;
+          playerVel.y = 0;
+          isGrounded = true;
+        }
       }
     }
 
@@ -1498,8 +1931,16 @@
           const brake = c.brake || keys.s;
           const nitro = c.nitro;
 
-          const topSpeed = c.maxSpeed * (nitro ? 1.8 : 1.0);
-          const accel = (nitro ? 2.8 : 1.4) * delta;
+          // Recharge or deplete nitro
+          if (nitro && State.nitroMeter > 0) {
+            State.nitroMeter = Math.max(0, State.nitroMeter - 30 * delta);
+          } else if (!nitro && State.nitroMeter < 100) {
+            State.nitroMeter = Math.min(100, State.nitroMeter + 15 * delta);
+          }
+          document.getElementById('nitro-bar-fill').style.width = State.nitroMeter + '%';
+
+          const topSpeed = c.maxSpeed * (nitro && State.nitroMeter > 0 ? 1.75 : 1.0);
+          const accel = (nitro && State.nitroMeter > 0 ? 3.0 : 1.4) * delta;
 
           if (gas) c.speed = Math.min(c.speed + accel, topSpeed);
           else if (brake) c.speed = Math.max(c.speed - 1.2 * delta, -0.45);
@@ -1518,6 +1959,10 @@
           c.mesh.position.x += Math.sin(c.rot) * c.speed;
           c.mesh.position.z += Math.cos(c.rot) * c.speed;
           camYaw = c.rot + Math.PI;
+
+          // Update Speedo HUD
+          const kmh = Math.round(Math.abs(c.speed) * 120);
+          document.getElementById('speedo-num').innerText = kmh;
 
           // Soccer Ball Interaction with Car
           if (soccerBall) {
@@ -1547,18 +1992,16 @@
     function updateBulletsMovement(delta) {
       for (let i = bullets.length - 1; i >= 0; i--) {
         const b = bullets[i];
-        b.position.addScaledVector(b.userData.dir, 70 * delta);
+        b.position.addScaledVector(b.userData.dir, 75 * delta);
         b.userData.life--;
 
-        // Ground hit or expiry
         if (b.userData.life <= 0 || b.position.y <= 0) {
           if (b.userData.isRpg) {
             Sound.playExplosion();
-            // Explosion force to soccer ball
-            if (soccerBall && soccerBall.mesh.position.distanceTo(b.position) < 14) {
-              soccerBall.vel.y += 22;
-              soccerBall.vel.x += (Math.random() - 0.5) * 20;
-              soccerBall.vel.z += (Math.random() - 0.5) * 20;
+            if (soccerBall && soccerBall.mesh.position.distanceTo(b.position) < 16) {
+              soccerBall.vel.y += 24;
+              soccerBall.vel.x += (Math.random() - 0.5) * 25;
+              soccerBall.vel.z += (Math.random() - 0.5) * 25;
             }
           }
           scene.remove(b);
@@ -1570,13 +2013,13 @@
     function updateSoccerPhysics(delta) {
       if (!soccerBall) return;
       soccerBall.mesh.position.addScaledVector(soccerBall.vel, delta);
-      soccerBall.vel.y -= 20 * delta; // Gravity
-      soccerBall.vel.x *= 0.98; // Drag
+      soccerBall.vel.y -= 20 * delta;
+      soccerBall.vel.x *= 0.98;
       soccerBall.vel.z *= 0.98;
 
       if (soccerBall.mesh.position.y <= 2.5) {
         soccerBall.mesh.position.y = 2.5;
-        soccerBall.vel.y = -soccerBall.vel.y * 0.7; // Bounce
+        soccerBall.vel.y = -soccerBall.vel.y * 0.7;
       }
     }
 
@@ -1584,7 +2027,7 @@
       if (!trampolineMesh || State.inVehicle) return;
       const d = Math.hypot(player.position.x - trampolineMesh.x, player.position.z - trampolineMesh.z);
       if (d < trampolineMesh.radius && player.position.y <= 1.0) {
-        playerVel.y = 28.0; // Mega Launch!
+        playerVel.y = 28.0;
         Sound.playBoing();
         showToast("🚀 BẬT TUNG NÓC NHÀ (MEGA BOING)!");
       }
@@ -1598,22 +2041,47 @@
       });
     }
 
+    function updateClouds(delta) {
+      clouds.forEach(c => {
+        c.position.x += 1.2 * delta;
+        if (c.position.x > 300) c.position.x = -300;
+      });
+    }
+
     function updateCameraOrbit() {
-      const target = State.inVehicle ? State.inVehicle.mesh.position.clone().add(new THREE.Vector3(0, 1.5, 0)) : player.position.clone().add(new THREE.Vector3(0, 1.4 * State.playerScale, 0));
-      const dist = State.inVehicle ? 7.5 : 4.8 * State.playerScale;
-      const ox = Math.sin(camYaw) * Math.cos(camPitch) * dist;
-      const oy = Math.sin(camPitch) * dist + 1.2;
-      const oz = Math.cos(camYaw) * Math.cos(camPitch) * dist;
-      camera.position.set(target.x + ox, target.y + oy, target.z + oz);
-      camera.lookAt(target);
+      let target;
+      if (State.inVehicle) {
+        target = State.inVehicle.mesh.position.clone().add(new THREE.Vector3(0, 1.5, 0));
+      } else {
+        target = player.position.clone().add(new THREE.Vector3(0, 1.4 * State.playerScale, 0));
+      }
+
+      if (State.firstPerson && !State.inVehicle) {
+        // Góc nhìn thứ nhất FPS
+        camera.position.copy(target).add(new THREE.Vector3(0, 0.35, 0));
+        const lookDir = new THREE.Vector3(
+          -Math.sin(camYaw) * Math.cos(camPitch),
+          Math.sin(camPitch),
+          -Math.cos(camYaw) * Math.cos(camPitch)
+        );
+        camera.lookAt(camera.position.clone().add(lookDir));
+      } else {
+        // Góc nhìn thứ ba TPS
+        const dist = State.inVehicle ? 7.5 : 4.8 * State.playerScale;
+        const ox = Math.sin(camYaw) * Math.cos(camPitch) * dist;
+        const oy = Math.sin(camPitch) * dist + 1.2;
+        const oz = Math.cos(camYaw) * Math.cos(camPitch) * dist;
+        camera.position.set(target.x + ox, target.y + oy, target.z + oz);
+        camera.lookAt(target);
+      }
     }
 
     function renderRadar() {
       const c = document.getElementById('minimap-canvas');
       const ctx = c.getContext('2d');
-      ctx.clearRect(0, 0, 110, 110);
+      ctx.clearRect(0, 0, 115, 115);
 
-      const cx = 55, cy = 55, sc = 0.3;
+      const cx = 57.5, cy = 57.5, sc = 0.28;
       const pos = State.inVehicle ? State.inVehicle.mesh.position : player.position;
 
       // Buildings
@@ -1641,10 +2109,10 @@
         ctx.fill();
       }
 
-      // Player Arrow
+      // Player Arrow in Center
       ctx.fillStyle = '#ef4444';
       ctx.beginPath();
-      ctx.arc(cx, cy, 4, 0, Math.PI * 2);
+      ctx.arc(cx, cy, 4.5, 0, Math.PI * 2);
       ctx.fill();
 
       ctx.strokeStyle = '#fff';
