@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>Dude Theft Wars 3D: Authentic 99% Map & UI Edition</title>
+  <title>Dude Theft Wars 3D: Mega Edition</title>
 
   <!-- Tailwind CSS & FontAwesome -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -63,28 +63,26 @@
       touch-action: manipulation;
     }
 
-    /* ==========================================================
-       AUTHENTIC DUDE THEFT WARS UI (VIỀN CARTOON 3D VÀNG ĐẬM)
-       ========================================================== */
+    /* DUDE THEFT WARS CARTOON 3D UI */
     .dtw-panel {
-      background: linear-gradient(180deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%);
-      border: 3.5px solid #f59e0b;
-      border-radius: 20px;
-      box-shadow: 0 6px 0 #b45309, 0 10px 25px rgba(0, 0, 0, 0.6);
+      background: linear-gradient(180deg, rgba(30, 41, 59, 0.94) 0%, rgba(15, 23, 42, 0.98) 100%);
+      border: 3px solid #f59e0b;
+      border-radius: 18px;
+      box-shadow: 0 5px 0 #b45309, 0 8px 20px rgba(0, 0, 0, 0.6);
     }
     .dtw-pill {
-      background: linear-gradient(180deg, rgba(30, 41, 59, 0.94) 0%, rgba(15, 23, 42, 0.96) 100%);
-      border: 3px solid #f59e0b;
+      background: linear-gradient(180deg, rgba(30, 41, 59, 0.92) 0%, rgba(15, 23, 42, 0.96) 100%);
+      border: 2.5px solid #f59e0b;
       border-radius: 9999px;
-      box-shadow: 0 4px 0 #b45309, 0 6px 16px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 4px 0 #b45309, 0 6px 14px rgba(0, 0, 0, 0.5);
     }
     .btn-dtw {
       background: linear-gradient(180deg, #fbbf24 0%, #f59e0b 100%);
-      border: 3px solid #ffffff;
+      border: 2.5px solid #ffffff;
       color: #0f172a;
       font-weight: 900;
       border-radius: 9999px;
-      box-shadow: 0 5px 0 #b45309, 0 8px 18px rgba(0,0,0,0.4);
+      box-shadow: 0 4px 0 #b45309, 0 6px 14px rgba(0,0,0,0.4);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -92,44 +90,44 @@
       transition: transform 0.08s ease, box-shadow 0.08s ease;
     }
     .btn-dtw:active {
-      transform: translateY(4px);
+      transform: translateY(3px);
       box-shadow: 0 1px 0 #b45309;
     }
     .btn-dtw-red {
       background: linear-gradient(180deg, #f87171 0%, #ef4444 100%);
-      box-shadow: 0 5px 0 #991b1b, 0 8px 18px rgba(0,0,0,0.4);
+      box-shadow: 0 4px 0 #991b1b, 0 6px 14px rgba(0,0,0,0.4);
       color: #ffffff;
     }
     .btn-dtw-red:active {
-      transform: translateY(4px);
+      transform: translateY(3px);
       box-shadow: 0 1px 0 #991b1b;
     }
     .btn-dtw-blue {
       background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%);
-      box-shadow: 0 5px 0 #0369a1, 0 8px 18px rgba(0,0,0,0.4);
+      box-shadow: 0 4px 0 #0369a1, 0 6px 14px rgba(0,0,0,0.4);
       color: #ffffff;
     }
     .btn-dtw-blue:active {
-      transform: translateY(4px);
+      transform: translateY(3px);
       box-shadow: 0 1px 0 #0369a1;
     }
     .btn-dtw-nitro {
       background: linear-gradient(180deg, #06b6d4 0%, #2563eb 100%);
-      box-shadow: 0 5px 0 #1e40af, 0 8px 18px rgba(0,0,0,0.4);
+      box-shadow: 0 4px 0 #1e40af, 0 6px 14px rgba(0,0,0,0.4);
       color: #ffffff;
     }
     .btn-dtw-nitro:active {
-      transform: translateY(4px);
+      transform: translateY(3px);
       box-shadow: 0 1px 0 #1e40af;
     }
 
     /* Virtual Joystick */
     #joystick-base {
       position: absolute;
-      width: 126px;
-      height: 126px;
+      width: 120px;
+      height: 120px;
       background: rgba(255, 255, 255, 0.18);
-      border: 3.5px solid rgba(255, 255, 255, 0.45);
+      border: 3px solid rgba(255, 255, 255, 0.45);
       border-radius: 50%;
       pointer-events: none;
       transform: translate(-50%, -50%);
@@ -140,12 +138,12 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 54px;
-      height: 54px;
+      width: 50px;
+      height: 50px;
       background: linear-gradient(135deg, #fbbf24, #f59e0b);
-      border: 3px solid #ffffff;
+      border: 2.5px solid #ffffff;
       border-radius: 50%;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
       transform: translate(-50%, -50%);
       pointer-events: none;
     }
@@ -156,8 +154,8 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 22px;
-      height: 22px;
+      width: 20px;
+      height: 20px;
       pointer-events: none;
       z-index: 12;
     }
@@ -165,22 +163,22 @@
       content: '';
       position: absolute;
       background: #ffffff;
-      box-shadow: 0 0 4px rgba(0,0,0,0.9);
+      box-shadow: 0 0 3px rgba(0,0,0,0.9);
     }
-    #crosshair::before { top: 10px; left: 0; width: 22px; height: 2px; }
-    #crosshair::after { top: 0; left: 10px; width: 2px; height: 22px; }
+    #crosshair::before { top: 9px; left: 0; width: 20px; height: 2px; }
+    #crosshair::after { top: 0; left: 9px; width: 2px; height: 20px; }
 
-    /* SMARTPHONE DPHONE 15 PRO */
+    /* SMARTPHONE DPHONE */
     #dphone {
       position: absolute;
       bottom: 12px;
       right: 12px;
-      width: min(350px, 94vw);
-      height: min(580px, 88vh);
+      width: min(340px, 92vw);
+      height: min(560px, 86vh);
       background: #090e17;
-      border: 6px solid #1e293b;
-      border-radius: 40px;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), inset 0 0 15px rgba(255, 255, 255, 0.1);
+      border: 5px solid #1e293b;
+      border-radius: 36px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), inset 0 0 15px rgba(255, 255, 255, 0.1);
       transform: translateY(120%);
       transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.25);
       z-index: 60;
@@ -193,14 +191,14 @@
       transform: translateY(0);
     }
     .speaker-notch {
-      width: 65px;
-      height: 5px;
+      width: 60px;
+      height: 4px;
       background: #334155;
       border-radius: 99px;
-      margin: 10px auto 4px auto;
+      margin: 8px auto 4px auto;
     }
 
-    /* Police Siren Strobe */
+    /* Police Siren Overlay */
     #police-siren-overlay {
       position: absolute;
       inset: 0;
@@ -213,27 +211,19 @@
       animation: sirenStrobe 0.55s infinite alternate;
     }
     @keyframes sirenStrobe {
-      0% { background: rgba(59, 130, 246, 0.22); opacity: 1; }
-      100% { background: rgba(239, 68, 68, 0.26); opacity: 1; }
+      0% { background: rgba(59, 130, 246, 0.2); opacity: 1; }
+      100% { background: rgba(239, 68, 68, 0.25); opacity: 1; }
     }
 
     /* Minimap Radar */
     #minimap {
-      width: 115px;
-      height: 115px;
+      width: 110px;
+      height: 110px;
       border-radius: 50%;
-      border: 4px solid #f59e0b;
+      border: 3.5px solid #f59e0b;
       background: rgba(15, 23, 42, 0.95);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+      box-shadow: 0 5px 16px rgba(0,0,0,0.6);
       overflow: hidden;
-    }
-
-    /* Speedometer Gauge for Cars */
-    #speedo-hud {
-      background: rgba(15, 23, 42, 0.92);
-      border: 3px solid #f59e0b;
-      border-radius: 20px;
-      box-shadow: 0 5px 0 #b45309;
     }
 
     .custom-scroll::-webkit-scrollbar { width: 4px; }
@@ -258,9 +248,7 @@
     <div id="joystick-stick"></div>
   </div>
 
-  <!-- ============================================== -->
-  <!-- IN-GAME HUD CHUẨN DUDE THEFT WARS (99% GIỐNG)  -->
-  <!-- ============================================== -->
+  <!-- IN-GAME HUD -->
   <div id="ui-hud" class="p-2 sm:p-4 flex flex-col justify-between">
     
     <!-- TOP HEADER -->
@@ -269,36 +257,36 @@
       <!-- Player Info & Stats -->
       <div class="flex flex-col gap-1.5 touch-btn">
         <!-- Player Badge -->
-        <div class="dtw-pill px-3 py-1.5 flex items-center gap-2.5">
-          <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-amber-500 to-yellow-300 flex items-center justify-center text-slate-950 font-black shadow border-2 border-white">
-            <i class="fa-solid fa-face-grin-squint-tears text-lg"></i>
+        <div class="dtw-pill px-3 py-1.5 flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-500 to-yellow-300 flex items-center justify-center text-slate-950 font-black shadow border border-white">
+            <i class="fa-solid fa-face-grin-squint-tears text-base"></i>
           </div>
           <div>
-            <div class="flex items-center gap-1.5 leading-none">
+            <div class="flex items-center gap-1 leading-none">
               <span id="player-name-val" class="font-black text-white text-xs tracking-wide">Jack (Dude)</span>
-              <button onclick="openNameModal()" class="text-amber-400 p-0.5 hover:text-amber-300" title="Đổi tên nhân vật">
-                <i class="fa-solid fa-pen-to-square text-[11px]"></i>
+              <button onclick="openNameModal()" class="text-amber-400 p-0.5" title="Đổi tên nhân vật">
+                <i class="fa-solid fa-pen-to-square text-[10px]"></i>
               </button>
             </div>
-            <!-- Health Bar & Armor Bar -->
+            <!-- Health & Armor Bars -->
             <div class="flex items-center gap-1 mt-1">
-              <div class="w-20 sm:w-24 h-2.5 bg-slate-950 rounded-full overflow-hidden border border-slate-700">
-                <div id="health-bar-fill" class="h-full bg-gradient-to-r from-emerald-500 to-green-400 transition-all duration-150" style="width: 100%"></div>
+              <div class="w-20 sm:w-24 h-2 bg-slate-950 rounded-full overflow-hidden border border-slate-700">
+                <div id="health-bar-fill" class="h-full bg-emerald-500 transition-all duration-150" style="width: 100%"></div>
               </div>
-              <div class="w-10 sm:w-12 h-2.5 bg-slate-950 rounded-full overflow-hidden border border-slate-700">
-                <div id="armor-bar-fill" class="h-full bg-gradient-to-r from-cyan-500 to-blue-400" style="width: 100%"></div>
+              <div class="w-10 sm:w-12 h-2 bg-slate-950 rounded-full overflow-hidden border border-slate-700">
+                <div id="armor-bar-fill" class="h-full bg-cyan-400" style="width: 100%"></div>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Cash & Wanted Stars -->
-        <div class="dtw-pill px-3.5 py-1 flex items-center justify-between gap-3 max-w-fit">
-          <div class="text-emerald-400 font-black text-sm flex items-center gap-1.5">
-            <i class="fa-solid fa-sack-dollar text-xs"></i>
+        <div class="dtw-pill px-3 py-1 flex items-center justify-between gap-3 max-w-fit">
+          <div class="text-emerald-400 font-black text-xs sm:text-sm flex items-center gap-1">
+            <i class="fa-solid fa-sack-dollar text-[11px]"></i>
             <span id="cash-val">$15,000</span>
           </div>
-          <div class="flex gap-0.5 text-slate-600 text-xs" id="wanted-stars-hud">
+          <div class="flex gap-0.5 text-slate-600 text-[11px]" id="wanted-stars-hud">
             <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star"></i>
@@ -311,21 +299,21 @@
       <!-- Right Top: Minimap Radar & Dev Badge & Weapon Card -->
       <div class="flex flex-col items-end gap-1.5 touch-btn">
         <!-- Dev Badge -->
-        <div id="dev-badge-hud" class="hidden bg-gradient-to-r from-yellow-400 to-amber-500 border-2 border-white text-slate-950 font-black text-[10px] px-3 py-1 rounded-full shadow-lg animate-pulse flex items-center gap-1">
+        <div id="dev-badge-hud" class="hidden bg-gradient-to-r from-yellow-400 to-amber-500 border-2 border-white text-slate-950 font-black text-[9px] px-2.5 py-1 rounded-full shadow-lg animate-pulse flex items-center gap-1">
           <i class="fa-solid fa-crown"></i> DEV ADMIN ACTIVE
         </div>
 
         <!-- Minimap Radar -->
         <div id="minimap" class="flex items-center justify-center relative">
-          <canvas id="minimap-canvas" width="115" height="115"></canvas>
-          <div class="absolute top-1 text-[8px] font-black text-amber-400 pointer-events-none">BẮC (N)</div>
+          <canvas id="minimap-canvas" width="110" height="110"></canvas>
+          <div class="absolute top-1 text-[7px] font-black text-amber-400 pointer-events-none">BẮC (N)</div>
         </div>
 
         <!-- Weapon Card Switcher -->
-        <button onclick="cycleWeapon()" class="dtw-pill px-3 py-1.5 text-xs font-black text-amber-400 flex items-center gap-2 hover:scale-105 active:scale-95 transition-transform">
+        <button onclick="cycleWeapon()" class="dtw-pill px-2.5 py-1 text-xs font-black text-amber-400 flex items-center gap-1.5 hover:scale-105 active:scale-95 transition-transform">
           <span id="weapon-label"><i class="fa-solid fa-gun"></i> AK-47</span>
-          <span class="text-white text-[10px] bg-slate-800 px-1.5 py-0.5 rounded-full font-mono">∞</span>
-          <i class="fa-solid fa-repeat text-[10px] text-white"></i>
+          <span class="text-white text-[9px] bg-slate-800 px-1.5 py-0.5 rounded-full font-mono">∞</span>
+          <i class="fa-solid fa-repeat text-[9px] text-white"></i>
         </button>
       </div>
     </div>
@@ -338,13 +326,12 @@
     <!-- SPEEDOMETER HUD (KHI LÁI XE) -->
     <div id="speedo-container" class="hidden self-center dtw-panel px-4 py-1.5 flex items-center gap-3">
       <div class="flex flex-col items-center">
-        <span id="speedo-num" class="font-black text-2xl text-white font-mono leading-none">0</span>
-        <span class="text-[9px] font-black text-amber-400 tracking-wider">KM/H</span>
+        <span id="speedo-num" class="font-black text-xl text-white font-mono leading-none">0</span>
+        <span class="text-[8px] font-black text-amber-400 tracking-wider">KM/H</span>
       </div>
-      <!-- Nitro Meter Bar -->
       <div class="flex flex-col">
-        <span class="text-[9px] font-bold text-cyan-300">NITRO</span>
-        <div class="w-24 h-2 bg-slate-900 rounded-full overflow-hidden border border-cyan-500/40">
+        <span class="text-[8px] font-bold text-cyan-300">NITRO</span>
+        <div class="w-20 h-2 bg-slate-900 rounded-full overflow-hidden border border-cyan-500/40">
           <div id="nitro-bar-fill" class="h-full bg-gradient-to-r from-cyan-400 to-blue-500" style="width: 100%"></div>
         </div>
       </div>
@@ -357,169 +344,163 @@
       <div id="mobile-left-controls" class="flex items-center gap-2 touch-btn">
         <!-- In Car Pedals -->
         <div id="car-pedals-left" class="hidden flex gap-2">
-          <button id="btn-brake" class="btn-dtw btn-dtw-red w-14 h-14 text-sm font-black">
+          <button id="btn-brake" class="btn-dtw btn-dtw-red w-12 h-12 text-xs font-black">
             <i class="fa-solid fa-backward-step"></i>
-            <span class="text-[9px]">Phanh</span>
+            <span class="text-[8px]">Phanh</span>
           </button>
-          <button id="btn-nitro" class="btn-dtw btn-dtw-nitro w-14 h-14 text-sm font-black">
-            <i class="fa-solid fa-fire-flame-curved text-lg"></i>
-            <span class="text-[9px]">NITRO</span>
+          <button id="btn-nitro" class="btn-dtw btn-dtw-nitro w-12 h-12 text-xs font-black">
+            <i class="fa-solid fa-fire-flame-curved text-sm"></i>
+            <span class="text-[8px]">NITRO</span>
           </button>
-          <button onclick="Sound.playCarHorn()" class="btn-dtw btn-dtw-blue w-12 h-12 text-sm">
+          <button onclick="Sound.playCarHorn()" class="btn-dtw btn-dtw-blue w-11 h-11 text-xs">
             <i class="fa-solid fa-bullhorn"></i>
-            <span class="text-[8px]">Còi</span>
+            <span class="text-[7px]">Còi</span>
           </button>
         </div>
 
         <!-- Ragdoll & View Toggle -->
         <div id="ragdoll-btn-wrap" class="flex gap-2">
-          <button onclick="triggerRagdollFlop()" class="btn-dtw w-12 h-12 text-slate-950">
-            <i class="fa-solid fa-person-falling text-lg"></i>
-            <span class="text-[8px]">Ngã</span>
+          <button onclick="triggerRagdollFlop()" class="btn-dtw w-11 h-11 text-slate-950">
+            <i class="fa-solid fa-person-falling text-base"></i>
+            <span class="text-[7px]">Ngã</span>
           </button>
-          <button onclick="toggleCameraView()" class="btn-dtw btn-dtw-blue w-12 h-12">
-            <i class="fa-solid fa-eye text-base"></i>
-            <span class="text-[8px]" id="cam-view-txt">FPS</span>
+          <button onclick="toggleCameraView()" class="btn-dtw btn-dtw-blue w-11 h-11">
+            <i class="fa-solid fa-eye text-sm"></i>
+            <span class="text-[7px]" id="cam-view-txt">FPS</span>
           </button>
         </div>
       </div>
 
-      <!-- Right Bottom Action Buttons: Shoot, Jump, Car Enter, dPhone -->
-      <div id="mobile-right-controls" class="flex items-end gap-2.5 touch-btn">
+      <!-- Right Bottom Action Buttons -->
+      <div id="mobile-right-controls" class="flex items-end gap-2 touch-btn">
         
         <!-- On Foot Controls -->
         <div id="onfoot-buttons" class="flex items-end gap-2">
-          <button id="btn-sprint" class="btn-dtw w-12 h-12 text-slate-950 text-xs">
+          <button id="btn-sprint" class="btn-dtw w-11 h-11 text-slate-950 text-xs">
             <i class="fa-solid fa-person-running text-base"></i>
-            <span class="text-[8px]">Chạy</span>
+            <span class="text-[7px]">Chạy</span>
           </button>
-          <button id="btn-jump" onclick="doPlayerJump()" class="btn-dtw w-14 h-14 text-slate-950 text-base">
-            <i class="fa-solid fa-arrow-up text-lg"></i>
-            <span class="text-[9px]">Nhảy</span>
+          <button id="btn-jump" onclick="doPlayerJump()" class="btn-dtw w-12 h-12 text-slate-950 text-sm">
+            <i class="fa-solid fa-arrow-up text-base"></i>
+            <span class="text-[8px]">Nhảy</span>
           </button>
-          <button id="btn-shoot" class="btn-dtw btn-dtw-red w-16 h-16 text-lg">
-            <i class="fa-solid fa-crosshairs text-2xl"></i>
-            <span class="text-[9px]">Bắn</span>
+          <button id="btn-shoot" class="btn-dtw btn-dtw-red w-14 h-14 text-base">
+            <i class="fa-solid fa-crosshairs text-xl"></i>
+            <span class="text-[8px]">Bắn</span>
           </button>
         </div>
 
         <!-- In Car Gas Pedal -->
         <div id="incar-buttons" class="hidden flex items-end gap-2">
-          <button id="btn-gas" class="btn-dtw w-16 h-16 bg-emerald-500 text-slate-950 text-base">
-            <i class="fa-solid fa-gas-pump text-2xl"></i>
-            <span class="text-[9px]">Đạp Ga</span>
+          <button id="btn-gas" class="btn-dtw w-14 h-14 bg-emerald-500 text-slate-950 text-sm">
+            <i class="fa-solid fa-gas-pump text-xl"></i>
+            <span class="text-[8px]">Đạp Ga</span>
           </button>
         </div>
 
         <!-- Enter / Exit Car Button -->
-        <button id="btn-car-interact" onclick="toggleCarDrive()" class="btn-dtw w-13 h-13 p-2 text-slate-950">
-          <i class="fa-solid fa-car text-xl"></i>
-          <span id="car-btn-txt" class="text-[8px] font-black uppercase">Lên Xe</span>
+        <button id="btn-car-interact" onclick="toggleCarDrive()" class="btn-dtw w-12 h-12 p-1 text-slate-950">
+          <i class="fa-solid fa-car text-base"></i>
+          <span id="car-btn-txt" class="text-[7px] font-black uppercase">Lên Xe</span>
         </button>
 
         <!-- dPhone Button -->
-        <button onclick="togglePhone()" class="w-14 h-16 rounded-2xl bg-gradient-to-tr from-amber-500 to-yellow-400 border-3 border-white shadow-xl flex flex-col items-center justify-center text-slate-950 font-black hover:scale-105 active:scale-95 transition-all">
-          <i class="fa-solid fa-mobile-screen-button text-2xl"></i>
-          <span class="text-[8px] font-black uppercase tracking-tighter mt-0.5">dPhone</span>
+        <button onclick="togglePhone()" class="w-12 h-14 rounded-2xl bg-gradient-to-tr from-amber-500 to-yellow-400 border-2 border-white shadow-xl flex flex-col items-center justify-center text-slate-950 font-black hover:scale-105 active:scale-95 transition-all">
+          <i class="fa-solid fa-mobile-screen-button text-xl"></i>
+          <span class="text-[7px] font-black uppercase tracking-tighter mt-0.5">dPhone</span>
         </button>
       </div>
 
     </div>
   </div>
 
-  <!-- ============================================== -->
-  <!-- CHIẾC ĐIỆN THOẠI DPHONE (FULL APPS ĐỈNH CAO)   -->
-  <!-- ============================================== -->
+  <!-- DPHONE MODAL -->
   <div id="dphone">
     <div class="speaker-notch"></div>
     
-    <!-- Phone Top Status Bar -->
-    <div class="px-5 py-1.5 flex justify-between items-center text-[10px] font-bold text-slate-400 border-b border-slate-800">
+    <div class="px-4 py-1.5 flex justify-between items-center text-[10px] font-bold text-slate-400 border-b border-slate-800">
       <span>12:00 PM</span>
-      <span class="text-amber-400 font-black tracking-wide">dPhone 15 Pro Max</span>
+      <span class="text-amber-400 font-black tracking-wide">dPhone 15 Pro</span>
       <div class="flex gap-1.5 items-center">
-        <i class="fa-solid fa-signal text-[9px]"></i>
         <i class="fa-solid fa-wifi text-[9px]"></i>
         <i class="fa-solid fa-battery-full text-emerald-400 text-xs"></i>
       </div>
     </div>
 
     <!-- Phone Screen Views -->
-    <div class="flex-1 p-3.5 overflow-y-auto custom-scroll" id="phone-container">
+    <div class="flex-1 p-3 overflow-y-auto custom-scroll" id="phone-container">
       
-      <!-- Screen 1: App Grid -->
+      <!-- Home App Grid -->
       <div id="view-home" class="space-y-3">
         <div class="text-center pt-1 pb-1">
-          <div class="text-lg font-black text-white tracking-wide">DudeOS 3.0</div>
-          <p class="text-[10px] text-slate-400">Hệ điều hành thế giới mở Dude City 99%</p>
+          <div class="text-base font-black text-white tracking-wide">DudeOS 3.0</div>
+          <p class="text-[9px] text-slate-400">Dude City 99% Map Edition</p>
         </div>
 
-        <div class="grid grid-cols-3 gap-2.5 text-center">
-          
+        <div class="grid grid-cols-3 gap-2 text-center">
           <!-- App Cheats -->
           <div onclick="switchPhoneView('cheats')" class="flex flex-col items-center cursor-pointer active:scale-90 transition-transform">
-            <div class="w-13 h-13 rounded-2xl bg-gradient-to-tr from-rose-500 to-red-600 flex items-center justify-center text-white text-xl shadow-lg border border-white/20">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-rose-500 to-red-600 flex items-center justify-center text-white text-lg shadow border border-white/20">
               <i class="fa-solid fa-terminal"></i>
             </div>
-            <span class="text-[10px] font-bold text-slate-200 mt-1">Cheats</span>
+            <span class="text-[9px] font-bold text-slate-200 mt-1">Cheats</span>
           </div>
 
-          <!-- App dUber Car Spawner -->
+          <!-- App dUber -->
           <div onclick="switchPhoneView('duber')" class="flex flex-col items-center cursor-pointer active:scale-90 transition-transform">
-            <div class="w-13 h-13 rounded-2xl bg-gradient-to-tr from-amber-500 to-yellow-500 flex items-center justify-center text-slate-950 text-xl shadow-lg border border-white/20">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-amber-500 to-yellow-500 flex items-center justify-center text-slate-950 text-lg shadow border border-white/20">
               <i class="fa-solid fa-car-rear"></i>
             </div>
-            <span class="text-[10px] font-bold text-slate-200 mt-1">dUber</span>
+            <span class="text-[9px] font-bold text-slate-200 mt-1">dUber</span>
           </div>
 
           <!-- App Weapons -->
           <div onclick="switchPhoneView('weapons')" class="flex flex-col items-center cursor-pointer active:scale-90 transition-transform">
-            <div class="w-13 h-13 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-600 flex items-center justify-center text-white text-xl shadow-lg border border-white/20">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-600 flex items-center justify-center text-white text-lg shadow border border-white/20">
               <i class="fa-solid fa-gun"></i>
             </div>
-            <span class="text-[10px] font-bold text-slate-200 mt-1">Vũ Khí</span>
+            <span class="text-[9px] font-bold text-slate-200 mt-1">Vũ Khí</span>
           </div>
 
-          <!-- App DEV ADMIN CONSOLE -->
+          <!-- App DEV ADMIN -->
           <div id="app-btn-devadmin" onclick="switchPhoneView('devadmin')" class="flex flex-col items-center cursor-pointer active:scale-90 transition-transform">
-            <div class="w-13 h-13 rounded-2xl bg-gradient-to-tr from-yellow-400 to-amber-600 flex items-center justify-center text-slate-950 text-xl shadow-lg border-2 border-white">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-yellow-400 to-amber-600 flex items-center justify-center text-slate-950 text-lg shadow border-2 border-white">
               <i class="fa-solid fa-crown"></i>
             </div>
-            <span class="text-[10px] font-black text-yellow-300 mt-1">DEV ADMIN</span>
+            <span class="text-[9px] font-black text-yellow-300 mt-1">DEV ADMIN</span>
           </div>
 
-          <!-- App Bản Đồ Teleport -->
+          <!-- App Teleport -->
           <div onclick="switchPhoneView('teleport')" class="flex flex-col items-center cursor-pointer active:scale-90 transition-transform">
-            <div class="w-13 h-13 rounded-2xl bg-gradient-to-tr from-blue-500 to-indigo-600 flex items-center justify-center text-white text-xl shadow-lg border border-white/20">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-blue-500 to-indigo-600 flex items-center justify-center text-white text-lg shadow border border-white/20">
               <i class="fa-solid fa-map-location-dot"></i>
             </div>
-            <span class="text-[10px] font-bold text-slate-200 mt-1">Bản Đồ</span>
+            <span class="text-[9px] font-bold text-slate-200 mt-1">Bản Đồ</span>
           </div>
 
-          <!-- App Đổi Tên Nhân Vật -->
+          <!-- App Edit Name -->
           <div onclick="openNameModal()" class="flex flex-col items-center cursor-pointer active:scale-90 transition-transform">
-            <div class="w-13 h-13 rounded-2xl bg-gradient-to-tr from-purple-500 to-fuchsia-600 flex items-center justify-center text-white text-xl shadow-lg border border-white/20">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-purple-500 to-fuchsia-600 flex items-center justify-center text-white text-lg shadow border border-white/20">
               <i class="fa-solid fa-user-pen"></i>
             </div>
-            <span class="text-[10px] font-bold text-slate-200 mt-1">Đổi Tên</span>
+            <span class="text-[9px] font-bold text-slate-200 mt-1">Đổi Tên</span>
           </div>
-
         </div>
       </div>
 
-      <!-- Screen 2: CHEATS APP -->
-      <div id="view-cheats" class="hidden space-y-2.5">
-        <div class="flex items-center gap-2 pb-1.5 border-b border-slate-800 text-white font-bold text-xs">
+      <!-- View Cheats -->
+      <div id="view-cheats" class="hidden space-y-2">
+        <div class="flex items-center gap-2 pb-1 border-b border-slate-800 text-white font-bold text-xs">
           <button onclick="switchPhoneView('home')" class="text-amber-400 p-1"><i class="fa-solid fa-chevron-left"></i></button>
-          <span>Ứng Dụng Cheats Dude Theft Wars</span>
+          <span>Mã Cheats Dude Theft Wars</span>
         </div>
         <div class="flex gap-1.5">
-          <input id="input-cheat-code" type="text" placeholder="Nhập mã cheat..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white font-mono uppercase focus:border-amber-400">
-          <button onclick="executeEnteredCheat()" class="dtw-pill px-3 py-1.5 text-xs text-white bg-amber-500 font-black">GỬI</button>
+          <input id="input-cheat-code" type="text" placeholder="Nhập mã cheat..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-2.5 py-1.5 text-xs text-white font-mono uppercase focus:border-amber-400">
+          <button onclick="executeEnteredCheat()" class="dtw-pill px-3 py-1 text-xs text-white bg-amber-500 font-black">GỬI</button>
         </div>
-        <div class="text-[11px] text-slate-300">
-          <div class="text-amber-400 font-bold mb-1">Mã bấm nhanh một chạm:</div>
-          <div class="grid grid-cols-2 gap-1.5 text-[10px]">
+        <div class="text-[10px] text-slate-300">
+          <div class="text-amber-400 font-bold mb-1">Bấm nhanh một chạm:</div>
+          <div class="grid grid-cols-2 gap-1 text-[9px]">
             <button onclick="runQuickCheat('dudebolt')" class="bg-slate-900 border border-slate-800 p-1.5 rounded-lg text-left font-bold text-yellow-300">⚡ dudebolt (Tốc độ)</button>
             <button onclick="runQuickCheat('moon')" class="bg-slate-900 border border-slate-800 p-1.5 rounded-lg text-left font-bold text-purple-300">🌌 moon (Mặt trăng)</button>
             <button onclick="runQuickCheat('cash')" class="bg-slate-900 border border-slate-800 p-1.5 rounded-lg text-left font-bold text-emerald-400">💰 cash (+$500,000)</button>
@@ -530,43 +511,41 @@
         </div>
       </div>
 
-      <!-- Screen 3: DUBER (Car Spawner Đầy Đủ) -->
-      <div id="view-duber" class="hidden space-y-2">
-        <div class="flex items-center gap-2 pb-1.5 border-b border-slate-800 text-white font-bold text-xs">
+      <!-- View dUber -->
+      <div id="view-duber" class="hidden space-y-1.5 text-xs">
+        <div class="flex items-center gap-2 pb-1 border-b border-slate-800 text-white font-bold text-xs">
           <button onclick="switchPhoneView('home')" class="text-amber-400 p-1"><i class="fa-solid fa-chevron-left"></i></button>
-          <span>dUber Delivery (Thả Phương Tiện)</span>
+          <span>dUber Delivery</span>
         </div>
-        <div class="grid grid-cols-1 gap-1.5 text-xs">
-          <button onclick="orderVehicle('lambo')" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 p-2 rounded-xl text-left font-bold text-white flex items-center justify-between">
-            <span>🏎️ Siêu Xe Lambo Đỏ</span>
-            <span class="text-emerald-400 font-mono text-[10px]">GIAO NGAY</span>
-          </button>
-          <button onclick="orderVehicle('bugatti')" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 p-2 rounded-xl text-left font-bold text-white flex items-center justify-between">
-            <span>⚡ Siêu Xe Bugatti Vàng</span>
-            <span class="text-emerald-400 font-mono text-[10px]">GIAO NGAY</span>
-          </button>
-          <button onclick="orderVehicle('monster')" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 p-2 rounded-xl text-left font-bold text-amber-400 flex items-center justify-between">
-            <span>🛞 Monster Truck Bánh Khổng Lồ</span>
-            <span class="text-emerald-400 font-mono text-[10px]">GIAO NGAY</span>
-          </button>
-          <button onclick="orderVehicle('f1')" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 p-2 rounded-xl text-left font-bold text-cyan-400 flex items-center justify-between">
-            <span>🏁 Xe Đua F1 Cực Nhanh</span>
-            <span class="text-emerald-400 font-mono text-[10px]">GIAO NGAY</span>
-          </button>
-          <button onclick="orderVehicle('police')" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 p-2 rounded-xl text-left font-bold text-white flex items-center justify-between">
-            <span>🚔 Xe Cảnh Sát Tuần Tra</span>
-            <span class="text-emerald-400 font-mono text-[10px]">GIAO NGAY</span>
-          </button>
-          <button onclick="orderVehicle('truck')" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 p-2 rounded-xl text-left font-bold text-white flex items-center justify-between">
-            <span>🛻 Xe Bán Tải Xanh Lá</span>
-            <span class="text-emerald-400 font-mono text-[10px]">GIAO NGAY</span>
-          </button>
-        </div>
+        <button onclick="orderVehicle('lambo')" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-700 p-2 rounded-xl text-left font-bold text-white flex justify-between">
+          <span>🏎️ Siêu Xe Lambo Đỏ</span>
+          <span class="text-emerald-400 font-mono text-[9px]">GIAO NGAY</span>
+        </button>
+        <button onclick="orderVehicle('bugatti')" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-700 p-2 rounded-xl text-left font-bold text-white flex justify-between">
+          <span>⚡ Siêu Xe Bugatti Vàng</span>
+          <span class="text-emerald-400 font-mono text-[9px]">GIAO NGAY</span>
+        </button>
+        <button onclick="orderVehicle('monster')" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-700 p-2 rounded-xl text-left font-bold text-amber-400 flex justify-between">
+          <span>🛞 Monster Truck Bánh To</span>
+          <span class="text-emerald-400 font-mono text-[9px]">GIAO NGAY</span>
+        </button>
+        <button onclick="orderVehicle('f1')" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-700 p-2 rounded-xl text-left font-bold text-cyan-400 flex justify-between">
+          <span>🏁 Xe Đua F1 Cực Nhanh</span>
+          <span class="text-emerald-400 font-mono text-[9px]">GIAO NGAY</span>
+        </button>
+        <button onclick="orderVehicle('police')" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-700 p-2 rounded-xl text-left font-bold text-white flex justify-between">
+          <span>🚔 Xe Cảnh Sát Tuần Tra</span>
+          <span class="text-emerald-400 font-mono text-[9px]">GIAO NGAY</span>
+        </button>
+        <button onclick="orderVehicle('truck')" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-700 p-2 rounded-xl text-left font-bold text-white flex justify-between">
+          <span>🛻 Xe Bán Tải Xanh Lá</span>
+          <span class="text-emerald-400 font-mono text-[9px]">GIAO NGAY</span>
+        </button>
       </div>
 
-      <!-- Screen 4: DEV ADMIN APP (Bảng điều khiển cho DEV) -->
-      <div id="view-devadmin" class="hidden space-y-2 text-xs">
-        <div class="flex items-center gap-2 pb-1.5 border-b border-yellow-500/40 text-yellow-300 font-black text-xs">
+      <!-- View DEV ADMIN -->
+      <div id="view-devadmin" class="hidden space-y-1.5 text-xs">
+        <div class="flex items-center gap-2 pb-1 border-b border-yellow-500/40 text-yellow-300 font-black text-xs">
           <button onclick="switchPhoneView('home')" class="text-amber-400 p-1"><i class="fa-solid fa-chevron-left"></i></button>
           <i class="fa-solid fa-crown"></i>
           <span>DEV ADMIN CONSOLE</span>
@@ -580,7 +559,7 @@
           <i class="fa-solid fa-plus"></i>
         </button>
         <button id="fly-toggle" onclick="toggleFlyMode()" class="w-full bg-slate-900 p-2 rounded-xl border border-slate-700 text-left font-bold text-cyan-400 flex justify-between items-center">
-          <span>🦸 Chế Độ Bay Superhero (Fly Mode)</span>
+          <span>🦸 Bay Superhero (Fly Mode)</span>
           <span id="fly-txt" class="text-[9px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded font-black">TẮT</span>
         </button>
         <button id="speed-toggle" onclick="toggleSpeed()" class="w-full bg-slate-900 p-2 rounded-xl border border-slate-700 text-left font-bold text-white flex justify-between items-center">
@@ -596,7 +575,7 @@
           <i class="fa-solid fa-futbol"></i>
         </button>
         <button onclick="toggleSlowMotion()" class="w-full bg-slate-900 p-2 rounded-xl border border-slate-700 text-left font-bold text-purple-300 flex justify-between items-center">
-          <span>⏱️ Chế Độ Quay Chậm (Slow-Mo Matrix)</span>
+          <span>⏱️ Quay Chậm (Slow-Mo)</span>
           <span id="slowmo-txt" class="text-[9px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded font-black">TẮT</span>
         </button>
         <div class="grid grid-cols-2 gap-1.5">
@@ -604,32 +583,32 @@
             ⭐ Xóa Tội (0 Sao)
           </button>
           <button onclick="setWantedLevel(5)" class="bg-slate-900 p-2 rounded-xl border border-slate-700 font-bold text-rose-500">
-            🚨 Bật 5 Sao Cảnh Sát
+            🚨 Bật 5 Sao
           </button>
         </div>
       </div>
 
-      <!-- Screen 5: TELEPORT APP -->
+      <!-- View Teleport -->
       <div id="view-teleport" class="hidden space-y-1.5 text-xs">
-        <div class="flex items-center gap-2 pb-1.5 border-b border-slate-800 text-white font-bold text-xs">
+        <div class="flex items-center gap-2 pb-1 border-b border-slate-800 text-white font-bold text-xs">
           <button onclick="switchPhoneView('home')" class="text-amber-400 p-1"><i class="fa-solid fa-chevron-left"></i></button>
-          <span>Dịch Chuyển Đến Công Trình (99% Map)</span>
+          <span>Dịch Chuyển Đến Công Trình</span>
         </div>
         <button onclick="teleportPlayer(0, 2, 30)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-white">🏠 Nhà của Jack (Dude's House)</button>
         <button onclick="teleportPlayer(90, 2, 70)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-white">🚔 Đồn Cảnh Sát (Police HQ)</button>
         <button onclick="teleportPlayer(-80, 2, -70)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-white">🔫 Shop Vũ Khí Ammu-Nation</button>
         <button onclick="teleportPlayer(-75, 2, 75)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-white">⛽ Trạm Xăng Octan Gas Station</button>
-        <button onclick="teleportPlayer(0, 75, -90)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-white">🏢 Nóc Tháp Empire Skyscraper (75m)</button>
+        <button onclick="teleportPlayer(0, 75, -90)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-white">🏢 Nóc Tháp Empire 75m</button>
         <button onclick="teleportPlayer(50, 12, -50)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-amber-300">🎪 Dốc Bay Đua Xe (Stunt Ramp)</button>
         <button onclick="teleportPlayer(140, 2, -140)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-emerald-400">⚽ Sân Vận Động Bóng Đá</button>
-        <button onclick="teleportPlayer(-150, 2, -150)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-cyan-400">✈️ Sân Bay Dude City (Airport Runway)</button>
+        <button onclick="teleportPlayer(-150, 2, -150)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-cyan-400">✈️ Sân Bay Dude City (Runway)</button>
         <button onclick="teleportPlayer(75, 2, -60)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-orange-400">🍔 Tiệm Bánh Dude Burger</button>
-        <button onclick="teleportPlayer(-60, 2, 0)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-rose-400">🏥 Bệnh Viện Trung Tâm (Hospital)</button>
+        <button onclick="teleportPlayer(-60, 2, 0)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-rose-400">🏥 Bệnh Viện Trung Tâm</button>
       </div>
 
-      <!-- Screen 6: WEAPONS APP -->
+      <!-- View Weapons -->
       <div id="view-weapons" class="hidden space-y-1.5 text-xs">
-        <div class="flex items-center gap-2 pb-1.5 border-b border-slate-800 text-white font-bold text-xs">
+        <div class="flex items-center gap-2 pb-1 border-b border-slate-800 text-white font-bold text-xs">
           <button onclick="switchPhoneView('home')" class="text-amber-400 p-1"><i class="fa-solid fa-chevron-left"></i></button>
           <span>Kho Trang Bị Vũ Khí</span>
         </div>
@@ -642,7 +621,7 @@
           <span class="text-amber-400 font-bold">CHỌN</span>
         </button>
         <button onclick="selectWeapon('ak47')" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-white flex justify-between">
-          <span>🔫 Súng Trường Tấn Công AK-47</span>
+          <span>🔫 Súng Trường AK-47</span>
           <span class="text-amber-400 font-bold">CHỌN</span>
         </button>
         <button onclick="selectWeapon('shotgun')" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-white flex justify-between">
@@ -659,28 +638,28 @@
 
     <!-- Phone Bottom Home Pill -->
     <div class="py-2 bg-slate-950 flex justify-center border-t border-slate-800">
-      <div onclick="switchPhoneView('home')" class="w-24 h-1 bg-slate-500 rounded-full cursor-pointer hover:bg-white transition-colors"></div>
+      <div onclick="switchPhoneView('home')" class="w-20 h-1 bg-slate-500 rounded-full cursor-pointer hover:bg-white transition-colors"></div>
     </div>
   </div>
 
-  <!-- POPUP ĐỔI TÊN NHÂN VẬT -->
+  <!-- MODAL ĐỔI TÊN NHÂN VẬT -->
   <div id="modal-name" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 hidden">
     <div class="dtw-panel w-full max-w-xs p-5 text-center relative">
-      <div class="w-14 h-14 mx-auto rounded-2xl bg-amber-500 flex items-center justify-center text-slate-950 text-2xl mb-2.5 border-2 border-white shadow-xl">
+      <div class="w-12 h-12 mx-auto rounded-xl bg-amber-500 flex items-center justify-center text-slate-950 text-xl mb-2.5 border border-white shadow">
         <i class="fa-solid fa-crown"></i>
       </div>
-      <h3 class="text-xl font-black text-white">ĐẶT TÊN NHÂN VẬT</h3>
-      <p class="text-[11px] text-slate-300 mt-1 mb-3">
+      <h3 class="text-lg font-black text-white">ĐẶT TÊN NHÂN VẬT</h3>
+      <p class="text-[10px] text-slate-300 mt-1 mb-3">
         Đổi tên thành <b class="text-yellow-400 underline font-black">dev</b> để mở khóa toàn quyền Admin!
       </p>
-      <input id="char-name-field" type="text" value="dev" maxlength="12" class="w-full bg-slate-900 border-2 border-slate-700 rounded-xl px-3 py-2 text-white font-black text-center text-base focus:border-amber-400 mb-3">
-      <button onclick="confirmNameChange()" class="w-full btn-dtw py-2.5 text-xs text-slate-950 font-black">
+      <input id="char-name-field" type="text" value="dev" maxlength="12" class="w-full bg-slate-900 border-2 border-slate-700 rounded-xl px-3 py-2 text-white font-black text-center text-sm focus:border-amber-400 mb-3">
+      <button onclick="confirmNameChange()" class="w-full btn-dtw py-2 text-xs text-slate-950 font-black">
         LƯU TÊN & VÀO GAME
       </button>
     </div>
   </div>
 
-  <!-- Sound Synthesizer via Web Audio API -->
+  <!-- Audio Synthesizer -->
   <script>
     const Sound = {
       ctx: null,
@@ -704,11 +683,11 @@
           o.start(now + i * 0.12); o.stop(now + i * 0.12 + 0.4);
         });
       },
-      playGunshot(type = 'ak47') {
+      playGunshot(type) {
         this.init();
         const now = this.ctx.currentTime;
         const dur = (type === 'rpg' || type === 'sniper') ? 0.35 : 0.08;
-        const b = this.ctx.createBuffer(1, this.ctx.sampleRate * dur, this.ctx.sampleRate);
+        const b = this.ctx.createBuffer(1, Math.floor(this.ctx.sampleRate * dur), this.ctx.sampleRate);
         const d = b.getChannelData(0);
         for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
         const n = this.ctx.createBufferSource();
@@ -765,11 +744,11 @@
       playCarHorn() {
         this.init();
         const now = this.ctx.currentTime;
-        [440, 554].forEach(f => {
+        [440, 554].forEach(freq => {
           const o = this.ctx.createOscillator();
           const g = this.ctx.createGain();
           o.type = 'sawtooth';
-          o.frequency.setValueAtTime(f, now);
+          o.frequency.setValueAtTime(freq, now);
           g.gain.setValueAtTime(0.18, now);
           g.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
           o.connect(g); g.connect(this.ctx.destination);
@@ -792,9 +771,7 @@
     };
   </script>
 
-  <!-- ============================================== -->
-  <!-- 3D GAME ENGINE: 99% DUDE THEFT WARS MAP & PLAY -->
-  <!-- ============================================== -->
+  <!-- 3D Game Engine -->
   <script>
     const State = {
       name: 'Jack (Dude)',
@@ -854,7 +831,7 @@
       clock = new THREE.Clock();
 
       const canvas = document.getElementById('game-canvas');
-      renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+      renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.shadowMap.enabled = true;
@@ -878,7 +855,6 @@
       createDudeCharacter();
     }
 
-    // Dude Low-poly Model (Chuẩn Jack trong Dude Theft Wars)
     function createDudeCharacter() {
       player = new THREE.Group();
       const shirtMat = new THREE.MeshLambertMaterial({ color: 0xF59E0B });
@@ -893,7 +869,6 @@
       head = new THREE.Mesh(new THREE.BoxGeometry(0.55, 0.55, 0.55), skinMat);
       head.position.set(0, 0.85, 0);
       head.castShadow = true;
-      // Cap
       const cap = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.18, 0.7), new THREE.MeshLambertMaterial({ color: 0xDC2626 }));
       cap.position.set(0, 0.32, 0.05);
       head.add(cap);
@@ -928,57 +903,27 @@
       scene.add(player);
     }
 
-    // ==========================================================
-    // THÀNH PHỐ DUDE CITY: BẢN ĐỒ GIỐNG BẢN GỐC 99%
-    // ==========================================================
     function buildAuthenticDudeCityMap() {
-      // 1. Mặt đất thảm cỏ xanh mướt rộng lớn
       const ground = new THREE.Mesh(new THREE.PlaneGeometry(800, 800), new THREE.MeshLambertMaterial({ color: 0x22c55e }));
       ground.rotation.x = -Math.PI / 2;
       ground.receiveShadow = true;
       scene.add(ground);
 
-      // 2. Dãy Núi Low-Poly bao quanh thung lũng (Background Hills)
       createLowPolyMountains();
-
-      // 3. Hệ thống đường xá, vỉa hè bê tông & vạch qua đường
       createAuthenticRoadNetwork();
-
-      // 4. NHÀ CỦA JACK (DUDE'S HOUSE - ĐIỂM XUẤT PHÁT GỐC)
       createJacksHouseArea(0, 30);
-
-      // 5. ĐỒN CẢNH SÁT TRUNG TÂM (POLICE STATION HQ)
       createPoliceStationHQ(90, 70);
-
-      // 6. CỬA HÀNG VŨ KHÍ AMMU-NATION (VỚI BIA TẬP BẮN & BIỂN HIỆU NEON)
       createAmmuNationGunShop(-80, -70);
-
-      // 7. TRẠM XĂNG OCTAN GAS STATION (CÂY XĂNG & CỬA HÀNG TIỆN LỢI)
       createOctanGasStation(-75, 75);
-
-      // 8. TÒA THÁP CHỌC TRỜI TRUNG TÂM (EMPIRE TOWER 75M CÓ HELIPAD)
       createEmpireTower(0, -90);
-
-      // 9. TIỆM BÁNH DUDE BURGER (FAST FOOD CÓ BÁNH BURGER TRÊN NÓC)
       createDudeBurgerShop(75, -60);
-
-      // 10. BỆNH VIỆN TRUNG TÂM (HOSPITAL CÓ DẤU CHỮ THẬP ĐỎ)
       createHospitalZone(-60, 0);
-
-      // 11. SÂN BAY DUDE CITY AIRPORT (ĐƯỜNG BĂNG DÀI & NHÀ KHÔNG GIAN HANGAR)
       createAirportRunwayZone(-150, -150);
-
-      // 12. SÂN TRƯỢT SKATE PARK VỚI HALF-PIPE
       createSkateParkZone(-50, -30);
-
-      // 13. KHU DÂN CƯ NHIỀU NHÀ VỚI HÀNG RÀO TRẮNG & HỘP THƯ
       createSuburbanDistrict();
-
-      // 14. ĐÈN ĐƯỜNG, TRỤ NƯỚC CỨU HỎA, GHẾ ĐÁ CÔNG VIÊN
       createStreetFurniture();
     }
 
-    // Dãy núi Low-Poly bao bọc bản đồ
     function createLowPolyMountains() {
       const mountMat = new THREE.MeshLambertMaterial({ color: 0x15803d, flatShading: true });
       for (let i = 0; i < 28; i++) {
@@ -992,20 +937,16 @@
       }
     }
 
-    // Hệ thống đường xá chi tiết
     function createAuthenticRoadNetwork() {
-      const roadMat = new THREE.MeshLambertMaterial({ color: 0x27272a }); // Nhựa đường tối
-      const curbMat = new THREE.MeshLambertMaterial({ color: 0xd4d4d8 }); // Vỉa hè xám sáng
-      const lineMat = new THREE.MeshBasicMaterial({ color: 0xfacc15 }); // Vạch vàng
+      const roadMat = new THREE.MeshLambertMaterial({ color: 0x27272a });
+      const curbMat = new THREE.MeshLambertMaterial({ color: 0xd4d4d8 });
 
-      // Trục đường chính Bắc-Nam & Đông-Tây
       const rH = new THREE.Mesh(new THREE.PlaneGeometry(600, 18), roadMat);
       rH.rotation.x = -Math.PI / 2; rH.position.y = 0.02; scene.add(rH);
 
       const rV = new THREE.Mesh(new THREE.PlaneGeometry(18, 600), roadMat);
       rV.rotation.x = -Math.PI / 2; rV.position.y = 0.02; scene.add(rV);
 
-      // Đường vành đai Outer Ring
       [120, -120].forEach(z => {
         const ringH = new THREE.Mesh(new THREE.PlaneGeometry(450, 14), roadMat);
         ringH.rotation.x = -Math.PI / 2; ringH.position.set(0, 0.02, z); scene.add(ringH);
@@ -1015,48 +956,39 @@
         ringV.rotation.x = -Math.PI / 2; ringV.position.set(x, 0.02, 0); scene.add(ringV);
       });
 
-      // Vỉa hè nổi (Curbs)
       const curbH1 = new THREE.Mesh(new THREE.BoxGeometry(600, 0.25, 2.5), curbMat);
       curbH1.position.set(0, 0.12, 10); scene.add(curbH1);
       const curbH2 = new THREE.Mesh(new THREE.BoxGeometry(600, 0.25, 2.5), curbMat);
       curbH2.position.set(0, 0.12, -10); scene.add(curbH2);
     }
 
-    // 4. NHÀ CỦA JACK (DUDE'S HOUSE CHUẨN GỐC)
     function createJacksHouseArea(x, z) {
       const group = new THREE.Group();
 
-      // House main block
       const house = new THREE.Mesh(new THREE.BoxGeometry(18, 8.5, 14), new THREE.MeshLambertMaterial({ color: 0xfef9c3 }));
       house.position.set(0, 4.25, 0); house.castShadow = true; group.add(house);
 
-      // Roof (Mái ngói nâu đỏ)
       const roof = new THREE.Mesh(new THREE.ConeGeometry(13.5, 4.2, 4), new THREE.MeshLambertMaterial({ color: 0x991b1b }));
       roof.rotation.y = Math.PI / 4; roof.position.set(0, 10.5, 0); group.add(roof);
 
-      // Garage bên hông
       const garage = new THREE.Mesh(new THREE.BoxGeometry(10, 6, 12), new THREE.MeshLambertMaterial({ color: 0xf3f4f6 }));
       garage.position.set(-13, 3, 0); garage.castShadow = true; group.add(garage);
       const garageDoor = new THREE.Mesh(new THREE.PlaneGeometry(7.5, 4.8), new THREE.MeshLambertMaterial({ color: 0x334155 }));
       garageDoor.position.set(-13, 2.5, 6.05); group.add(garageDoor);
 
-      // Đường lái xe bê tông (Driveway)
       const driveway = new THREE.Mesh(new THREE.PlaneGeometry(12, 18), new THREE.MeshLambertMaterial({ color: 0xa1a1aa }));
       driveway.rotation.x = -Math.PI / 2; driveway.position.set(-13, 0.03, 14); group.add(driveway);
 
-      // Hàng rào trắng quanh sân trước (Picket Fence)
       createPicketFence(group, -20, 20, 20);
 
-      // Hồ bơi sau vườn
       const pool = new THREE.Mesh(new THREE.PlaneGeometry(12, 8), new THREE.MeshBasicMaterial({ color: 0x06b6d4 }));
       pool.rotation.x = -Math.PI / 2; pool.position.set(0, 0.05, -14); group.add(pool);
 
-      // Bạt nhún lò xo Trampoline
       createTrampoline(x + 10, z - 14);
 
       group.position.set(x, 0, z);
       scene.add(group);
-      buildings.push({ x, z, radius: 18, name: "🏠 Nhà của Jack (Dude)" });
+      buildings.push({ x: x, z: z, radius: 18, name: "🏠 Nhà của Jack" });
     }
 
     function createPicketFence(parent, x, z, len) {
@@ -1071,46 +1003,38 @@
       parent.add(rail);
     }
 
-    // 5. ĐỒN CẢNH SÁT POLICE HQ
     function createPoliceStationHQ(x, z) {
       const g = new THREE.Group();
       const main = new THREE.Mesh(new THREE.BoxGeometry(28, 14, 22), new THREE.MeshLambertMaterial({ color: 0x1e293b }));
       main.position.set(0, 7, 0); main.castShadow = true; g.add(main);
 
-      // Mái xanh cảnh sát
       const roof = new THREE.Mesh(new THREE.BoxGeometry(30, 1.6, 24), new THREE.MeshLambertMaterial({ color: 0x2563eb }));
       roof.position.set(0, 14.5, 0); g.add(roof);
 
-      // Còi hú xoay vòng trên nóc
       const sirenRed = new THREE.Mesh(new THREE.CylinderGeometry(0.8, 0.8, 1.2, 12), new THREE.MeshBasicMaterial({ color: 0xef4444 }));
       sirenRed.position.set(-3, 16, 0); g.add(sirenRed);
       const sirenBlue = new THREE.Mesh(new THREE.CylinderGeometry(0.8, 0.8, 1.2, 12), new THREE.MeshBasicMaterial({ color: 0x3b82f6 }));
       sirenBlue.position.set(3, 16, 0); g.add(sirenBlue);
 
-      // Biển chữ POLICE
       const sign = new THREE.Mesh(new THREE.BoxGeometry(16, 3, 0.8), new THREE.MeshLambertMaterial({ color: 0x1d4ed8 }));
       sign.position.set(0, 11, 11.4); g.add(sign);
 
       g.position.set(x, 0, z);
       scene.add(g);
-      buildings.push({ x, z, radius: 18, name: "🚔 Đồn Cảnh Sát" });
+      buildings.push({ x: x, z: z, radius: 18, name: "🚔 Đồn Cảnh Sát" });
     }
 
-    // 6. AMMU-NATION GUN SHOP
     function createAmmuNationGunShop(x, z) {
       const g = new THREE.Group();
       const base = new THREE.Mesh(new THREE.BoxGeometry(24, 10, 20), new THREE.MeshLambertMaterial({ color: 0x78350f }));
       base.position.set(0, 5, 0); base.castShadow = true; g.add(base);
 
-      // Biển hiệu neon đỏ rực
       const sign = new THREE.Mesh(new THREE.BoxGeometry(18, 3.5, 1), new THREE.MeshBasicMaterial({ color: 0xdc2626 }));
       sign.position.set(0, 11.5, 10.4); g.add(sign);
 
-      // Súng tượng trưng trên nóc
       const gunRoof = new THREE.Mesh(new THREE.BoxGeometry(14, 1.5, 1.5), new THREE.MeshLambertMaterial({ color: 0x111827 }));
       gunRoof.position.set(0, 13, 10.4); g.add(gunRoof);
 
-      // Bia tập bắn ngoài sân
       for (let i = -5; i <= 5; i += 5) {
         const target = new THREE.Mesh(new THREE.CylinderGeometry(1.2, 1.2, 0.1, 16), new THREE.MeshBasicMaterial({ color: 0xef4444 }));
         target.rotation.x = Math.PI / 2;
@@ -1120,17 +1044,14 @@
 
       g.position.set(x, 0, z);
       scene.add(g);
-      buildings.push({ x, z, radius: 16, name: "🔫 Shop Vũ Khí" });
+      buildings.push({ x: x, z: z, radius: 16, name: "🔫 Shop Vũ Khí" });
     }
 
-    // 7. TRẠM XĂNG OCTAN GAS STATION
     function createOctanGasStation(x, z) {
       const g = new THREE.Group();
-      // Mái che trạm xăng xanh lá
       const canopy = new THREE.Mesh(new THREE.BoxGeometry(28, 1.6, 22), new THREE.MeshLambertMaterial({ color: 0x10b981 }));
       canopy.position.set(0, 8.5, 0); canopy.castShadow = true; g.add(canopy);
 
-      // 4 cột trụ
       for (let px of [-10, 10]) {
         for (let pz of [-8, 8]) {
           const col = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.5, 8.5, 8), new THREE.MeshLambertMaterial({ color: 0xe5e7eb }));
@@ -1138,32 +1059,27 @@
         }
       }
 
-      // Cây bơm xăng đỏ
       for (let px of [-5, 5]) {
         const pump = new THREE.Mesh(new THREE.BoxGeometry(1.6, 3.4, 1.2), new THREE.MeshLambertMaterial({ color: 0xef4444 }));
         pump.position.set(px, 1.7, 0); g.add(pump);
       }
 
-      // Cửa hàng tiện lợi Mart phía sau
       const mart = new THREE.Mesh(new THREE.BoxGeometry(20, 6.5, 12), new THREE.MeshLambertMaterial({ color: 0xf8fafc }));
       mart.position.set(0, 3.25, -18); mart.castShadow = true; g.add(mart);
 
       g.position.set(x, 0, z);
       scene.add(g);
-      buildings.push({ x, z, radius: 18, name: "⛽ Trạm Xăng Octan" });
+      buildings.push({ x: x, z: z, radius: 18, name: "⛽ Trạm Xăng Octan" });
     }
 
-    // 8. TÒA THÁP CHỌC TRỜI EMPIRE TOWER (75M)
     function createEmpireTower(x, z) {
       const g = new THREE.Group();
       const tower = new THREE.Mesh(new THREE.BoxGeometry(26, 75, 26), new THREE.MeshLambertMaterial({ color: 0x0284c7 }));
       tower.position.set(0, 37.5, 0); tower.castShadow = true; g.add(tower);
 
-      // Sân trực thăng Helipad trên nóc
       const heli = new THREE.Mesh(new THREE.CylinderGeometry(7, 7, 0.4, 16), new THREE.MeshLambertMaterial({ color: 0xf59e0b }));
       heli.position.set(0, 75.2, 0); g.add(heli);
 
-      // Dải cửa sổ kính
       for (let y = 6; y < 72; y += 7) {
         const strip = new THREE.Mesh(new THREE.BoxGeometry(26.2, 2.5, 26.2), new THREE.MeshLambertMaterial({ color: 0x0f172a }));
         strip.position.set(0, y, 0); g.add(strip);
@@ -1171,16 +1087,14 @@
 
       g.position.set(x, 0, z);
       scene.add(g);
-      buildings.push({ x, z, radius: 18, name: "🏢 Tháp Empire" });
+      buildings.push({ x: x, z: z, radius: 18, name: "🏢 Tháp Empire" });
     }
 
-    // 9. TIỆM BÁNH DUDE BURGER
     function createDudeBurgerShop(x, z) {
       const g = new THREE.Group();
       const b = new THREE.Mesh(new THREE.BoxGeometry(20, 8, 16), new THREE.MeshLambertMaterial({ color: 0xf97316 }));
       b.position.set(0, 4, 0); b.castShadow = true; g.add(b);
 
-      // Bánh Burger 3D khổng lồ trên nóc
       const bunBottom = new THREE.Mesh(new THREE.CylinderGeometry(3.5, 3.2, 1, 16), new THREE.MeshLambertMaterial({ color: 0xd97706 }));
       bunBottom.position.set(0, 8.8, 0); g.add(bunBottom);
       const meat = new THREE.Mesh(new THREE.CylinderGeometry(3.6, 3.6, 0.8, 16), new THREE.MeshLambertMaterial({ color: 0x451a03 }));
@@ -1192,16 +1106,14 @@
 
       g.position.set(x, 0, z);
       scene.add(g);
-      buildings.push({ x, z, radius: 15, name: "🍔 Tiệm Bánh Dude Burger" });
+      buildings.push({ x: x, z: z, radius: 15, name: "🍔 Tiệm Bánh Dude Burger" });
     }
 
-    // 10. BỆNH VIỆN TRUNG TÂM (HOSPITAL)
     function createHospitalZone(x, z) {
       const g = new THREE.Group();
       const hosp = new THREE.Mesh(new THREE.BoxGeometry(26, 12, 18), new THREE.MeshLambertMaterial({ color: 0xffffff }));
       hosp.position.set(0, 6, 0); hosp.castShadow = true; g.add(hosp);
 
-      // Dấu chữ thập đỏ Red Cross
       const crossV = new THREE.Mesh(new THREE.BoxGeometry(1.6, 5, 0.2), new THREE.MeshBasicMaterial({ color: 0xef4444 }));
       crossV.position.set(0, 8, 9.15); g.add(crossV);
       const crossH = new THREE.Mesh(new THREE.BoxGeometry(5, 1.6, 0.2), new THREE.MeshBasicMaterial({ color: 0xef4444 }));
@@ -1209,38 +1121,32 @@
 
       g.position.set(x, 0, z);
       scene.add(g);
-      buildings.push({ x, z, radius: 16, name: "🏥 Bệnh Viện Trung Tâm" });
+      buildings.push({ x: x, z: z, radius: 16, name: "🏥 Bệnh Viện Trung Tâm" });
     }
 
-    // 11. SÂN BAY DUDE CITY AIRPORT RUNWAY
     function createAirportRunwayZone(x, z) {
       const g = new THREE.Group();
-      // Đường băng cất hạ cánh dài 220 mét
       const runway = new THREE.Mesh(new THREE.PlaneGeometry(30, 220), new THREE.MeshLambertMaterial({ color: 0x18181b }));
       runway.rotation.x = -Math.PI / 2; runway.position.y = 0.03; g.add(runway);
 
-      // Vạch kẻ trắng giữa đường băng
       for (let rz = -90; rz <= 90; rz += 20) {
         const stripe = new THREE.Mesh(new THREE.PlaneGeometry(2, 10), new THREE.MeshBasicMaterial({ color: 0xffffff }));
         stripe.rotation.x = -Math.PI / 2; stripe.position.set(0, 0.04, rz); g.add(stripe);
       }
 
-      // Nhà chứa máy bay (Hangar)
       const hangar = new THREE.Mesh(new THREE.CylinderGeometry(15, 15, 30, 16, 1, false, 0, Math.PI), new THREE.MeshLambertMaterial({ color: 0x64748b, side: THREE.DoubleSide }));
       hangar.rotation.z = Math.PI / 2; hangar.position.set(30, 0, 0); g.add(hangar);
 
       g.position.set(x, 0, z);
       scene.add(g);
-      buildings.push({ x, z, radius: 45, name: "✈️ Sân Bay Dude City" });
+      buildings.push({ x: x, z: z, radius: 45, name: "✈️ Sân Bay Dude City" });
     }
 
-    // 12. SÂN TRƯỢT SKATE PARK
     function createSkateParkZone(x, z) {
       const g = new THREE.Group();
       const floor = new THREE.Mesh(new THREE.PlaneGeometry(35, 35), new THREE.MeshLambertMaterial({ color: 0xa1a1aa }));
       floor.rotation.x = -Math.PI / 2; floor.position.y = 0.03; g.add(floor);
 
-      // Half Pipe Ramp
       const ramp1 = createRampMesh(14, 4, 8, 0xef4444);
       ramp1.position.set(-8, 0, 0); g.add(ramp1);
       const ramp2 = createRampMesh(14, 4, 8, 0x3b82f6);
@@ -1248,7 +1154,7 @@
 
       g.position.set(x, 0, z);
       scene.add(g);
-      buildings.push({ x, z, radius: 20, name: "🛹 Skate Park" });
+      buildings.push({ x: x, z: z, radius: 20, name: "🛹 Skate Park" });
     }
 
     function createRampMesh(w, h, d, color) {
@@ -1261,10 +1167,9 @@
       ]);
       geo.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
       geo.computeVertexNormals();
-      return new THREE.Mesh(geo, new THREE.MeshLambertMaterial({ color, side: THREE.DoubleSide }));
+      return new THREE.Mesh(geo, new THREE.MeshLambertMaterial({ color: color, side: THREE.DoubleSide }));
     }
 
-    // 13. KHU DÂN CƯ NHIỀU NHÀ MÀU SẮC
     function createSuburbanDistrict() {
       const colors = [0xf87171, 0x60a5fa, 0x34d399, 0xfbbf24, 0xa78bfa, 0xf472b6];
       let ci = 0;
@@ -1284,17 +1189,14 @@
 
       g.position.set(x, 0, z);
       scene.add(g);
-      buildings.push({ x, z, radius: 9, name: "Nhà Dân" });
+      buildings.push({ x: x, z: z, radius: 9, name: "Nhà Dân" });
     }
 
-    // 14. ĐỒ ĐẠC ĐƯỜNG PHỐ (STREET FURNITURE)
     function createStreetFurniture() {
-      // Đèn đường (Streetlights)
       for (let z = -180; z <= 180; z += 60) {
         createStreetLight(-11, z);
         createStreetLight(11, z);
       }
-      // Trụ cứu hỏa & Ghế đá
       for (let z = -140; z <= 140; z += 70) {
         createFireHydrant(-11.5, z + 15);
         createParkBench(11.5, z + 15);
@@ -1329,17 +1231,15 @@
       const mat = new THREE.Mesh(new THREE.CylinderGeometry(3.2, 3.2, 0.1, 16), new THREE.MeshLambertMaterial({ color: 0x1e293b }));
       mat.position.set(x, 0.65, z);
       scene.add(mat);
-      trampolineMesh = { x, z, radius: 3.5 };
+      trampolineMesh = { x: x, z: z, radius: 3.5 };
     }
 
-    // SÂN VẬN ĐỘNG BÓNG ĐÁ
     function spawnSoccerStadium() {
       const field = new THREE.Mesh(new THREE.PlaneGeometry(65, 45), new THREE.MeshLambertMaterial({ color: 0x16a34a }));
       field.rotation.x = -Math.PI / 2;
       field.position.set(140, 0.03, -140);
       scene.add(field);
 
-      // Cột đèn sân bóng ở 4 góc
       [[110, -120], [170, -120], [110, -160], [170, -160]].forEach(p => {
         const lightPole = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.4, 16, 8), new THREE.MeshLambertMaterial({ color: 0xe2e8f0 }));
         lightPole.position.set(p[0], 8, p[1]);
@@ -1362,7 +1262,6 @@
       showToast("⚽ Đã thả quả bóng đá khổng lồ!");
     }
 
-    // Mây hoạt hình lơ lửng trên bầu trời (Cartoon Clouds)
     function createCartoonClouds() {
       const cMat = new THREE.MeshLambertMaterial({ color: 0xffffff, transparent: true, opacity: 0.85 });
       for (let i = 0; i < 20; i++) {
@@ -1378,35 +1277,29 @@
       }
     }
 
-    // ==========================================================
-    // XE CỘ: LAMBO, BUGATTI, F1, MONSTER TRUCK, POLICE
-    // ==========================================================
-    function createCarMesh(type = 'lambo', color = 0xdc2626) {
+    function createCarMesh(type, color) {
       const g = new THREE.Group();
       const isMonster = (type === 'monster');
       const isF1 = (type === 'f1');
       const bH = isMonster ? 1.6 : isF1 ? 0.6 : 1.0;
       const bY = isMonster ? 1.6 : isF1 ? 0.5 : 0.8;
 
-      const b = new THREE.Mesh(new THREE.BoxGeometry(2.4, bH, 4.6), new THREE.MeshLambertMaterial({ color }));
+      const b = new THREE.Mesh(new THREE.BoxGeometry(2.4, bH, 4.6), new THREE.MeshLambertMaterial({ color: color }));
       b.position.y = bY; b.castShadow = true; g.add(b);
 
       const cab = new THREE.Mesh(new THREE.BoxGeometry(2.0, 0.8, 2.4), new THREE.MeshLambertMaterial({ color: 0x0f172a }));
       cab.position.set(0, bY + 0.7, -0.3); g.add(cab);
 
-      // Cánh gió F1 Spoiler
       if (isF1) {
         const wing = new THREE.Mesh(new THREE.BoxGeometry(2.6, 0.15, 0.8), new THREE.MeshLambertMaterial({ color: 0x111827 }));
         wing.position.set(0, 1.4, -2.1); g.add(wing);
       }
 
-      // Đèn cảnh sát
       if (type === 'police') {
         const lightBar = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.25, 0.5), new THREE.MeshBasicMaterial({ color: 0x3b82f6 }));
         lightBar.position.set(0, 2.0, -0.3); g.add(lightBar);
       }
 
-      // Bánh xe
       const wRadius = isMonster ? 1.1 : isF1 ? 0.5 : 0.45;
       const wWidth = isMonster ? 0.8 : isF1 ? 0.45 : 0.35;
       const wY = isMonster ? 1.0 : 0.45;
@@ -1417,18 +1310,15 @@
       [[-xOff, wY, 1.4], [xOff, wY, 1.4], [-xOff, wY, -1.4], [xOff, wY, -1.4]].forEach(p => {
         const w = new THREE.Mesh(wGeo, wMat);
         w.rotation.z = Math.PI / 2;
-        w.position.set(...p);
+        w.position.set(p[0], p[1], p[2]);
         g.add(w);
       });
       return g;
     }
 
     function spawnDefaultVehicles() {
-      // Xe đậu trước cửa nhà Jack
       addVehicle(-13, 22, 'lambo', 0xdc2626);
-      // Xe cảnh sát tại Police Station
       addVehicle(80, 60, 'police', 0x1e293b);
-      // Xe bán tải gần Trạm xăng
       addVehicle(-60, 65, 'truck', 0x10b981);
     }
 
@@ -1437,7 +1327,7 @@
       mesh.position.set(x, 0, z);
       scene.add(mesh);
       const car = {
-        mesh, type, speed: 0, rot: 0,
+        mesh: mesh, type: type, speed: 0, rot: 0,
         maxSpeed: type === 'f1' ? 1.45 : type === 'monster' ? 0.95 : 1.2,
         gas: false, brake: false, nitro: false
       };
@@ -1461,7 +1351,6 @@
       }
     }
 
-    // MULTI-TOUCH MOBILE CONTROLS
     function setupMobileTouchEvents() {
       const touchLayer = document.getElementById('touch-layer');
       const joyBase = document.getElementById('joystick-base');
@@ -1476,7 +1365,7 @@
             joyBase.style.left = t.clientX + 'px';
             joyBase.style.top = t.clientY + 'px';
             joyBase.style.display = 'block';
-            joyStick.style.transform = `translate(-50%, -50%)`;
+            joyStick.style.transform = 'translate(-50%, -50%)';
           } else if (t.clientX >= window.innerWidth / 2 && lookTouchId === null) {
             lookTouchId = t.identifier;
             lastLookPos = { x: t.clientX, y: t.clientY };
@@ -1544,7 +1433,6 @@
       el.addEventListener('mouseup', () => callback(false));
     }
 
-    // Keyboard Controls
     const keys = { w: false, a: false, s: false, d: false, space: false, shift: false };
     function setupKeyboardControls() {
       window.addEventListener('keydown', e => {
@@ -1578,7 +1466,6 @@
       });
     }
 
-    // ACTIONS
     function doPlayerJump() {
       if (isGrounded && !State.inVehicle) {
         playerVel.y = 8.8 * State.jumpMulti;
@@ -1623,7 +1510,7 @@
         -Math.cos(camYaw) * Math.cos(camPitch)
       ).normalize();
 
-      bullet.userData = { dir, life: 60, isRpg };
+      bullet.userData = { dir: dir, life: 60, isRpg: isRpg };
       scene.add(bullet);
       bullets.push(bullet);
 
@@ -1632,7 +1519,7 @@
       }
 
       rightArm.rotation.x = -Math.PI / 2 + 0.3;
-      setTimeout(() => rightArm.rotation.x = 0, 90);
+      setTimeout(() => { rightArm.rotation.x = 0; }, 90);
     }
 
     function toggleCarDrive() {
@@ -1669,7 +1556,6 @@
       document.getElementById('car-btn-txt').innerText = inCar ? 'Xuống' : 'Lên Xe';
     }
 
-    // DPHONE CONTROLLER
     function togglePhone() {
       State.phoneOpen = !State.phoneOpen;
       document.getElementById('dphone').classList.toggle('open', State.phoneOpen);
@@ -1734,7 +1620,6 @@
       }
     }
 
-    // DEV CHEATS
     function toggleGodMode() {
       State.isGod = !State.isGod;
       const el = document.getElementById('god-txt');
@@ -1748,7 +1633,7 @@
       const el = document.getElementById('fly-txt');
       el.innerText = State.isFlying ? "BẬT" : "TẮT";
       el.className = State.isFlying ? "text-[9px] bg-cyan-900 text-cyan-300 px-2 py-0.5 rounded font-black" : "text-[9px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded font-black";
-      showToast(State.isFlying ? "🦸 Chế Độ Bay: BẬT (Ấn nhảy để bay cao)" : "🦸 Chế Độ Bay: TẮT");
+      showToast(State.isFlying ? "🦸 Chế Độ Bay: BẬT" : "🦸 Chế Độ Bay: TẮT");
     }
 
     function addMoney(amt) {
@@ -1777,7 +1662,7 @@
     function setPlayerScale(s) {
       State.playerScale = s;
       player.scale.set(s, s, s);
-      showToast(s > 1 ? "🗿 CHẾ ĐỘ NGƯỜI KHỔNG LỒ (GIANT)!" : "🐜 CHẾ ĐỘ NGƯỜI KIẾN TÍ HON (TINY)!");
+      showToast(s > 1 ? "🗿 CHẾ ĐỘ NGƯỜI KHỔNG LỒ!" : "🐜 CHẾ ĐỘ NGƯỜI TÍ HON!");
     }
 
     function toggleSlowMotion() {
@@ -1791,7 +1676,7 @@
       State.wanted = lvl;
       let h = '';
       for (let i = 0; i < 5; i++) {
-        h += (i < lvl) ? '<i class="fa-solid fa-star star-glow animate-pulse"></i>' : '<i class="fa-solid fa-star"></i>';
+        h += (i < lvl) ? '<i class="fa-solid fa-star text-yellow-400 animate-pulse"></i>' : '<i class="fa-solid fa-star"></i>';
       }
       document.getElementById('wanted-stars-hud').innerHTML = h;
 
@@ -1853,7 +1738,6 @@
       }, 2500);
     }
 
-    // MAIN GAME LOOP
     function mainLoop() {
       requestAnimationFrame(mainLoop);
       const rawDelta = Math.min(clock.getDelta(), 0.1);
@@ -1907,7 +1791,6 @@
         rightLeg.rotation.x = 0;
       }
 
-      // Fly Mode or Normal Gravity
       if (State.isFlying) {
         if (keys.space) player.position.y += 18 * delta;
         else if (moveDir.z < -0.6) player.position.y += 10 * delta;
@@ -1931,7 +1814,6 @@
           const brake = c.brake || keys.s;
           const nitro = c.nitro;
 
-          // Recharge or deplete nitro
           if (nitro && State.nitroMeter > 0) {
             State.nitroMeter = Math.max(0, State.nitroMeter - 30 * delta);
           } else if (!nitro && State.nitroMeter < 100) {
@@ -1960,11 +1842,9 @@
           c.mesh.position.z += Math.cos(c.rot) * c.speed;
           camYaw = c.rot + Math.PI;
 
-          // Update Speedo HUD
           const kmh = Math.round(Math.abs(c.speed) * 120);
           document.getElementById('speedo-num').innerText = kmh;
 
-          // Soccer Ball Interaction with Car
           if (soccerBall) {
             const dist = c.mesh.position.distanceTo(soccerBall.mesh.position);
             if (dist < 4.5) {
@@ -1977,7 +1857,6 @@
         }
       });
 
-      // Police Chase
       policeSquad.forEach(p => {
         if (State.wanted > 0) {
           const d = player.position.clone().sub(p.mesh.position);
@@ -2057,7 +1936,6 @@
       }
 
       if (State.firstPerson && !State.inVehicle) {
-        // Góc nhìn thứ nhất FPS
         camera.position.copy(target).add(new THREE.Vector3(0, 0.35, 0));
         const lookDir = new THREE.Vector3(
           -Math.sin(camYaw) * Math.cos(camPitch),
@@ -2066,7 +1944,6 @@
         );
         camera.lookAt(camera.position.clone().add(lookDir));
       } else {
-        // Góc nhìn thứ ba TPS
         const dist = State.inVehicle ? 7.5 : 4.8 * State.playerScale;
         const ox = Math.sin(camYaw) * Math.cos(camPitch) * dist;
         const oy = Math.sin(camPitch) * dist + 1.2;
@@ -2079,12 +1956,11 @@
     function renderRadar() {
       const c = document.getElementById('minimap-canvas');
       const ctx = c.getContext('2d');
-      ctx.clearRect(0, 0, 115, 115);
+      ctx.clearRect(0, 0, 110, 110);
 
-      const cx = 57.5, cy = 57.5, sc = 0.28;
+      const cx = 55, cy = 55, sc = 0.28;
       const pos = State.inVehicle ? State.inVehicle.mesh.position : player.position;
 
-      // Buildings
       buildings.forEach(b => {
         const dx = (b.x - pos.x) * sc, dz = (b.z - pos.z) * sc;
         ctx.fillStyle = '#3b82f6';
@@ -2093,14 +1969,12 @@
         ctx.fill();
       });
 
-      // Cars
       vehicles.forEach(v => {
         const dx = (v.mesh.position.x - pos.x) * sc, dz = (v.mesh.position.z - pos.z) * sc;
         ctx.fillStyle = '#f59e0b';
         ctx.fillRect(cx + dx - 2, cy + dz - 2, 4, 4);
       });
 
-      // Soccer Ball
       if (soccerBall) {
         const dx = (soccerBall.mesh.position.x - pos.x) * sc, dz = (soccerBall.mesh.position.z - pos.z) * sc;
         ctx.fillStyle = '#ffffff';
@@ -2109,10 +1983,9 @@
         ctx.fill();
       }
 
-      // Player Arrow in Center
       ctx.fillStyle = '#ef4444';
       ctx.beginPath();
-      ctx.arc(cx, cy, 4.5, 0, Math.PI * 2);
+      ctx.arc(cx, cy, 4, 0, Math.PI * 2);
       ctx.fill();
 
       ctx.strokeStyle = '#fff';
