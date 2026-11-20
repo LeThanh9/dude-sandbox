@@ -23,14 +23,13 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Accept Android SDK Licenses & Configure
+      - name: Configure Android SDK Environment
         run: |
-          echo "sdk.dir=$ANDROID_HOME" > android/local.properties
-          mkdir -p "$ANDROID_HOME/licenses" || true
-          echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" >> "$ANDROID_HOME/licenses/android-sdk-license"
-          echo "84831b9409646a328e447b7a8e9e14fb9d695c90" >> "$ANDROID_HOME/licenses/android-sdk-preview-license"
-          echo "d56f5187479451eabf01fb78af6dfcb131a6481e" >> "$ANDROID_HOME/licenses/android-sdk-license"
-          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+          echo "ANDROID_HOME=/usr/local/lib/android/sdk" >> $GITHUB_ENV
+          echo "sdk.dir=/usr/local/lib/android/sdk" > android/local.properties
+          mkdir -p /usr/local/lib/android/sdk/licenses
+          echo -e "24333f8a63b6825ea9c5514f83c2829b004d1fee\nd56f5187479451eabf01fb78af6dfcb131a6481e\n24333f8a63b6825ea9c5514f83c2829b004d1fee" > /usr/local/lib/android/sdk/licenses/android-sdk-license
+          echo -e "84831b87029642f92e2f29f4b043ff1490822586" > /usr/local/lib/android/sdk/licenses/android-sdk-preview-license
 
       - name: Sync Game HTML Asset to Android App
         run: |
@@ -66,17 +65,17 @@ jobs:
           tag_name: v0.9.1.1b-build-${{ github.run_number }}
           name: "Dude Theft Wars Mod Dev Edition (Build #${{ github.run_number }})"
           body: |
-            ## 🌴 Dude Theft Wars 3D - Ultra Detailed 99% HD Edition
+            ## 🌴 Dude Theft Wars 3D - Ultra Detailed 99% HD Edition (Dev Mod)
             ### 🛠️ Chi Tiết Bản Mod:
-            - **Công Trình Map Mới:**
-              - 🏛️ **Ngân Hàng Trung Tâm & Kho Vàng (Central Bank & Vault)** với hàng cột Hy Lạp cổ điển và sân bay trực thăng.
-              - 🌊 **Ngọn Hải Đăng & Cảng Biển (Ocean Lighthouse & Docks)** với đèn xoay 360 độ và container hàng hải.
-              - 👑 **Trụ Sở DEV Tối Thượng (Secret Fortress Skyscraper)**.
-              - 🏠 Biệt thự Jack, Tiệm bánh Dude Burger xoay 360°, Đồn Cảnh Sát, Sân bay & Máy bay nhào lộn.
-            - **Cơ Chế Ẩn DEV (Không gợi ý):**
-              - Đổi tên nhân vật thành `dev` để mở khóa toàn bộ quyền Admin Console (Bất tử, Siêu tốc độ x3, Bay lượn, Tiền mặt vô hạn, Dịch chuyển tức thời).
-              - Tuyệt đối không xuất hiện trong gợi ý UI hay mã cheat nhanh.
-            - **Tải APK Trực Tiếp:** `DudeTheftWars-Mod-Dev-v0.9.1.1b.apk` bên dưới!
+            - **Công Trình Map & Kiến Trúc Mới:**
+              - 👑 **Dev Mega Skyscraper (120, 0, 180):** Trụ sở chọc trời 72m kèm bãi đỗ trực thăng Helipad và dốc xe ramp.
+              - 🌌 **Dev Sky Arena & Mega Stunt Ramp (0, 85, 0):** Sàn đấu trên không 150mx150m, lan can an toàn và đường băng nhào lộn xe hơi lao xuống thành phố.
+              - 🛡️ **Dev Military Bunker (-220, 0, -140):** Boong-ke quân sự tường bọc thép kiên cố, kho vũ khí RPG và Minigun.
+              - 🏛️ **Ngân Hàng Trung Tâm & Kho Vàng** và 🌊 **Ngọn Hải Đăng Cảng Biển**.
+            - **Cơ Chế Kích Hoạt Bí Mật DEV (Tuyệt Đối Không Gợi Ý UI):**
+              - Đổi tên nhân vật thành `dev` (hoặc `DEV`) để mở khóa toàn bộ quyền Admin Console (Bất tử God Mode, Siêu tốc độ x3, Bay lượn Superhero, Tiền mặt vô hạn, Dịch chuyển tức thời).
+              - Tuyệt đối không có bất kỳ autocomplete hay hiển thị gợi ý nào trong giao diện.
+            - **Tải APK Trực Tiếp:** `DudeTheftWars-Mod-Dev-v0.9.1.1b.apk` đính kèm bên dưới!
           files: release-output/*.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

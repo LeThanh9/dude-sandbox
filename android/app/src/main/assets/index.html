@@ -654,9 +654,17 @@
             🚨 Bật 5 Sao
           </button>
         </div>
-        <button onclick="teleportPlayer(0, 5, 180)" class="w-full bg-slate-900 p-2 rounded-xl border border-amber-500 text-left font-bold text-amber-300 flex justify-between items-center">
-          <span>👑 Đến Trụ Sở DEV Tối Thượng</span>
-          <i class="fa-solid fa-crown text-xs text-yellow-400"></i>
+        <button onclick="teleportPlayer(120, 74, 180)" class="w-full bg-slate-900 p-2 rounded-xl border border-amber-500 text-left font-bold text-amber-300 flex justify-between items-center">
+          <span>🏢 Đến Tháp DEV Skyscraper (120, 74, 180)</span>
+          <i class="fa-solid fa-building text-xs text-yellow-400"></i>
+        </button>
+        <button onclick="teleportPlayer(0, 90, 0)" class="w-full bg-slate-900 p-2 rounded-xl border border-cyan-500 text-left font-bold text-cyan-300 flex justify-between items-center">
+          <span>🌌 Đến Đấu Trường Sky Arena (0, 90, 0)</span>
+          <i class="fa-solid fa-cloud text-xs text-cyan-400"></i>
+        </button>
+        <button onclick="teleportPlayer(-220, 3, -140)" class="w-full bg-slate-900 p-2 rounded-xl border border-emerald-500 text-left font-bold text-emerald-300 flex justify-between items-center">
+          <span>🛡️ Đến Boong-ke Quân Sự (-220, 3, -140)</span>
+          <i class="fa-solid fa-shield-halved text-xs text-emerald-400"></i>
         </button>
       </div>
 
@@ -719,14 +727,14 @@
   <!-- MODAL ĐỔI TÊN NHÂN VẬT -->
   <div id="modal-name" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 hidden">
     <div class="dtw-panel w-full max-w-xs p-5 text-center relative">
-      <div class="w-12 h-12 mx-auto rounded-xl bg-amber-500 flex items-center justify-center text-slate-950 text-xl mb-2.5 border border-white shadow">
-        <i class="fa-solid fa-crown"></i>
+      <div class="w-12 h-12 mx-auto rounded-xl bg-slate-700 flex items-center justify-center text-amber-400 text-xl mb-2.5 border border-white/20 shadow">
+        <i class="fa-solid fa-user-pen"></i>
       </div>
       <h3 class="text-lg font-black text-white">ĐẶT TÊN NHÂN VẬT</h3>
       <p class="text-[10px] text-slate-300 mt-1 mb-3">
-        Đổi tên thành <b class="text-yellow-400 underline font-black">dev</b> để mở khóa toàn quyền Admin!
+        Nhập tên nhân vật bạn muốn hiển thị trong Dude City.
       </p>
-      <input id="char-name-field" type="text" value="dev" maxlength="12" class="w-full bg-slate-900 border-2 border-slate-700 rounded-xl px-3 py-2 text-white font-black text-center text-sm focus:border-amber-400 mb-3">
+      <input id="char-name-field" type="text" placeholder="Nhập tên nhân vật..." maxlength="12" class="w-full bg-slate-900 border-2 border-slate-700 rounded-xl px-3 py-2 text-white font-black text-center text-sm focus:border-amber-400 mb-3">
       <button onclick="confirmNameChange()" class="w-full btn-dtw py-2 text-xs text-slate-950 font-black">
         LƯU TÊN & VÀO GAME
       </button>
@@ -2390,6 +2398,8 @@
     }
 
     function openNameModal() {
+      const field = document.getElementById('char-name-field');
+      if (field) field.value = State.name || 'Jack (Dude)';
       document.getElementById('modal-name').classList.remove('hidden');
     }
 
@@ -2667,6 +2677,18 @@
 
         const move = forward.clone().multiplyScalar(-normZ).add(right.clone().multiplyScalar(normX));
         player.position.addScaledVector(move, speed * delta);
+
+        // Building radial colliders (prevents clipping through walls/interiors)
+        buildings.forEach(b => {
+          const dx = player.position.x - b.x;
+          const dz = player.position.z - b.z;
+          const dist = Math.hypot(dx, dz);
+          if (dist < b.radius) {
+            const angle = Math.atan2(dz, dx);
+            player.position.x = b.x + Math.cos(angle) * b.radius;
+            player.position.z = b.z + Math.sin(angle) * b.radius;
+          }
+        });
 
         player.rotation.y = Math.atan2(move.x, move.z);
 
