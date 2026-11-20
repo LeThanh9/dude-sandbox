@@ -1836,30 +1836,118 @@
       buildings.push({ x: x, z: z, radius: 18, name: "🌊 Ngọn Hải Đăng & Cảng Biển" });
     }
 
-    function createSecretDevTower(x, z) {
+    function createDevSkyscraper(x, z) {
       const g = new THREE.Group();
-      const towerMat = new THREE.MeshLambertMaterial({ color: 0x0f172a });
-      const tower = new THREE.Mesh(new THREE.BoxGeometry(22, 50, 22), towerMat);
-      tower.position.set(0, 25, 0); tower.castShadow = true; g.add(tower);
+      // Foundation Base: 34 x 2 x 34
+      const baseMat = new THREE.MeshLambertMaterial({ color: 0x334155 });
+      const base = new THREE.Mesh(new THREE.BoxGeometry(34, 2, 34), baseMat);
+      base.position.set(0, 1, 0); base.castShadow = true; base.receiveShadow = true; g.add(base);
 
+      // Main Tower Column: 26 x 70 x 26 at Y = 36
+      const towerMat = new THREE.MeshLambertMaterial({ color: 0x0f172a });
+      const tower = new THREE.Mesh(new THREE.BoxGeometry(26, 70, 26), towerMat);
+      tower.position.set(0, 36, 0); tower.castShadow = true; g.add(tower);
+
+      // Gold Neon Edges
       const neonMat = new THREE.MeshBasicMaterial({ color: 0xfacc15 });
-      for (let cx of [-11.1, 11.1]) {
-        for (let cz of [-11.1, 11.1]) {
-          const strip = new THREE.Mesh(new THREE.BoxGeometry(0.5, 48, 0.5), neonMat);
-          strip.position.set(cx, 25, cz); g.add(strip);
+      for (let cx of [-13.1, 13.1]) {
+        for (let cz of [-13.1, 13.1]) {
+          const strip = new THREE.Mesh(new THREE.BoxGeometry(0.6, 68, 0.6), neonMat);
+          strip.position.set(cx, 36, cz); g.add(strip);
         }
       }
 
+      // Helipad Roof: 30 x 2 x 30 at Y = 72
+      const heliMat = new THREE.MeshLambertMaterial({ color: 0x1e293b });
+      const helipad = new THREE.Mesh(new THREE.BoxGeometry(30, 2, 30), heliMat);
+      helipad.position.set(0, 72, 0); g.add(helipad);
+
+      // Helipad Yellow 'H' Mark
+      const hMat = new THREE.MeshBasicMaterial({ color: 0xfbbf24 });
+      const hLeft = new THREE.Mesh(new THREE.BoxGeometry(2, 0.1, 12), hMat);
+      hLeft.position.set(-4, 73.06, 0); g.add(hLeft);
+      const hRight = new THREE.Mesh(new THREE.BoxGeometry(2, 0.1, 12), hMat);
+      hRight.position.set(4, 73.06, 0); g.add(hRight);
+      const hMid = new THREE.Mesh(new THREE.BoxGeometry(8, 0.1, 2), hMat);
+      hMid.position.set(0, 73.06, 0); g.add(hMid);
+
+      // Crown & Spire
       const crownMat = new THREE.MeshBasicMaterial({ color: 0xfbbf24 });
       const crown = new THREE.Mesh(new THREE.CylinderGeometry(5, 3.5, 4, 5, 1, true), crownMat);
-      crown.position.set(0, 52.5, 0); g.add(crown);
+      crown.position.set(0, 75, 0); g.add(crown);
+      const spire = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 1.2, 16, 8), neonMat);
+      spire.position.set(0, 83, 0); g.add(spire);
 
-      const spire = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 1.2, 14, 8), neonMat);
-      spire.position.set(0, 60, 0); g.add(spire);
+      // Vehicle Lift Ramp up to 1st terrace
+      const rampMat = new THREE.MeshLambertMaterial({ color: 0xd97706 });
+      const ramp = new THREE.Mesh(new THREE.BoxGeometry(8, 1, 24), rampMat);
+      ramp.position.set(0, 5, 25);
+      ramp.rotation.x = -25 * Math.PI / 180;
+      g.add(ramp);
 
       g.position.set(x, 0, z);
       scene.add(g);
-      buildings.push({ x: x, z: z, radius: 15, name: "👑 Trụ Sở DEV Tối Thượng" });
+      buildings.push({ x: x, z: z, radius: 20, name: "🏢 Tháp DEV Skyscraper" });
+    }
+
+    function createDevSkyArena(x, z) {
+      const g = new THREE.Group();
+      // Mega Platform 150m x 3m x 150m at Y = 85
+      const platMat = new THREE.MeshLambertMaterial({ color: 0x1e1e24 });
+      const plat = new THREE.Mesh(new THREE.BoxGeometry(150, 3, 150), platMat);
+      plat.position.set(0, 85, 0); plat.receiveShadow = true; g.add(plat);
+
+      // Glowing Cyan Arena Boundary Safety Walls
+      const ringMat = new THREE.MeshBasicMaterial({ color: 0x06b6d4 });
+      const r1 = new THREE.Mesh(new THREE.BoxGeometry(150, 6, 2), ringMat);
+      r1.position.set(0, 88, 75); g.add(r1);
+      const r2 = new THREE.Mesh(new THREE.BoxGeometry(150, 6, 2), ringMat);
+      r2.position.set(0, 88, -75); g.add(r2);
+      const r3 = new THREE.Mesh(new THREE.BoxGeometry(2, 6, 150), ringMat);
+      r3.position.set(75, 88, 0); g.add(r3);
+      const r4 = new THREE.Mesh(new THREE.BoxGeometry(2, 6, 150), ringMat);
+      r4.position.set(-75, 88, 0); g.add(r4);
+
+      // Mega Ski-Jump Ramp pointing down to city
+      const rampMat = new THREE.MeshLambertMaterial({ color: 0xa855f7 });
+      const jumpRamp = new THREE.Mesh(new THREE.BoxGeometry(16, 2, 80), rampMat);
+      jumpRamp.position.set(0, 75, -85);
+      jumpRamp.rotation.x = 30 * Math.PI / 180;
+      g.add(jumpRamp);
+
+      g.position.set(x, 0, z);
+      scene.add(g);
+      buildings.push({ x: x, z: z, radius: 45, name: "🌌 Đấu Trường Sky Arena (85m)" });
+    }
+
+    function createDevBunker(x, z) {
+      const g = new THREE.Group();
+      // Floor: 40 x 1.5 x 40
+      const bunkerMat = new THREE.MeshLambertMaterial({ color: 0x18181b });
+      const floor = new THREE.Mesh(new THREE.BoxGeometry(40, 1.5, 40), bunkerMat);
+      floor.position.set(0, 0.75, 0); g.add(floor);
+
+      // Reinforced Concrete Walls
+      const wallMat = new THREE.MeshLambertMaterial({ color: 0x3f3f46 });
+      const wNorth = new THREE.Mesh(new THREE.BoxGeometry(40, 8, 2), wallMat);
+      wNorth.position.set(0, 4, 20); g.add(wNorth);
+      const wEast = new THREE.Mesh(new THREE.BoxGeometry(2, 8, 40), wallMat);
+      wEast.position.set(20, 4, 0); g.add(wEast);
+      const wWest = new THREE.Mesh(new THREE.BoxGeometry(2, 8, 40), wallMat);
+      wWest.position.set(-20, 4, 0); g.add(wWest);
+
+      // Reinforced Roof: 42 x 2 x 42 at Y = 8
+      const roof = new THREE.Mesh(new THREE.BoxGeometry(42, 2, 42), bunkerMat);
+      roof.position.set(0, 8, 0); g.add(roof);
+
+      // Warning hazard stripes around entrance
+      const stripeMat = new THREE.MeshBasicMaterial({ color: 0xf59e0b });
+      const stripe = new THREE.Mesh(new THREE.BoxGeometry(40, 0.5, 0.5), stripeMat);
+      stripe.position.set(0, 8.2, -19.8); g.add(stripe);
+
+      g.position.set(x, 0, z);
+      scene.add(g);
+      buildings.push({ x: x, z: z, radius: 22, name: "🛡️ Boong-ke Quân Sự Bunker" });
     }
 
     function createStreetFurniture() {
@@ -2684,16 +2772,20 @@
         player.position.addScaledVector(move, speed * delta);
 
         // Building radial colliders (prevents clipping through walls/interiors)
-        buildings.forEach(b => {
-          const dx = player.position.x - b.x;
-          const dz = player.position.z - b.z;
-          const dist = Math.hypot(dx, dz);
-          if (dist < b.radius) {
-            const angle = Math.atan2(dz, dx);
-            player.position.x = b.x + Math.cos(angle) * b.radius;
-            player.position.z = b.z + Math.sin(angle) * b.radius;
-          }
-        });
+        const curElev = getGroundElevation(player.position.x, player.position.z);
+        if (curElev === 0 && player.position.y < 12) {
+          buildings.forEach(b => {
+            if (b.name && b.name.includes("Sky Arena")) return; // Sky Arena is high altitude at 85m
+            const dx = player.position.x - b.x;
+            const dz = player.position.z - b.z;
+            const dist = Math.hypot(dx, dz);
+            if (dist < b.radius) {
+              const angle = Math.atan2(dz, dx);
+              player.position.x = b.x + Math.cos(angle) * b.radius;
+              player.position.z = b.z + Math.sin(angle) * b.radius;
+            }
+          });
+        }
 
         player.rotation.y = Math.atan2(move.x, move.z);
 
@@ -2713,17 +2805,42 @@
       } else {
         playerVel.y -= 22 * delta;
         player.position.y += playerVel.y * delta;
-        if (player.position.y <= 0) {
-          player.position.y = 0;
+        const groundLevel = getGroundElevation(player.position.x, player.position.z);
+        if (player.position.y <= groundLevel) {
+          player.position.y = groundLevel;
           playerVel.y = 0;
           isGrounded = true;
         }
       }
     }
 
+    function getGroundElevation(px, pz) {
+      // Dev Sky Arena (0, 85, 0) - Size 150m x 150m
+      if (Math.abs(px) <= 75 && Math.abs(pz) <= 75 && player.position.y >= 75) {
+        return 85.0;
+      }
+      // Dev Mega Skyscraper Helipad Roof (120, 72, 180) - Size 30m x 30m
+      if (Math.abs(px - 120) <= 15 && Math.abs(pz - 180) <= 15 && player.position.y >= 65) {
+        return 72.0;
+      }
+      // Dev Military Bunker Roof (-220, 8, -140) - Size 42m x 42m
+      if (Math.abs(px - (-220)) <= 21 && Math.abs(pz - (-140)) <= 21 && player.position.y >= 5) {
+        return 8.0;
+      }
+      // Empire Tower Roof (0, 75, -90)
+      if (Math.abs(px) <= 12 && Math.abs(pz - (-90)) <= 12 && player.position.y >= 68) {
+        return 75.0;
+      }
+      return 0.0;
+    }
+
     function updateVehiclesMovement(delta) {
       vehicles.forEach(c => {
         if (State.inVehicle === c) {
+          const vElev = getGroundElevation(c.mesh.position.x, c.mesh.position.z);
+          if (c.mesh.position.y < vElev) {
+            c.mesh.position.y = vElev;
+          }
           const gas = c.gas || keys.w;
           const brake = c.brake || keys.s;
           const nitro = c.nitro;
