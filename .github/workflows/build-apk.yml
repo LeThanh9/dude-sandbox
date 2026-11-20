@@ -23,8 +23,14 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+      - name: Accept Android SDK Licenses & Configure
+        run: |
+          echo "sdk.dir=$ANDROID_HOME" > android/local.properties
+          mkdir -p "$ANDROID_HOME/licenses" || true
+          echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" >> "$ANDROID_HOME/licenses/android-sdk-license"
+          echo "84831b9409646a328e447b7a8e9e14fb9d695c90" >> "$ANDROID_HOME/licenses/android-sdk-preview-license"
+          echo "d56f5187479451eabf01fb78af6dfcb131a6481e" >> "$ANDROID_HOME/licenses/android-sdk-license"
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
 
       - name: Sync Game HTML Asset to Android App
         run: |
@@ -63,7 +69,7 @@ jobs:
             ## 🌴 Dude Theft Wars 3D - Ultra Detailed 99% HD Edition
             ### 🛠️ Chi Tiết Bản Mod:
             - **Công Trình Map Mới:**
-              - 🏛️ **Ngân Hàng Trung Tâm & Kho Vàng (Central Bank & Vault)** với hàng cột cổ điển và sân bay trực thăng trên nóc.
+              - 🏛️ **Ngân Hàng Trung Tâm & Kho Vàng (Central Bank & Vault)** với hàng cột Hy Lạp cổ điển và sân bay trực thăng.
               - 🌊 **Ngọn Hải Đăng & Cảng Biển (Ocean Lighthouse & Docks)** với đèn xoay 360 độ và container hàng hải.
               - 👑 **Trụ Sở DEV Tối Thượng (Secret Fortress Skyscraper)**.
               - 🏠 Biệt thự Jack, Tiệm bánh Dude Burger xoay 360°, Đồn Cảnh Sát, Sân bay & Máy bay nhào lộn.
