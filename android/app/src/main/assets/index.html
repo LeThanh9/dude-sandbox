@@ -248,6 +248,18 @@
   <!-- Three.js Canvas -->
   <canvas id="game-canvas"></canvas>
   <div id="crosshair"></div>
+
+  <!-- SNIPER SCOPE OVERLAY -->
+  <div id="sniper-scope-overlay" class="hidden pointer-events-none fixed inset-0 z-40 flex items-center justify-center">
+    <div class="relative w-[340px] h-[340px] sm:w-[460px] sm:h-[460px] rounded-full border-[6px] border-black shadow-[0_0_0_2000px_rgba(0,0,0,0.92)] overflow-hidden flex items-center justify-center">
+      <div class="absolute inset-x-0 top-1/2 h-[2px] bg-red-600 -translate-y-1/2"></div>
+      <div class="absolute inset-y-0 left-1/2 w-[2px] bg-red-600 -translate-x-1/2"></div>
+      <div class="absolute w-28 h-28 border border-red-500/40 rounded-full"></div>
+      <div class="absolute w-56 h-56 border border-red-500/25 rounded-full"></div>
+      <div class="absolute top-6 left-8 text-[9px] font-mono text-emerald-400 font-bold tracking-widest">TACTICAL 4X • RANGE: AUTO</div>
+      <div class="absolute bottom-6 right-8 text-[9px] font-mono text-amber-400 font-bold tracking-widest">CALIBER .50 BMG</div>
+    </div>
+  </div>
   <div id="police-siren-overlay"></div>
 
   <!-- Touch Tracking Layer -->
@@ -382,6 +394,10 @@
             <i class="fa-solid fa-plane-arrival text-base"></i>
             <span class="text-[7px]">Hạ Xuống</span>
           </button>
+          <button id="btn-heli-rocket" onclick="fireHeliRocket()" class="btn-dtw btn-dtw-red w-11 h-11 text-xs hidden">
+            <i class="fa-solid fa-rocket text-base"></i>
+            <span class="text-[7px]">Tên Lửa</span>
+          </button>
         </div>
 
         <!-- Ragdoll & View Toggle -->
@@ -409,6 +425,10 @@
           <button id="btn-jump" onclick="doPlayerJump()" class="btn-dtw w-12 h-12 text-slate-950 text-sm">
             <i class="fa-solid fa-arrow-up text-base"></i>
             <span class="text-[8px]">Nhảy</span>
+          </button>
+          <button id="btn-scope" onclick="toggleSniperScope()" class="btn-dtw btn-dtw-blue w-11 h-11 text-xs">
+            <i class="fa-solid fa-bullseye text-base"></i>
+            <span class="text-[7px]">Ngắm</span>
           </button>
           <button id="btn-shoot" class="btn-dtw btn-dtw-red w-14 h-14 text-base">
             <i class="fa-solid fa-crosshairs text-xl"></i>
@@ -571,6 +591,10 @@
           <button onclick="switchPhoneView('home')" class="text-amber-400 p-1"><i class="fa-solid fa-chevron-left"></i></button>
           <span>dUber Delivery (Xe & Máy Bay)</span>
         </div>
+        <button onclick="orderVehicle('heli')" class="w-full bg-slate-900 hover:bg-slate-800 border border-cyan-500/50 p-2 rounded-xl text-left font-bold text-cyan-300 flex justify-between">
+          <span>🚁 Trực Thăng Tác Chiến (Combat Chopper)</span>
+          <span class="text-emerald-400 font-mono text-[9px]">GIAO NGAY</span>
+        </button>
         <button onclick="orderVehicle('plane')" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-700 p-2 rounded-xl text-left font-bold text-yellow-300 flex justify-between">
           <span>✈️ Máy Bay Nhào Lộn (Stunt Plane)</span>
           <span class="text-emerald-400 font-mono text-[9px]">GIAO NGAY</span>
@@ -613,9 +637,25 @@
           <button onclick="setTimeOfDay('sunset')" class="bg-slate-900 border border-slate-700 p-1.5 rounded-lg text-orange-400 font-bold text-[9px]">🌅 Hoàng Hôn</button>
           <button onclick="setTimeOfDay('night')" class="bg-slate-900 border border-slate-700 p-1.5 rounded-lg text-indigo-300 font-bold text-[9px]">🌙 Đêm</button>
         </div>
+        <button onclick="orderVehicle('heli')" class="w-full bg-slate-900 p-2 rounded-xl border border-cyan-500 text-left font-bold text-cyan-300 flex justify-between items-center">
+          <span>🚁 Triệu Hồi Trực Thăng Tác Chiến</span>
+          <i class="fa-solid fa-helicopter text-xs text-cyan-400"></i>
+        </button>
         <button onclick="orderVehicle('plane')" class="w-full bg-slate-900 p-2 rounded-xl border border-slate-700 text-left font-bold text-yellow-300 flex justify-between items-center">
           <span>✈️ Giao Ngay Máy Bay Nhào Lộn</span>
           <i class="fa-solid fa-plane text-xs"></i>
+        </button>
+        <button onclick="refillAllWeapons()" class="w-full bg-slate-900 p-2 rounded-xl border border-purple-500 text-left font-bold text-purple-300 flex justify-between items-center">
+          <span>🔫 Nạp Đầy Kho Vũ Khí (Full Arsenal)</span>
+          <i class="fa-solid fa-wand-magic-sparkles text-xs text-purple-400"></i>
+        </button>
+        <button onclick="triggerBankHeist()" class="w-full bg-slate-900 p-2 rounded-xl border border-yellow-500 text-left font-bold text-yellow-300 flex justify-between items-center">
+          <span>🏛️ Đột Nhập Kho Vàng Ngân Hàng ($250k)</span>
+          <i class="fa-solid fa-sack-dollar text-xs text-yellow-400"></i>
+        </button>
+        <button onclick="toggleSniperScope()" class="w-full bg-slate-900 p-2 rounded-xl border border-rose-500 text-left font-bold text-rose-300 flex justify-between items-center">
+          <span>🎯 Kính Ngắm Bắn Tỉa 4x Tác Chiến</span>
+          <i class="fa-solid fa-crosshairs text-xs text-rose-400"></i>
         </button>
         <button id="god-toggle" onclick="toggleGodMode()" class="w-full bg-slate-900 p-2 rounded-xl border border-slate-700 text-left font-bold text-white flex justify-between items-center">
           <span>🛡️ Bất Tử (God Mode)</span>
@@ -747,11 +787,154 @@
   <script>
     const Sound = {
       ctx: null,
+      engineOsc: null,
+      engineSubOsc: null,
+      engineGain: null,
+      sirenOsc: null,
+      sirenLfo: null,
+      sirenGain: null,
       init() {
         if (!this.ctx) {
           const AC = window.AudioContext || window.webkitAudioContext;
           this.ctx = new AC();
         }
+      },
+      startEngine() {
+        this.init();
+        if (this.engineOsc) return;
+        const now = this.ctx.currentTime;
+        try {
+          this.engineOsc = this.ctx.createOscillator();
+          this.engineSubOsc = this.ctx.createOscillator();
+          this.engineGain = this.ctx.createGain();
+
+          this.engineOsc.type = 'sawtooth';
+          this.engineOsc.frequency.setValueAtTime(65, now);
+
+          this.engineSubOsc.type = 'triangle';
+          this.engineSubOsc.frequency.setValueAtTime(32, now);
+
+          const filter = this.ctx.createBiquadFilter();
+          filter.type = 'lowpass';
+          filter.frequency.setValueAtTime(450, now);
+
+          this.engineGain.gain.setValueAtTime(0.01, now);
+          this.engineGain.gain.linearRampToValueAtTime(0.18, now + 0.3);
+
+          this.engineOsc.connect(filter);
+          this.engineSubOsc.connect(filter);
+          filter.connect(this.engineGain);
+          this.engineGain.connect(this.ctx.destination);
+
+          this.engineOsc.start(now);
+          this.engineSubOsc.start(now);
+        } catch(e) {}
+      },
+      updateEngine(speedRatio, isGas, isNitro) {
+        if (!this.engineOsc || !this.ctx) return;
+        const now = this.ctx.currentTime;
+        try {
+          let targetFreq = 65 + speedRatio * 180 + (isGas ? 40 : 0) + (isNitro ? 80 : 0);
+          targetFreq = Math.min(360, Math.max(50, targetFreq));
+          this.engineOsc.frequency.setTargetAtTime(targetFreq, now, 0.08);
+          this.engineSubOsc.frequency.setTargetAtTime(targetFreq * 0.5, now, 0.08);
+          this.engineGain.gain.setTargetAtTime(isGas ? 0.22 : 0.12, now, 0.1);
+        } catch(e) {}
+      },
+      stopEngine() {
+        if (!this.engineOsc || !this.ctx) return;
+        const now = this.ctx.currentTime;
+        try {
+          this.engineGain.gain.linearRampToValueAtTime(0.001, now + 0.2);
+          setTimeout(() => {
+            if (this.engineOsc) {
+              try { this.engineOsc.stop(); this.engineSubOsc.stop(); } catch(e){}
+              this.engineOsc = null;
+              this.engineSubOsc = null;
+              this.engineGain = null;
+            }
+          }, 220);
+        } catch(e) {
+          this.engineOsc = null;
+        }
+      },
+      setPoliceSiren(active) {
+        this.init();
+        if (active && !this.sirenOsc) {
+          try {
+            const now = this.ctx.currentTime;
+            this.sirenOsc = this.ctx.createOscillator();
+            this.sirenLfo = this.ctx.createOscillator();
+            this.sirenGain = this.ctx.createGain();
+            const lfoGain = this.ctx.createGain();
+
+            this.sirenOsc.type = 'sine';
+            this.sirenOsc.frequency.setValueAtTime(750, now);
+
+            this.sirenLfo.type = 'sine';
+            this.sirenLfo.frequency.setValueAtTime(1.6, now);
+            lfoGain.gain.setValueAtTime(220, now);
+
+            this.sirenLfo.connect(lfoGain);
+            lfoGain.connect(this.sirenOsc.frequency);
+
+            this.sirenGain.gain.setValueAtTime(0.12, now);
+            this.sirenOsc.connect(this.sirenGain);
+            this.sirenGain.connect(this.ctx.destination);
+
+            this.sirenLfo.start(now);
+            this.sirenOsc.start(now);
+          } catch(e) {}
+        } else if (!active && this.sirenOsc) {
+          try {
+            this.sirenGain.gain.linearRampToValueAtTime(0.001, this.ctx.currentTime + 0.2);
+            setTimeout(() => {
+              try { if (this.sirenOsc) { this.sirenOsc.stop(); this.sirenLfo.stop(); } } catch(e){}
+              this.sirenOsc = null;
+              this.sirenLfo = null;
+              this.sirenGain = null;
+            }, 220);
+          } catch(e) {
+            this.sirenOsc = null;
+          }
+        }
+      },
+      playCrash() {
+        this.init();
+        const now = this.ctx.currentTime;
+        const dur = 0.28;
+        try {
+          const b = this.ctx.createBuffer(1, Math.floor(this.ctx.sampleRate * dur), this.ctx.sampleRate);
+          const d = b.getChannelData(0);
+          for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * Math.exp(-i / (this.ctx.sampleRate * 0.08));
+          const src = this.ctx.createBufferSource();
+          src.buffer = b;
+          const f = this.ctx.createBiquadFilter();
+          f.type = 'bandpass';
+          f.frequency.setValueAtTime(450, now);
+          f.frequency.exponentialRampToValueAtTime(120, now + dur);
+          const g = this.ctx.createGain();
+          g.gain.setValueAtTime(0.5, now);
+          g.gain.exponentialRampToValueAtTime(0.01, now + dur);
+          src.connect(f); f.connect(g); g.connect(this.ctx.destination);
+          src.start(now);
+        } catch(e) {}
+      },
+      playBankAlarm() {
+        this.init();
+        const now = this.ctx.currentTime;
+        try {
+          for (let i = 0; i < 4; i++) {
+            const o = this.ctx.createOscillator();
+            const g = this.ctx.createGain();
+            o.type = 'sawtooth';
+            o.frequency.setValueAtTime(i % 2 === 0 ? 1100 : 850, now + i * 0.22);
+            g.gain.setValueAtTime(0.3, now + i * 0.22);
+            g.gain.exponentialRampToValueAtTime(0.01, now + i * 0.22 + 0.19);
+            o.connect(g); g.connect(this.ctx.destination);
+            o.start(now + i * 0.22); o.stop(now + i * 0.22 + 0.2);
+          }
+        } catch(e) {}
       },
       playFanfare() {
         this.init();
@@ -928,7 +1111,15 @@
       nitroMeter: 100,
       timeOfDay: 'day',
       planePitchUp: false,
-      planePitchDown: false
+      planePitchDown: false,
+      isSniperAiming: false
+    };
+
+    const bankVaultObj = {
+      x: 115,
+      z: -34.2,
+      isRobbed: false,
+      doorMesh: null
     };
 
     let scene, camera, renderer, clock;
@@ -1783,6 +1974,16 @@
 
       const vaultDoor = new THREE.Mesh(new THREE.CylinderGeometry(2.5, 2.5, 0.6, 24), new THREE.MeshLambertMaterial({ color: 0xeab308 }));
       vaultDoor.rotation.x = Math.PI / 2; vaultDoor.position.set(0, 4, -9.2); g.add(vaultDoor);
+      bankVaultObj.doorMesh = vaultDoor;
+
+      const goldMat = new THREE.MeshLambertMaterial({ color: 0xfacc15 });
+      for (let gx = -1; gx <= 1; gx++) {
+        for (let gy = 0; gy < 3; gy++) {
+          const goldBar = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.4, 0.8), goldMat);
+          goldBar.position.set(gx * 1.4, gy * 0.45 + 2.5, -11.5);
+          g.add(goldBar);
+        }
+      }
 
       const helipad = new THREE.Mesh(new THREE.CylinderGeometry(5, 5, 0.2, 24), new THREE.MeshLambertMaterial({ color: 0x334155 }));
       helipad.position.set(0, 12.1, -4); g.add(helipad);
@@ -2087,6 +2288,57 @@
 
     function createCarMesh(type, color) {
       const g = new THREE.Group();
+      if (type === 'heli') {
+        const body = new THREE.Mesh(new THREE.BoxGeometry(2.0, 2.2, 5.5), new THREE.MeshLambertMaterial({ color: 0x334155 }));
+        body.position.y = 2.4; body.castShadow = true; g.add(body);
+
+        const cockpit = new THREE.Mesh(new THREE.SphereGeometry(1.2, 12, 12), new THREE.MeshLambertMaterial({ color: 0x0284c7, transparent: true, opacity: 0.85 }));
+        cockpit.scale.set(0.9, 0.9, 1.4);
+        cockpit.position.set(0, 2.6, 2.2); g.add(cockpit);
+
+        const tailBoom = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.5, 4.8), new THREE.MeshLambertMaterial({ color: 0x1e293b }));
+        tailBoom.position.set(0, 2.8, -4.5); g.add(tailBoom);
+
+        const tailFin = new THREE.Mesh(new THREE.BoxGeometry(0.12, 1.8, 1.2), new THREE.MeshLambertMaterial({ color: 0x0f172a }));
+        tailFin.position.set(0, 3.4, -6.6); g.add(tailFin);
+
+        const tailRotor = new THREE.Mesh(new THREE.BoxGeometry(0.08, 1.6, 0.25), new THREE.MeshBasicMaterial({ color: 0x111827 }));
+        tailRotor.position.set(0.15, 3.5, -6.6); g.add(tailRotor);
+        g.userData.tailRotor = tailRotor;
+
+        const mast = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.9, 8), new THREE.MeshLambertMaterial({ color: 0x18181b }));
+        mast.position.set(0, 3.8, 0); g.add(mast);
+
+        const mainRotor = new THREE.Group();
+        const bladeGeo = new THREE.BoxGeometry(9.4, 0.08, 0.4);
+        const bladeMat = new THREE.MeshBasicMaterial({ color: 0x111827 });
+        const b1 = new THREE.Mesh(bladeGeo, bladeMat);
+        const b2 = new THREE.Mesh(bladeGeo, bladeMat);
+        b2.rotation.y = Math.PI / 2;
+        mainRotor.add(b1); mainRotor.add(b2);
+        mainRotor.position.set(0, 4.25, 0); g.add(mainRotor);
+        g.userData.mainRotor = mainRotor;
+
+        const skidMat = new THREE.MeshLambertMaterial({ color: 0x0f172a });
+        const skidGeo = new THREE.BoxGeometry(0.18, 0.18, 5.2);
+        const skidL = new THREE.Mesh(skidGeo, skidMat); skidL.position.set(-1.3, 0.3, 0.2); g.add(skidL);
+        const skidR = new THREE.Mesh(skidGeo, skidMat); skidR.position.set(1.3, 0.3, 0.2); g.add(skidR);
+
+        [[-1.3, 0.9, 1.4], [-1.3, 0.9, -1.0], [1.3, 0.9, 1.4], [1.3, 0.9, -1.0]].forEach(sp => {
+          const strut = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 1.2, 6), skidMat);
+          strut.position.set(sp[0], sp[1], sp[2]);
+          g.add(strut);
+        });
+
+        const podGeo = new THREE.CylinderGeometry(0.3, 0.3, 1.6, 8);
+        const podMat = new THREE.MeshLambertMaterial({ color: 0xdc2626 });
+        const podL = new THREE.Mesh(podGeo, podMat);
+        podL.rotation.x = Math.PI / 2; podL.position.set(-1.8, 2.0, 0.4); g.add(podL);
+        const podR = new THREE.Mesh(podGeo, podMat);
+        podR.rotation.x = Math.PI / 2; podR.position.set(1.8, 2.0, 0.4); g.add(podR);
+
+        return g;
+      }
       if (type === 'plane') {
         const body = new THREE.Mesh(new THREE.BoxGeometry(1.8, 1.6, 6.2), new THREE.MeshLambertMaterial({ color: 0xfacc15 }));
         body.position.y = 1.6; body.castShadow = true; g.add(body);
@@ -2155,8 +2407,17 @@
       }
 
       if (type === 'police') {
-        const lightBar = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.25, 0.5), new THREE.MeshBasicMaterial({ color: 0x3b82f6 }));
-        lightBar.position.set(0, 2.0, -0.3); g.add(lightBar);
+        const barBase = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.1, 0.5), new THREE.MeshLambertMaterial({ color: 0x0f172a }));
+        barBase.position.set(0, 1.95, -0.3); g.add(barBase);
+
+        const bMat = new THREE.MeshBasicMaterial({ color: 0x3b82f6 });
+        const rMat = new THREE.MeshBasicMaterial({ color: 0xef4444 });
+        const bLight = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.2, 0.4), bMat);
+        bLight.position.set(-0.4, 2.05, -0.3); g.add(bLight);
+        const rLight = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.2, 0.4), rMat);
+        rLight.position.set(0.4, 2.05, -0.3); g.add(rLight);
+
+        g.userData.policeLights = { blue: bLight, red: rLight, bMat: bMat, rMat: rMat };
       }
 
       const wRadius = isMonster ? 1.1 : isF1 ? 0.5 : 0.45;
@@ -2186,7 +2447,7 @@
       scene.add(mesh);
       const car = {
         mesh: mesh, type: type, speed: 0, rot: 0,
-        maxSpeed: type === 'f1' ? 1.45 : type === 'monster' ? 0.95 : 1.2,
+        maxSpeed: type === 'f1' ? 1.45 : type === 'monster' ? 0.95 : type === 'heli' ? 1.35 : 1.2,
         gas: false, brake: false, nitro: false
       };
       vehicles.push(car);
@@ -2405,6 +2666,7 @@
         player.position.copy(c.mesh.position).add(new THREE.Vector3(2.5, 0, 0));
         player.visible = true;
         State.inVehicle = null;
+        Sound.stopEngine();
         updateMobileHUD(false);
         showToast("Đã xuống xe");
       } else {
@@ -2416,8 +2678,9 @@
         if (closest) {
           State.inVehicle = closest;
           player.visible = false;
+          Sound.startEngine();
           updateMobileHUD(true);
-          showToast("Đã lên " + (closest.type === 'police' ? "Xe Cảnh Sát" : closest.type === 'monster' ? "Monster Truck" : closest.type === 'f1' ? "Xe Đua F1" : "Siêu Xe"));
+          showToast("Đã lên " + (closest.type === 'heli' ? "Trực Thăng Tác Chiến" : closest.type === 'plane' ? "Máy Bay Nhào Lộn" : closest.type === 'police' ? "Xe Cảnh Sát" : closest.type === 'monster' ? "Monster Truck" : closest.type === 'f1' ? "Xe Đua F1" : "Siêu Xe"));
         } else {
           showToast("Không có xe nào ở gần bạn!");
         }
@@ -2426,9 +2689,15 @@
 
     function updateMobileHUD(inCar) {
       const isPlane = inCar && State.inVehicle && (State.inVehicle.type === 'plane');
+      const isHeli = inCar && State.inVehicle && (State.inVehicle.type === 'heli');
+      const isAir = isPlane || isHeli;
+
       document.getElementById('car-pedals-left').classList.toggle('hidden', !inCar);
       const planeCtrl = document.getElementById('plane-controls');
-      if (planeCtrl) planeCtrl.classList.toggle('hidden', !isPlane);
+      if (planeCtrl) planeCtrl.classList.toggle('hidden', !isAir);
+      const heliRocketBtn = document.getElementById('btn-heli-rocket');
+      if (heliRocketBtn) heliRocketBtn.classList.toggle('hidden', !isHeli);
+
       document.getElementById('ragdoll-btn-wrap').classList.toggle('hidden', inCar);
       document.getElementById('onfoot-buttons').classList.toggle('hidden', inCar);
       document.getElementById('incar-buttons').classList.toggle('hidden', !inCar);
@@ -2570,6 +2839,7 @@
       document.getElementById('wanted-stars-hud').innerHTML = h;
 
       const overlay = document.getElementById('police-siren-overlay');
+      Sound.setPoliceSiren(lvl > 0);
       if (lvl > 0) {
         overlay.classList.add('siren-active');
         if (policeSquad.length < 2) {
@@ -2591,8 +2861,72 @@
       if (type === 'bugatti') col = 0xf59e0b;
       if (type === 'monster') col = 0x8b5cf6;
       if (type === 'f1') col = 0x06b6d4;
+      if (type === 'heli') col = 0x334155;
       addVehicle(pos.x, pos.z, type, col);
-      showToast("🚗 dUber: Đã giao xe tới bạn!");
+      showToast("🚗 dUber: Đã giao " + (type === 'heli' ? "Trực Thăng" : "xe") + " tới bạn!");
+    }
+
+    function toggleSniperScope() {
+      if (State.weapon !== 'sniper') {
+        selectWeapon('sniper');
+      }
+      State.isSniperAiming = !State.isSniperAiming;
+      const scopeOverlay = document.getElementById('sniper-scope-overlay');
+      if (scopeOverlay) scopeOverlay.classList.toggle('hidden', !State.isSniperAiming);
+      camera.fov = State.isSniperAiming ? 20 : 75;
+      camera.updateProjectionMatrix();
+      showToast(State.isSniperAiming ? "🎯 Kính Ngắm 4x Đã Bật!" : "🎯 Đã Thoát Kính Ngắm");
+    }
+
+    function refillAllWeapons() {
+      State.cash += 500000;
+      document.getElementById('cash-val').innerText = '$' + State.cash.toLocaleString();
+      selectWeapon('rpg');
+      Sound.playFanfare();
+      showToast("🔫 Nạp Đầy Toàn Bộ Kho Vũ Khí & Tặng +$500,000!");
+    }
+
+    function triggerBankHeist() {
+      if (bankVaultObj.isRobbed) {
+        showToast("Kho tiền ngân hàng đang bị phong tỏa điều tra!");
+        return;
+      }
+      bankVaultObj.isRobbed = true;
+      if (bankVaultObj.doorMesh) {
+        bankVaultObj.doorMesh.rotation.y = Math.PI * 0.45;
+      }
+      Sound.playBankAlarm();
+      Sound.playFanfare();
+      addMoney(250000);
+      setWantedLevel(4);
+      for (let i = 0; i < 25; i++) {
+        spawnSpark(new THREE.Vector3(115 + (Math.random()-0.5)*4, 4, -34 + (Math.random()-0.5)*4), 0x22c55e, 5);
+        spawnSpark(new THREE.Vector3(115 + (Math.random()-0.5)*4, 4, -34 + (Math.random()-0.5)*4), 0xfacc15, 5);
+      }
+      showToast("🚨 CƯỚP KHO TIỀN NGÂN HÀNG THÀNH CÔNG! +$250,000! CẢNH SÁT 4 SAO ĐANG TRUY NÃ BẠN!");
+    }
+
+    function fireHeliRocket() {
+      if (!State.inVehicle || State.inVehicle.type !== 'heli') return;
+      Sound.playGunshot('rpg');
+      const bGeo = new THREE.SphereGeometry(0.35, 8, 8);
+      const bMat = new THREE.MeshBasicMaterial({ color: 0xef4444 });
+      const bullet = new THREE.Mesh(bGeo, bMat);
+
+      const spawnPos = State.inVehicle.mesh.position.clone().add(new THREE.Vector3(0, 1.8, 0));
+      bullet.position.copy(spawnPos);
+
+      const dir = new THREE.Vector3(
+        Math.sin(State.inVehicle.rot),
+        -0.08,
+        Math.cos(State.inVehicle.rot)
+      ).normalize();
+
+      bullet.userData = { dir: dir, life: 75, isRpg: true };
+      scene.add(bullet);
+      bullets.push(bullet);
+      spawnSpark(spawnPos, 0xf59e0b, 5);
+      showToast("🚀 Bắn Tên Lửa Trực Thăng!");
     }
 
     function teleportPlayer(x, y, z) {
@@ -2739,6 +3073,26 @@
       if (policeSirenBeacon) policeSirenBeacon.rotation.y += 6.0 * delta;
       if (poolWaterMesh) poolWaterMesh.position.y = 0.18 + Math.sin(clock.getElapsedTime() * 2.2) * 0.03;
 
+      // Police Car Emergency Lightbars Flashing
+      const pFlash = (Math.floor(clock.getElapsedTime() * 8) % 2 === 0);
+      vehicles.forEach(v => {
+        if (v.mesh && v.mesh.userData && v.mesh.userData.policeLights) {
+          const pl = v.mesh.userData.policeLights;
+          if (State.wanted > 0 || v.type === 'police') {
+            pl.blue.material.color.setHex(pFlash ? 0x60a5fa : 0x1e3a8a);
+            pl.red.material.color.setHex(pFlash ? 0x7f1d1d : 0xf87171);
+          }
+        }
+      });
+
+      // Bank Vault Proximity Heist Trigger
+      if (!bankVaultObj.isRobbed) {
+        const pDist = Math.hypot(player.position.x - bankVaultObj.x, player.position.z - bankVaultObj.z);
+        if (pDist < 5.0 && player.position.y < 8.0) {
+          triggerBankHeist();
+        }
+      }
+
       updateCameraOrbit();
       renderRadar();
 
@@ -2864,11 +3218,23 @@
             } else {
               c.mesh.rotation.x *= 0.96;
             }
+          } else if (c.type === 'heli') {
+            if (c.mesh.userData.mainRotor) c.mesh.userData.mainRotor.rotation.y += 28.0 * delta;
+            if (c.mesh.userData.tailRotor) c.mesh.userData.tailRotor.rotation.x += 38.0 * delta;
+
+            if (keys.space || State.planePitchUp) {
+              c.mesh.position.y += 14 * delta;
+            } else if (keys.shift || State.planePitchDown) {
+              c.mesh.position.y = Math.max(0, c.mesh.position.y - 12 * delta);
+            }
+            if (c.mesh.position.y > 0.5 && !keys.space && !State.planePitchUp && !keys.w && !gas) {
+              c.mesh.position.y += Math.sin(clock.getElapsedTime() * 3) * 0.02;
+            }
           }
-          if (c.mesh.position.y > 0.5 && !keys.space && !State.planePitchUp) {
+          if (c.mesh.position.y > 0.5 && !keys.space && !State.planePitchUp && c.type !== 'heli') {
             c.mesh.position.y = Math.max(0, c.mesh.position.y - 2.5 * delta);
           }
-          const topSpeed = (c.type === 'plane' ? 1.6 : c.maxSpeed) * (nitro && State.nitroMeter > 0 ? 1.75 : 1.0);
+          const topSpeed = (c.type === 'plane' ? 1.6 : c.type === 'heli' ? 1.35 : c.maxSpeed) * (nitro && State.nitroMeter > 0 ? 1.75 : 1.0);
           const accel = (nitro && State.nitroMeter > 0 ? 3.0 : 1.4) * delta;
 
           if (gas) {
@@ -2903,6 +3269,7 @@
 
           const kmh = Math.round(Math.abs(c.speed) * 120);
           document.getElementById('speedo-num').innerText = kmh;
+          Sound.updateEngine(Math.abs(c.speed) / topSpeed, gas, nitro && State.nitroMeter > 0);
 
           if (soccerBall) {
             const dist = c.mesh.position.distanceTo(soccerBall.mesh.position);
@@ -2918,11 +3285,37 @@
 
       policeSquad.forEach(p => {
         if (State.wanted > 0) {
-          const d = player.position.clone().sub(p.mesh.position);
-          const angle = Math.atan2(d.x, d.z);
-          p.mesh.rotation.y = angle;
-          p.mesh.position.x += Math.sin(angle) * 0.45;
-          p.mesh.position.z += Math.cos(angle) * 0.45;
+          const targetPos = State.inVehicle ? State.inVehicle.mesh.position : player.position;
+          const d = targetPos.clone().sub(p.mesh.position);
+          const dist = d.length();
+          const targetAngle = Math.atan2(d.x, d.z);
+
+          let angleDiff = targetAngle - p.rot;
+          while (angleDiff > Math.PI) angleDiff -= Math.PI * 2;
+          while (angleDiff < -Math.PI) angleDiff += Math.PI * 2;
+          p.rot += Math.sign(angleDiff) * Math.min(Math.abs(angleDiff), 2.5 * delta);
+          p.mesh.rotation.y = p.rot;
+
+          const pSpeed = Math.min(0.85, 0.45 + State.wanted * 0.08);
+          p.mesh.position.x += Math.sin(p.rot) * pSpeed;
+          p.mesh.position.z += Math.cos(p.rot) * pSpeed;
+
+          const pElev = getGroundElevation(p.mesh.position.x, p.mesh.position.z);
+          p.mesh.position.y = Math.max(0, pElev);
+
+          if (dist < 3.8) {
+            spawnSpark(p.mesh.position, 0xf59e0b, 10);
+            Sound.playCrash();
+            if (State.inVehicle) {
+              State.inVehicle.speed *= 0.5;
+            } else if (!State.isGod) {
+              State.health = Math.max(0, State.health - 6);
+              updateHealthUI();
+              triggerRagdollFlop();
+              showToast("💥 BỊ XE CẢNH SÁT ĐÂM TRÚNG!");
+            }
+            p.mesh.position.sub(d.normalize().multiplyScalar(2.0));
+          }
         }
       });
     }

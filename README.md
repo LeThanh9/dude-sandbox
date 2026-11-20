@@ -26,11 +26,12 @@ Bản tái hiện 3D thế giới mở nguyên bản của siêu phẩm **Dude T
 - Tháp ăng-ten liên lạc cảnh sát cao vút với đèn hiệu hàng không đỏ chớp tắt.
 - Bãi đỗ xe tuần tra chuyên dụng kẻ vạch trắng với các xe cảnh sát đỗ sẵn.
 
-### 4. ✈️ Sân Bay Dude City & Máy Bay Nhào Lộn (Stunt Biplane)
+### 4. ✈️ Sân Bay Dude City, Máy Bay & Trực Thăng Tác Chiến (Combat Chopper)
 - Đường băng bê tông dài 240m với vạch tim đường, vạch tiếp đất (Touchdown Zone) và vạch ngưỡng (Threshold Bars).
 - Hàng đèn tín hiệu dẫn đường xanh/đỏ dọc hai bên mép đường băng.
 - Đài kiểm soát không lưu (Control Tower) bằng kính 360 độ và túi đo hướng gió sọc cam (Windsock).
 - **Máy Bay Nhào Lộn (Stunt Biplane):** Đậu sẵn tại đường băng hoặc gọi xe qua dUber. Khi đạt tốc độ, máy bay có thể cất cánh bay lượn tự do ngắm toàn cảnh thành phố từ trên trời! Nút điều khiển bay (Bay Lên / Hạ Xuống) tích hợp ngay trên màn hình cảm ứng điện thoại.
+- **Trực Thăng Tác Chiến (Combat Chopper):** Trang bị cụm cánh quạt kép xoay 360 độ, buồng lái kính vòm xanh, cánh đuôi thăng bằng, thanh trượt tiếp đất kim loại và 2 giàn tên lửa RPG phóng đạn nổ diện rộng!
 
 ### 5. ⚽ Sân Vận Động Bóng Đá Quốc Tế
 - Mặt cỏ 2 tông màu kẻ vạch thi đấu chuẩn: vòng tròn giao bóng, khu cấm địa 2 đầu.
@@ -56,16 +57,22 @@ Khi lên bất kỳ xe nào, bấm nút **Đài (Radio)** trên bảng điều k
 2. ⚡ **80s Retro Synthwave:** Tiếng bass điện tử dồn dập sôi động.
 3. 🔇 **Tắt Đài**
 
-### 9. 🏛️ Ngân Hàng Trung Tâm & Kho Vàng (Central Bank & Vault)
+### 9. 🏛️ Ngân Hàng Trung Tâm & Phi Vụ Cướp Kho Vàng ($250,000 Heist)
 - Tòa nhà đá cẩm thạch tráng lệ với 6 cột trụ Hy Lạp cổ điển và mái tam giác.
-- Cửa kho vàng kiên cố mạ vàng nguyên khối phía sau.
+- **Cơ chế Cướp Kho Tiền:** Tiến đến gần cánh cửa sắt mạ vàng phía sau ngân hàng hoặc bấm lệnh trong DEV Admin. Cửa kho vàng xoay mở, còi báo động ngân hàng vang dội, hiệu ứng tiền vàng bay tung tóe, tự động cộng ngay **+$250,000** tiền mặt và kích hoạt cảnh sát 4 sao rượt đuổi nghẹt thở!
 - Bãi đáp trực thăng (Helipad) chuyên dụng trên tầng thượng.
 
-### 10. 🌊 Ngọn Hải Đăng & Cảng Biển Hàng Hải (Ocean Lighthouse & Docks)
-- Tháp hải đăng 35m với các vòng s   trên mặt biển.
+### 10. 🔊 Âm Thanh Động Cơ & Còi Cảnh Sát Đa Âm Sống Động
+- **Âm thanh động cơ xe đa dải tần:** Tần số pitch tự động tăng giảm theo vận tốc, chân ga và chế độ phụt lửa Nitro.
+- **Còi hú cảnh sát LFO 2 giai điệu:** Tự động hú vang liên tục khi bị truy nã và tắt khi xóa tội.
+- **Âm va chạm kim loại chân thực:** Phát ra khi xe cảnh sát tông vào người chơi hoặc vật cản.
+- **Hệ thống đèn chớp đỏ/xanh chuyên dụng trên nóc xe tuần tra.**
+
+### 11. 🌊 Ngọn Hải Đăng & Cảng Biển Hàng Hải (Ocean Lighthouse & Docks)
+- Tháp hải đăng 35m với đèn pha xoay quét mặt biển.
 - Bến cảng với hàng container nhiều màu sắc và cầu cảng bê tông kiên cố.
 
-### 11. 👑 Trụ Sở DEV Tối Thượng (Secret Fortress Skyscraper)
+### 12. 👑 Trụ Sở DEV Tối Thượng (Secret Fortress Skyscraper)
 - Tòa tháp công nghệ cao cao 50m bằng đá Obsidian đen tuyền với các đường neon vàng rực rỡ và vương miện DEV phát sáng trên đỉnh.
 
 ---
@@ -81,7 +88,11 @@ Khi lên bất kỳ xe nào, bấm nút **Đài (Radio)** trên bảng điều k
   - 💰 **Thêm +$1,000,000 Cash:** Tiền mặt vô hạn.
   - 🦸 **Chế Độ Bay Superhero:** Bay tự do xuyên không gian.
   - ⚡ **Siêu Tốc Độ x3 & Siêu Nhảy Cao x3:** Vượt mọi giới hạn vật lý.
+  - 🚁 **Triệu Hồi Trực Thăng Tác Chiến:** Bắn tên lửa RPG hủy diệt.
   - ✈️ **Nhận Máy Bay Nhào Lộn:** Triệu hồi tức thì.
+  - 🔫 **Nạp Đầy Kho Vũ Khí (Full Arsenal):** Nhận toàn bộ súng và đạn vô hạn.
+  - 🎯 **Kính Ngắm Bắn Tỉa 4x (Tactical Scope):** Phóng to tiêu cự camera với tâm ngắm quân sự.
+  - 🏛️ **Đột Nhập Kho Vàng Ngân Hàng:** Nhận ngay $250,000.
   - ⏱️ **Quay Chậm Matrix:** Slow-motion nghẹt thở.
   - ☀️ / 🌅 / 🌙 **Thao Túng Thời Tiết:** Chuyển ngày/đêm tức thì.
   - ⭐ **Xóa Sạch Truy Nã / Bật 5 Sao:** Quản lý truy nã theo ý muốn.
