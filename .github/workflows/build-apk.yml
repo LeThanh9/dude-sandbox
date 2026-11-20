@@ -1,0 +1,76 @@
+name: Build Dude Theft Wars APK
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-apk:
+    name: Build & Package Android APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Sync Game HTML Asset to Android App
+        run: |
+          mkdir -p android/app/src/main/assets
+          cp index.html android/app/src/main/assets/index.html
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.5'
+
+      - name: Build Android APK
+        run: |
+          cd android
+          gradle assembleDebug --stacktrace
+
+      - name: Rename and Prepare APK Artifact
+        run: |
+          mkdir -p release-output
+          cp android/app/build/outputs/apk/debug/app-debug.apk release-output/DudeTheftWars-Mod-Dev-v0.9.1.1b.apk
+
+      - name: Upload APK to Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: DudeTheftWars-Mod-Dev-APK
+          path: release-output/*.apk
+          retention-days: 30
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+        with:
+          tag_name: v0.9.1.1b-build-${{ github.run_number }}
+          name: "Dude Theft Wars Mod Dev Edition (Build #${{ github.run_number }})"
+          body: |
+            ## 🌴 Dude Theft Wars 3D - Ultra Detailed 99% HD Edition
+            ### 🛠️ Chi Tiết Bản Mod:
+            - **Công Trình Map Mới:**
+              - 🏛️ **Ngân Hàng Trung Tâm & Kho Vàng (Central Bank & Vault)** với hàng cột cổ điển và sân bay trực thăng trên nóc.
+              - 🌊 **Ngọn Hải Đăng & Cảng Biển (Ocean Lighthouse & Docks)** với đèn xoay 360 độ và container hàng hải.
+              - 👑 **Trụ Sở DEV Tối Thượng (Secret Fortress Skyscraper)**.
+              - 🏠 Biệt thự Jack, Tiệm bánh Dude Burger xoay 360°, Đồn Cảnh Sát, Sân bay & Máy bay nhào lộn.
+            - **Cơ Chế Ẩn DEV (Không gợi ý):**
+              - Đổi tên nhân vật thành `dev` để mở khóa toàn bộ quyền Admin Console (Bất tử, Siêu tốc độ x3, Bay lượn, Tiền mặt vô hạn, Dịch chuyển tức thời).
+              - Tuyệt đối không xuất hiện trong gợi ý UI hay mã cheat nhanh.
+            - **Tải APK Trực Tiếp:** `DudeTheftWars-Mod-Dev-v0.9.1.1b.apk` bên dưới!
+          files: release-output/*.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

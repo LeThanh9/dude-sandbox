@@ -489,8 +489,8 @@
             <span class="text-[9px] font-bold text-slate-200 mt-1">Vũ Khí</span>
           </div>
 
-          <!-- App DEV ADMIN -->
-          <div id="app-btn-devadmin" onclick="switchPhoneView('devadmin')" class="flex flex-col items-center cursor-pointer active:scale-90 transition-transform">
+          <!-- App DEV ADMIN (Ẩn mặc định - Chỉ hiện khi đổi tên thành dev) -->
+          <div id="app-btn-devadmin" onclick="switchPhoneView('devadmin')" class="hidden flex flex-col items-center cursor-pointer active:scale-90 transition-transform">
             <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-yellow-400 to-amber-600 flex items-center justify-center text-slate-950 text-lg shadow border-2 border-white">
               <i class="fa-solid fa-crown"></i>
             </div>
@@ -559,7 +559,7 @@
             <button onclick="runQuickCheat('dudebolt')" class="bg-slate-900 border border-slate-800 p-1.5 rounded-lg text-left font-bold text-yellow-300">⚡ dudebolt (Tốc độ)</button>
             <button onclick="runQuickCheat('moon')" class="bg-slate-900 border border-slate-800 p-1.5 rounded-lg text-left font-bold text-purple-300">🌌 moon (Mặt trăng)</button>
             <button onclick="runQuickCheat('cash')" class="bg-slate-900 border border-slate-800 p-1.5 rounded-lg text-left font-bold text-emerald-400">💰 cash (+$500,000)</button>
-            <button onclick="runQuickCheat('dev')" class="bg-slate-900 border border-slate-800 p-1.5 rounded-lg text-left font-bold text-amber-400">👑 dev (Admin Panel)</button>
+            <button onclick="runQuickCheat('heal')" class="bg-slate-900 border border-slate-800 p-1.5 rounded-lg text-left font-bold text-red-400">❤️ heal (Hồi máu 100%)</button>
             <button onclick="runQuickCheat('giant')" class="bg-slate-900 border border-slate-800 p-1.5 rounded-lg text-left font-bold text-rose-300">🗿 giantdude (Khổng lồ)</button>
             <button onclick="runQuickCheat('tiny')" class="bg-slate-900 border border-slate-800 p-1.5 rounded-lg text-left font-bold text-cyan-300">🐜 tinydude (Tí hon)</button>
           </div>
@@ -654,6 +654,10 @@
             🚨 Bật 5 Sao
           </button>
         </div>
+        <button onclick="teleportPlayer(0, 5, 180)" class="w-full bg-slate-900 p-2 rounded-xl border border-amber-500 text-left font-bold text-amber-300 flex justify-between items-center">
+          <span>👑 Đến Trụ Sở DEV Tối Thượng</span>
+          <i class="fa-solid fa-crown text-xs text-yellow-400"></i>
+        </button>
       </div>
 
       <!-- View Teleport -->
@@ -672,6 +676,8 @@
         <button onclick="teleportPlayer(-150, 2, -150)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-cyan-400">✈️ Sân Bay Dude City (Runway)</button>
         <button onclick="teleportPlayer(75, 2, -60)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-orange-400">🍔 Tiệm Bánh Dude Burger</button>
         <button onclick="teleportPlayer(-60, 2, 0)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-rose-400">🏥 Bệnh Viện Trung Tâm</button>
+        <button onclick="teleportPlayer(115, 2, -25)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-yellow-400">🏛️ Ngân Hàng Trung Tâm (Bank Vault)</button>
+        <button onclick="teleportPlayer(-180, 2, 80)" class="w-full bg-slate-900 p-2 rounded-xl text-left font-bold text-sky-400">🌊 Ngọn Hải Đăng & Cảng Biển (Lighthouse)</button>
       </div>
 
       <!-- View Weapons -->
@@ -920,7 +926,7 @@
     let buildings = [], vehicles = [], bullets = [], npcs = [], policeSquad = [];
     let particles = [];
     let soccerBall = null, trampolineMesh = null;
-    let dudeBurgerMesh = null, policeSirenBeacon = null, poolWaterMesh = null, basketballMesh = null;
+    let dudeBurgerMesh = null, policeSirenBeacon = null, poolWaterMesh = null, basketballMesh = null, lighthouseLightMesh = null;
     let basketballVel = new THREE.Vector3();
     let trafficLights = [], streetLightBulbs = [];
     let trafficTimer = 0;
@@ -1156,6 +1162,9 @@
       createHospitalZone(-60, 0);
       createAirportRunwayZone(-150, -150);
       createSkateParkZone(-50, -30);
+      createCentralBankZone(115, -25);
+      createOceanLighthouseAndDocks(-180, 80);
+      createSecretDevTower(0, 180);
       createSuburbanDistrict();
       createStreetFurniture();
     }
@@ -1739,6 +1748,107 @@
       buildings.push({ x: x, z: z, radius: 9, name: "Nhà Dân" });
     }
 
+    function createCentralBankZone(x, z) {
+      const g = new THREE.Group();
+      const baseMat = new THREE.MeshLambertMaterial({ color: 0xe2e8f0 });
+      const mainBlock = new THREE.Mesh(new THREE.BoxGeometry(26, 12, 18), baseMat);
+      mainBlock.position.set(0, 6, 0); mainBlock.castShadow = true; g.add(mainBlock);
+
+      for (let s = 0; s < 4; s++) {
+        const step = new THREE.Mesh(new THREE.BoxGeometry(20 - s * 1.5, 0.4, 3 + s * 0.8), new THREE.MeshLambertMaterial({ color: 0xcfd8dc }));
+        step.position.set(0, s * 0.4 + 0.2, 9 + s * 0.4); g.add(step);
+      }
+
+      const pillarMat = new THREE.MeshLambertMaterial({ color: 0xf8fafc });
+      for (let p = -3; p <= 3; p++) {
+        if (p === 0) continue;
+        const col = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.8, 11, 16), pillarMat);
+        col.position.set(p * 3.5, 6, 9.5); col.castShadow = true; g.add(col);
+      }
+
+      const pediment = new THREE.Mesh(new THREE.ConeGeometry(15, 4, 4), new THREE.MeshLambertMaterial({ color: 0x94a3b8 }));
+      pediment.rotation.y = Math.PI / 4; pediment.position.set(0, 14, 2); g.add(pediment);
+
+      const vaultDoor = new THREE.Mesh(new THREE.CylinderGeometry(2.5, 2.5, 0.6, 24), new THREE.MeshLambertMaterial({ color: 0xeab308 }));
+      vaultDoor.rotation.x = Math.PI / 2; vaultDoor.position.set(0, 4, -9.2); g.add(vaultDoor);
+
+      const helipad = new THREE.Mesh(new THREE.CylinderGeometry(5, 5, 0.2, 24), new THREE.MeshLambertMaterial({ color: 0x334155 }));
+      helipad.position.set(0, 12.1, -4); g.add(helipad);
+
+      g.position.set(x, 0, z);
+      scene.add(g);
+      buildings.push({ x: x, z: z, radius: 16, name: "🏛️ Ngân Hàng Trung Tâm (Bank Vault)" });
+    }
+
+    function createOceanLighthouseAndDocks(x, z) {
+      const g = new THREE.Group();
+      const pierMat = new THREE.MeshLambertMaterial({ color: 0x64748b });
+      const pier = new THREE.Mesh(new THREE.BoxGeometry(32, 2, 24), pierMat);
+      pier.position.set(0, 1, 0); pier.receiveShadow = true; g.add(pier);
+
+      const stoneBase = new THREE.Mesh(new THREE.CylinderGeometry(6, 7.5, 5, 16), new THREE.MeshLambertMaterial({ color: 0x475569 }));
+      stoneBase.position.set(-6, 4.5, 0); g.add(stoneBase);
+
+      for (let r = 0; r < 6; r++) {
+        const ringColor = (r % 2 === 0) ? 0xdc2626 : 0xf8fafc;
+        const ring = new THREE.Mesh(new THREE.CylinderGeometry(5 - r * 0.45, 5.4 - r * 0.45, 4, 16), new THREE.MeshLambertMaterial({ color: ringColor }));
+        ring.position.set(-6, 9 + r * 4, 0); ring.castShadow = true; g.add(ring);
+      }
+
+      const glassMat = new THREE.MeshBasicMaterial({ color: 0xfef08a, transparent: true, opacity: 0.85 });
+      const lantern = new THREE.Mesh(new THREE.CylinderGeometry(3, 3, 3.5, 16), glassMat);
+      lantern.position.set(-6, 34, 0); g.add(lantern);
+
+      const lightBeamGroup = new THREE.Group();
+      lightBeamGroup.position.set(-6, 34, 0);
+      const beamMat = new THREE.MeshBasicMaterial({ color: 0xfef08a, transparent: true, opacity: 0.35, side: THREE.DoubleSide });
+      const beam = new THREE.Mesh(new THREE.ConeGeometry(12, 50, 16, 1, true), beamMat);
+      beam.rotation.x = Math.PI / 2; beam.position.z = 25;
+      lightBeamGroup.add(beam);
+      g.add(lightBeamGroup);
+      lighthouseLightMesh = lightBeamGroup;
+
+      const dome = new THREE.Mesh(new THREE.SphereGeometry(3.2, 16, 8, 0, Math.PI * 2, 0, Math.PI / 2), new THREE.MeshLambertMaterial({ color: 0x991b1b }));
+      dome.position.set(-6, 35.8, 0); g.add(dome);
+
+      const colors = [0x0284c7, 0xe11d48, 0x16a34a, 0xf59e0b];
+      for (let c = 0; c < 5; c++) {
+        const cont = new THREE.Mesh(new THREE.BoxGeometry(4, 3, 8), new THREE.MeshLambertMaterial({ color: colors[c % colors.length] }));
+        cont.position.set(5 + (c % 2) * 5, 3.5 + Math.floor(c / 2) * 3, -6 + (c * 3) % 10);
+        cont.castShadow = true; g.add(cont);
+      }
+
+      g.position.set(x, 0, z);
+      scene.add(g);
+      buildings.push({ x: x, z: z, radius: 18, name: "🌊 Ngọn Hải Đăng & Cảng Biển" });
+    }
+
+    function createSecretDevTower(x, z) {
+      const g = new THREE.Group();
+      const towerMat = new THREE.MeshLambertMaterial({ color: 0x0f172a });
+      const tower = new THREE.Mesh(new THREE.BoxGeometry(22, 50, 22), towerMat);
+      tower.position.set(0, 25, 0); tower.castShadow = true; g.add(tower);
+
+      const neonMat = new THREE.MeshBasicMaterial({ color: 0xfacc15 });
+      for (let cx of [-11.1, 11.1]) {
+        for (let cz of [-11.1, 11.1]) {
+          const strip = new THREE.Mesh(new THREE.BoxGeometry(0.5, 48, 0.5), neonMat);
+          strip.position.set(cx, 25, cz); g.add(strip);
+        }
+      }
+
+      const crownMat = new THREE.MeshBasicMaterial({ color: 0xfbbf24 });
+      const crown = new THREE.Mesh(new THREE.CylinderGeometry(5, 3.5, 4, 5, 1, true), crownMat);
+      crown.position.set(0, 52.5, 0); g.add(crown);
+
+      const spire = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 1.2, 14, 8), neonMat);
+      spire.position.set(0, 60, 0); g.add(spire);
+
+      g.position.set(x, 0, z);
+      scene.add(g);
+      buildings.push({ x: x, z: z, radius: 15, name: "👑 Trụ Sở DEV Tối Thượng" });
+    }
+
     function createStreetFurniture() {
       // 4 Đèn giao thông tại ngã tư trung tâm
       createTrafficLight(12, 12, 0, false);
@@ -2247,6 +2357,10 @@
     function runQuickCheat(code) {
       if (code === 'dev') {
         unlockDevAdmin();
+      } else if (code === 'heal') {
+        State.health = 100;
+        updateHealthUI();
+        showToast("❤️ Hồi phục 100% sinh lực!");
       } else if (code === 'dudebolt') {
         State.speedMulti = 3;
         showToast("⚡ DUDEBOLT: Tốc độ tia chớp x3!");
@@ -2260,14 +2374,17 @@
       } else if (code === 'tiny') {
         setPlayerScale(0.4);
       } else {
-        showToast("Mã sai! Hãy thử: dudebolt, moon, dev, cash, giant, tiny");
+        showToast("Mã sai! Hãy thử: dudebolt, moon, cash, giant, tiny, heal");
       }
     }
 
     function unlockDevAdmin() {
       State.isDev = true;
       Sound.playFanfare();
-      document.getElementById('dev-badge-hud').classList.remove('hidden');
+      const badge = document.getElementById('dev-badge-hud');
+      if (badge) badge.classList.remove('hidden');
+      const appBtn = document.getElementById('app-btn-devadmin');
+      if (appBtn) appBtn.classList.remove('hidden');
       showToast("★ CHÀO DEV! TOÀN QUYỀN ADMIN ĐÃ MỞ KHÓA ★");
       switchPhoneView('devadmin');
     }
@@ -2516,6 +2633,7 @@
       updateBasketballPhysics(delta);
 
       if (dudeBurgerMesh) dudeBurgerMesh.rotation.y += 0.8 * delta;
+      if (lighthouseLightMesh) lighthouseLightMesh.rotation.y += 1.5 * delta;
       if (policeSirenBeacon) policeSirenBeacon.rotation.y += 6.0 * delta;
       if (poolWaterMesh) poolWaterMesh.position.y = 0.18 + Math.sin(clock.getElapsedTime() * 2.2) * 0.03;
 

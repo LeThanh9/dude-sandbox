@@ -56,23 +56,44 @@ Khi lên bất kỳ xe nào, bấm nút **Đài (Radio)** trên bảng điều k
 2. ⚡ **80s Retro Synthwave:** Tiếng bass điện tử dồn dập sôi động.
 3. 🔇 **Tắt Đài**
 
+### 9. 🏛️ Ngân Hàng Trung Tâm & Kho Vàng (Central Bank & Vault)
+- Tòa nhà đá cẩm thạch tráng lệ với 6 cột trụ Hy Lạp cổ điển và mái tam giác.
+- Cửa kho vàng kiên cố mạ vàng nguyên khối phía sau.
+- Bãi đáp trực thăng (Helipad) chuyên dụng trên tầng thượng.
+
+### 10. 🌊 Ngọn Hải Đăng & Cảng Biển Hàng Hải (Ocean Lighthouse & Docks)
+- Tháp hải đăng 35m với các vòng sọc Đỏ - Trắng kinh điển.
+- Đèn pha xoay 360 độ quét liên tục trên mặt biển.
+- Bến cảng với hàng container nhiều màu sắc và cầu cảng bê tông kiên cố.
+
+### 11. 👑 Trụ Sở DEV Tối Thượng (Secret Fortress Skyscraper)
+- Tòa tháp công nghệ cao cao 50m bằng đá Obsidian đen tuyền với các đường neon vàng rực rỡ và vương miện DEV phát sáng trên đỉnh.
+
 ---
 
-## 👑 Menu Admin Ẩn Dành Cho DEV (Toàn Quyền Quản Trị)
+## 👑 Tính Năng Ẩn Dành Cho DEV (Không Gợi Ý)
 
-1. Mở dPhone -> Bấm **Đổi Tên** (hoặc biểu tượng cây bút cạnh tên nhân vật).
-2. Đổi tên thành: `dev` hoặc `DEV` (hoặc mở app **Cheats** gõ mã `dev`).
-3. **Mở khóa ngay lập tức Admin Panel vương miện vàng:**
-   - 🛡️ **Bất Tử (God Mode):** Miễn nhiễm mọi sát thương.
-   - 💰 **Thêm +$1,000,000 Cash:** Tiền mặt vô hạn.
-   - 🦸 **Chế Độ Bay Superhero:** Bay tự do xuyên không gian.
-   - ⚡ **Siêu Tốc Độ x3:** Chạy nhanh như The Flash.
-   - 🦘 **Siêu Nhảy Cao x3:** Nhảy vượt nóc nhà.
-   - ✈️ **Nhận Máy Bay Nhào Lộn:** Giao máy bay ngay trước mặt.
-   - ⏱️ **Quay Chậm Matrix:** Slow-motion nghẹt thở.
-   - ☀️ / 🌅 / 🌙 **Thao Túng Thời Tiết:** Chuyển ngày/đêm tức thì.
-   - ⭐ **Xóa Sạch Truy Nã / Bật 5 Sao:** Quản lý truy nã theo ý muốn.
-   - 🌀 **Dịch Chuyển Tức Thời Đến 10 Địa Danh Cốt Lõi:** Nhà Jack, Đồn Cảnh Sát, Shop Súng, Trạm Xăng, Nóc Tháp Empire 75m, Sân Bay, Bệnh Viện, Tiệm Dude Burger, Sân Bóng Đá, Dốc Bay Skate Park.
+- **Cơ Chế Kích Hoạt Bí Mật:**
+  1. Mở dPhone -> Bấm **Đổi Tên** (biểu tượng cây bút cạnh tên nhân vật).
+  2. Đặt tên nhân vật thành: `dev` (hoàn toàn không có gợi ý, không autocomplete).
+  3. Biểu tượng ứng dụng **DEV ADMIN** vương miện vàng sẽ tự động xuất hiện trên màn hình chính dPhone.
+- **Quyền Năng Quản Trị:**
+  - 🛡️ **Bất Tử (God Mode):** Miễn nhiễm sát thương.
+  - 💰 **Thêm +$1,000,000 Cash:** Tiền mặt vô hạn.
+  - 🦸 **Chế Độ Bay Superhero:** Bay tự do xuyên không gian.
+  - ⚡ **Siêu Tốc Độ x3 & Siêu Nhảy Cao x3:** Vượt mọi giới hạn vật lý.
+  - ✈️ **Nhận Máy Bay Nhào Lộn:** Triệu hồi tức thì.
+  - ⏱️ **Quay Chậm Matrix:** Slow-motion nghẹt thở.
+  - ☀️ / 🌅 / 🌙 **Thao Túng Thời Tiết:** Chuyển ngày/đêm tức thì.
+  - ⭐ **Xóa Sạch Truy Nã / Bật 5 Sao:** Quản lý truy nã theo ý muốn.
+  - 🌀 **Dịch Chuyển Tức Thời Đến 13 Địa Danh:** Bao gồm Ngân hàng trung tâm, Ngọn hải đăng và Trụ sở DEV.
+
+---
+
+## 🚀 Đóng Gói APK Tự Động Qua GitHub Actions
+
+- Hệ thống CI/CD tự động build APK Android từ mã nguồn qua workflow `.github/workflows/build-apk.yml`.
+- Tự động biên dịch, ký số và phát hành release kèm file APK `DudeTheftWars-Mod-Dev-v0.9.1.1b.apk`.
 
 ---
 
