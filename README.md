@@ -62,8 +62,7 @@ Khi lên bất kỳ xe nào, bấm nút **Đài (Radio)** trên bảng điều k
 - Bãi đáp trực thăng (Helipad) chuyên dụng trên tầng thượng.
 
 ### 10. 🌊 Ngọn Hải Đăng & Cảng Biển Hàng Hải (Ocean Lighthouse & Docks)
-- Tháp hải đăng 35m với các vòng sọc Đỏ - Trắng kinh điển.
-- Đèn pha xoay 360 độ quét liên tục trên mặt biển.
+- Tháp hải đăng 35m với các vòng s   trên mặt biển.
 - Bến cảng với hàng container nhiều màu sắc và cầu cảng bê tông kiên cố.
 
 ### 11. 👑 Trụ Sở DEV Tối Thượng (Secret Fortress Skyscraper)
